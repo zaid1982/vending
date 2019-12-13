@@ -75,18 +75,18 @@ class Class_reference {
      * @return array
      * @throws Exception
      */
-    public function get_state () {
+    public function get_status () {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
             $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('ref_state');
+            $arr_dataLocal = Class_db::getInstance()->db_select('ref_status');
             foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['stateId'] = $dataLocal['state_id'];
-                $row_result['stateCode'] = $this->fn_general->clear_null($dataLocal['state_code']);
-                $row_result['countryCode'] = $this->fn_general->clear_null($dataLocal['country_code']);
-                $row_result['stateDesc'] = $dataLocal['state_desc'];
-                $row_result['stateStatus'] = $dataLocal['state_status'];
+                $row_result['statusId'] = $dataLocal['status_id'];
+                $row_result['statusDesc'] = $dataLocal['status_desc'];
+                $row_result['statusColor'] = $this->fn_general->clear_null($dataLocal['status_color']);
+                $row_result['statusColorCode'] = $this->fn_general->clear_null($dataLocal['status_color_code']);
+                $row_result['statusAction'] = $this->fn_general->clear_null($dataLocal['status_action']);
                 array_push($result, $row_result);
             }
 
@@ -102,18 +102,17 @@ class Class_reference {
      * @return array
      * @throws Exception
      */
-    public function get_city () {
+    public function get_role () {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
             $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('ref_city');
+            $arr_dataLocal = Class_db::getInstance()->db_select('ref_role');
             foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['cityId'] = $dataLocal['city_id'];
-                $row_result['cityCode'] = $this->fn_general->clear_null($dataLocal['city_code']);
-                $row_result['cityDesc'] = $dataLocal['city_desc'];
-                $row_result['stateId'] = $dataLocal['state_id'];
-                $row_result['cityStatus'] = $dataLocal['city_status'];
+                $row_result['roleId'] = $dataLocal['role_id'];
+                $row_result['roleDesc'] = $dataLocal['role_desc'];
+                $row_result['roleType'] = $this->fn_general->clear_null($dataLocal['role_type']);
+                $row_result['roleStatus'] = $dataLocal['role_status'];
                 array_push($result, $row_result);
             }
 
@@ -125,80 +124,5 @@ class Class_reference {
         }
     }
 
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function get_gelaran () {
-        try {
-            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
-            $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('ref_gelaran');
-            foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['gelaranId'] = $dataLocal['gelaran_id'];
-                $row_result['gelaranCode'] = $this->fn_general->clear_null($dataLocal['gelaran_code']);
-                $row_result['gelaranDesc'] = $dataLocal['gelaran_desc'];
-                $row_result['gelaranStatus'] = $dataLocal['gelaran_status'];
-                array_push($result, $row_result);
-            }
-
-            return $result;
-        }
-        catch(Exception $ex) {
-            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function get_aduanJenisWakil () {
-        try {
-            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
-
-            $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('ref_aduan_jenis_wakil');
-            foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['aduanJenisWakilId'] = $dataLocal['aduanJenisWakil_id'];
-                $row_result['aduanJenisWakilDesc'] = $dataLocal['aduanJenisWakil_desc'];
-                $row_result['aduanJenisWakilStatus'] = $dataLocal['aduanJenisWakil_status'];
-                array_push($result, $row_result);
-            }
-
-            return $result;
-        }
-        catch(Exception $ex) {
-            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function get_golonganPengguna () {
-        try {
-            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
-
-            $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('ref_golongan_pengguna');
-            foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['golonganPenggunaId'] = $dataLocal['golonganPengguna_id'];
-                $row_result['golonganPenggunaCode'] = $this->fn_general->clear_null($dataLocal['golonganPengguna_code']);
-                $row_result['golonganPenggunaDesc'] = $dataLocal['golonganPengguna_desc'];
-                $row_result['golonganPenggunaStatus'] = $dataLocal['golonganPengguna_status'];
-                array_push($result, $row_result);
-            }
-
-            return $result;
-        }
-        catch(Exception $ex) {
-            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
 }
