@@ -61,6 +61,7 @@
                                     <thead>
                                     <tr class="th-strong">
                                         <th scope="row" style="max-width: 30px">#</th>
+                                        <th style="width: 35px"></th>
                                         <th>Date</th>
                                         <th>Site</th>
                                         <th>Machine</th>
@@ -70,7 +71,6 @@
                                         <th style="width: 10%">Collection</th>
                                         <th style="width: 10%">Profit</th>
                                         <th style="width: 10%">Profit Difference</th>
-                                        <th style="width: 35px"></th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -180,6 +180,11 @@
                 changePasswordClass_ = new ModalChangePassword();
                 salesClass_ = new MainSales();
 
+                const refSite_ = mzGetLocalArray('vending_site', versionLocal_, 'siteId', [], 'site');
+                const refMachine_ = mzGetLocalArray('vending_machine', versionLocal_, 'machineId', [], 'machine');
+
+                salesClass_.setRefSite(refSite_);
+                salesClass_.setRefMachine(refMachine_);
                 salesClass_.init();
             } catch (e) {
                 toastr['error'](e.message, _ALERT_TITLE_ERROR);

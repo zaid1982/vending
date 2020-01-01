@@ -3,12 +3,14 @@ function MainSales() {
     const className = 'MainClient';
     let self = this;
     let oTableSales;
+    let refSite;
+    let refMachine;
 
     this.init = function () {
         oTableSales =  $('#dtAslList').DataTable({
             bLengthChange: false,
             bFilter: true,
-            "aaSorting": [1, 'asc'],
+            "aaSorting": [2, 'desc'],
             fnRowCallback : function(nRow, aData, iDisplayIndex){
                 const info = oTableSales.page.info();
                 $('td', nRow).eq(0).html(info.page * info.length + (iDisplayIndex + 1));
@@ -29,9 +31,18 @@ function MainSales() {
             aoColumns:
                 [
                     {mData: null, bSortable: false},
+                    {mData: null, bSortable: false, sClass: 'text-center',
+                        mRender: function (data, type, row, meta) {
+                            return '<a><i class="fas fa-edit lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>&nbsp;&nbsp;';
+                        }
+                    },
                     {mData: 'bslsDate'},
-                    {mData: 'siteId', bSortable: false},
-                    {mData: 'machineId', bSortable: false},
+                    {mData: null, mRender: function (data, type, row){
+                            return row['siteId'] !== '' ? refSite[row['siteId']]['siteName'] : '';
+                        }},
+                    {mData: null, mRender: function (data, type, row){
+                            return row['machineId'] !== '' ? refMachine[row['machineId']]['machineName'] : '';
+                        }},
                     {mData: 'bslsCanSold', bSortable: false, sClass: 'text-right'},
                     {mData: 'bslsStockCost', bSortable: false, sClass: 'text-right'},
                     {mData: 'bslsProfitTarget', bSortable: false, sClass: 'text-right'},
@@ -45,11 +56,6 @@ function MainSales() {
                         mRender: function (data) {
                             const badgeColor = parseInt(data) < 0 ? 'red' : 'green';
                             return '<h6><span class="badge badge-pill '+badgeColor+' z-depth-2">'+data+'</span></h6>';
-                        }
-                    },
-                    {mData: null, bSortable: false, sClass: 'text-center',
-                        mRender: function (data, type, row, meta) {
-                            return '<a><i class="fas fa-edit lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>&nbsp;&nbsp;';
                         }
                     },
                     {mData: 'bslsId', visible: false}
@@ -81,5 +87,13 @@ function MainSales() {
 
     this.getClassName = function () {
         return className;
+    };
+
+    this.setRefSite = function (_refSite) {
+        refSite = _refSite;
+    };
+
+    this.setRefMachine = function (_refMachine) {
+        refMachine = _refMachine;
     };
 }
