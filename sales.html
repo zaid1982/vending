@@ -85,47 +85,98 @@
 
         <section class="section mb-5 mt-lg-2" id="sectionAslCounter">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            sac
+                <div class="col-md-4 col-lg-3">
+                    <div class="card mb-4">
+                        <div class="p-3">
+                            <!-- Title -->
+                            <h4 class="card-title font-weight-bold mb-2">Slot 1</h4>
+                            <!-- Subtitle -->
+                            <p class="card-text"><i class="fas fa-info-circle pr-2"></i>Bottle Slot, 1/6</p>
                         </div>
-                        <div class="card-body">
+                        <div class="view overlay">
+                            <img class="card-img-top rounded-0" src="img/brand/brand_10.jpg" style="max-height: 100px; object-fit: contain">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body pb-3">
                             <form id="formAsl1">
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAslComplainerIcNo" class="form-control">
-                                            <label for="txtAslComplainerIcNo" id="lblAslComplainerIcNo">1. FT Black Current (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAslComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAslComplainerIcNo1" class="form-control">
-                                            <label for="txtAslComplainerIcNo1" id="lblAslComplainerIcNo">2. Nescafe Tarik Kaw (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAslComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAslComplainerIcNo2" class="form-control">
-                                            <label for="txtAslComplainerIcNo2" id="lblAslComplainerIcNo">3. FT Black Current (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAslComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAslComplainerIcNo3" class="form-control">
-                                            <label for="txtAslComplainerIcNo3" id="lblAslComplainerIcNo">4. Nescafe Tarik Kaw (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAslComplainerIcNoErr"></p>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <select id="optAslBrand1" class="mdb-select md-form colorful-select dropdown-info mt-0">
+                                            <option value="" disabled>Choose your option</option>
+                                            <option value="1" selected>Nescafe Original</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                        <label for="optAslBrand1">Brand</label>
                                     </div>
                                 </div>
+                                <div class="md-form mt-0">
+                                    <input type="text" id="txtAslInitialReading1" class="form-control" value="1320">
+                                    <label for="txtAslInitialReading1" id="lblAslInitialReading1">Initial Reading</label>
+                                    <p class="font-small text-danger" id="txtAslInitialReading1Err"></p>
+                                </div>
+                                <div class="md-form mt-0">
+                                    <input type="text" id="txtAslCurrentReading1" class="form-control" value="1320">
+                                    <label for="txtAslCurrentReading1" id="lblAslCurrentReading1">Current Reading</label>
+                                    <p class="font-small text-danger" id="txtAslCurrentReading1Err"></p>
+                                </div>
+                                <div class="md-form mt-0 mb-0">
+                                    <input type="text" id="txtAslTotalSold1" class="form-control" value="12">
+                                    <label for="txtAslTotalSold1" id="lblAslTotalSold1">Total Sold</label>
+                                    <p class="font-small text-danger" id="txtAslTotalSold1Err"></p>
+                                </div>
+                                <button id="btnAslSave1" class="btn btn-info waves-effect float-right"><i class="far fa-save ml-1"></i>&nbsp;&nbsp;Save</button>
                             </form>
                         </div>
-                        <div class="card-footer">
-                            ds
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-lg-3">
+                    <div class="card">
+                        <div class="p-3">
+                            <!-- Title -->
+                            <h4 class="card-title font-weight-bold mb-2">Slot 2</h4>
+                            <!-- Subtitle -->
+                            <p class="card-text"><i class="fas fa-info-circle pr-2"></i>Bottle Slot, 2/6</p>
+                        </div>
+                        <div class="view overlay">
+                            <img class="card-img-top rounded-0" src="img/brand/brand_10.jpg" style="max-height: 100px; object-fit: contain">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body pb-3">
+                            <form id="formAsl2">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select id="optAslBrand2" class="mdb-select md-form colorful-select dropdown-info mt-0">
+                                            <option value="" disabled>Choose your option</option>
+                                            <option value="1" selected>Nescafe Original</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                        <label for="optAslBrand2">Brand</label>
+                                    </div>
+                                </div>
+                                <div class="md-form mt-0">
+                                    <input type="text" id="txtAslInitialReading2" class="form-control" value="1320">
+                                    <label for="txtAslInitialReading2" id="lblAslInitialReading2">Initial Reading</label>
+                                    <p class="font-small text-danger" id="txtAslInitialReading2Err"></p>
+                                </div>
+                                <div class="md-form mt-0">
+                                    <input type="text" id="txtAslCurrentReading2" class="form-control" value="1320">
+                                    <label for="txtAslCurrentReading2" id="lblAslCurrentReading2">Current Reading</label>
+                                    <p class="font-small text-danger" id="txtAslCurrentReading2Err"></p>
+                                </div>
+                                <div class="md-form mt-0 mb-0">
+                                    <input type="text" id="txtAslTotalSold2" class="form-control" value="12">
+                                    <label for="txtAslTotalSold2" id="lblAslTotalSold2">Total Sold</label>
+                                    <p class="font-small text-danger" id="txtAslTotalSold2Err"></p>
+                                </div>
+                            </form>
+                            <button id="btnAslSave2" class="btn btn-info waves-effect float-right"><i class="far fa-save ml-1"></i>&nbsp;&nbsp;Save</button>
                         </div>
                     </div>
                 </div>
@@ -171,11 +222,11 @@
     let salesClass_;
 
     document.addEventListener('DOMContentLoaded', function () {
-
         ShowLoader();
         setTimeout(function () {
             try {
                 initiatePages();
+
                 versionLocal_ = mzGetDataVersion();
                 changePasswordClass_ = new ModalChangePassword();
                 salesClass_ = new MainSales();

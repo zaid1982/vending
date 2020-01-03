@@ -1,1 +1,24 @@
-/* Your custom styles */
+/* temp fix to alignment issue for select box labels  */
+.select-wrapper+label{
+    z-index: 0;
+    top: 0;
+    margin-left: 0px;
+}
+.select-wrapper+label.active{
+    font-size: 0.8rem;
+    top: 0.7rem;
+}
+.md-outline.select-wrapper+label {
+    top: .5em !important;
+    z-index: 2 !important;
+}
+.select-wrapper.md-form.md-outline input.select-dropdown {
+    margin-bottom: 0px;
+}
+.select-wrapper.md-form.md-outline+label {
+    top: -1.7em!important;
+    font-size: 13px;
+}
+.md-form.md-outline .form-control {
+    margin-bottom: 0px;
+}
