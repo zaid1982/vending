@@ -1,8 +1,9 @@
 function MainSales() {
 
-    const className = 'MainClient';
+    const className = 'MainSales';
     let self = this;
     let oTableSales;
+    let refStatus;
     let refSite;
     let refMachine;
 
@@ -33,14 +34,16 @@ function MainSales() {
                     {mData: null, bSortable: false},
                     {mData: null, bSortable: false, sClass: 'text-center',
                         mRender: function (data, type, row, meta) {
-                            return '<a><i class="fas fa-edit lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>&nbsp;&nbsp;';
+                            let label  = '<a><i class="fas fa-hand-holding-usd lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>&nbsp;&nbsp;';
+                            label += '<a><i class="fas fa-edit lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>';
+                            return label;
                         }
                     },
-                    {mData: 'bslsDate'},
-                    {mData: null, mRender: function (data, type, row){
+                    {mData: 'bslsDate', bSortable: false},
+                    {mData: null, bSortable: false, mRender: function (data, type, row){
                             return row['siteId'] !== '' ? refSite[row['siteId']]['siteName'] : '';
                         }},
-                    {mData: null, mRender: function (data, type, row){
+                    {mData: null, bSortable: false, mRender: function (data, type, row){
                             return row['machineId'] !== '' ? refMachine[row['machineId']]['machineName'] : '';
                         }},
                     {mData: 'bslsCanSold', bSortable: false, sClass: 'text-right'},
@@ -49,13 +52,18 @@ function MainSales() {
                     {mData: 'bslsCollection', bSortable: false, sClass: 'text-right'},
                     {mData: 'bslsProfitActual', bSortable: false, sClass: 'text-right',
                         mRender: function (data) {
-                            return '<h6><span class="badge badge-pill default-color z-depth-2">'+data+'</span></h6>';
+                            return '<h6><span class="badge badge-pill unique-color z-depth-2">'+data+'</span></h6>';
                         }
                     },
                     {mData: 'bslsProfitDiff', bSortable: false, sClass: 'text-right',
                         mRender: function (data) {
-                            const badgeColor = parseInt(data) < 0 ? 'red' : 'green';
+                            const badgeColor = parseInt(data) < 0 ? 'danger-color-dark' : 'success-color-dark';
                             return '<h6><span class="badge badge-pill '+badgeColor+' z-depth-2">'+data+'</span></h6>';
+                        }
+                    },
+                    {mData: null, bSortable: false, sClass: 'text-center',
+                        mRender: function (data, type, row) {
+                            return '<h6><span class="badge '+refStatus[row['bslsStatus']]['statusColor']+' z-depth-2">'+refStatus[row['bslsStatus']]['statusDesc']+'</span></h6>';
                         }
                     },
                     {mData: 'bslsId', visible: false}
@@ -87,6 +95,10 @@ function MainSales() {
 
     this.getClassName = function () {
         return className;
+    };
+
+    this.setRefStatus = function (_refStatus) {
+        refStatus = _refStatus;
     };
 
     this.setRefSite = function (_refSite) {

@@ -40,13 +40,13 @@ try {
             
         $result = array();
         switch ($name) {
-            case 'gems_status':
+            case 'vending_status':
                 $result = $fn_reference->get_status();
                 break;
-            case 'gems_role':
+            case 'vending_role':
                 $result = $fn_reference->get_role();
                 break;
-            case 'gems_user':
+            case 'vending_user':
                 $result = $fn_user->get_users();
                 break;
             default:

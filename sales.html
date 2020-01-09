@@ -60,8 +60,8 @@
                                 <table id="dtAslList" class="table table-hover table-sm mb-0 display responsive" cellspacing="0" width="100%">
                                     <thead>
                                     <tr class="th-strong">
-                                        <th scope="row" style="max-width: 30px">#</th>
-                                        <th style="width: 35px"></th>
+                                        <th scope="row" style="width: 30px; max-width: 30px">#</th>
+                                        <th style="width: 42px; min-width: 42px"></th>
                                         <th>Date</th>
                                         <th>Site</th>
                                         <th>Machine</th>
@@ -71,6 +71,7 @@
                                         <th style="width: 10%">Collection</th>
                                         <th style="width: 10%">Profit</th>
                                         <th style="width: 10%">Profit Difference</th>
+                                        <th style="width: 5%">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -83,119 +84,7 @@
             </div>
         </section>
 
-        <section class="section mb-5 mt-lg-2" id="sectionAslCounter">
-            <!-- Card -->
-            <div class="card card-image mb-4" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
-                <!-- Content -->
-                <div class="text-white text-center align-items-center rgba-blue-grey-strong py-3 px-4">
-                    <div>
-                        <h5><i class="fas fa-calendar"></i> 19/1/2020</h5>
-                        <h3 class="card-title pt-2"><strong>KUIM</strong></h3>
-                        <h5>KUIM Block A</h5>
-                    </div>
-                </div>
-            </div>
-            <!-- Card -->
-
-            <div class="row">
-                <div class="col-md-4 col-lg-3">
-                    <div class="card mb-4">
-                        <div class="p-3">
-                            <!-- Title -->
-                            <h4 class="card-title font-weight-bold mb-2">Slot 1</h4>
-                            <!-- Subtitle -->
-                            <p class="card-text"><i class="fas fa-info-circle pr-2"></i>Bottle Slot, 1/6</p>
-                        </div>
-                        <div class="view overlay">
-                            <img class="card-img-top rounded-0" src="img/brand/brand_10.jpg" style="max-height: 100px; object-fit: contain">
-                            <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <div class="card-body pb-3">
-                            <form id="formAsl1">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <select id="optAslBrand1" class="mdb-select md-form colorful-select dropdown-info mt-0">
-                                            <option value="" disabled>Choose your option</option>
-                                            <option value="1" selected>Nescafe Original</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>
-                                        <label for="optAslBrand1">Brand</label>
-                                    </div>
-                                </div>
-                                <div class="md-form mt-0">
-                                    <input type="text" id="txtAslInitialReading1" class="form-control" value="1320">
-                                    <label for="txtAslInitialReading1" id="lblAslInitialReading1">Initial Reading</label>
-                                    <p class="font-small text-danger" id="txtAslInitialReading1Err"></p>
-                                </div>
-                                <div class="md-form mt-0">
-                                    <input type="text" id="txtAslCurrentReading1" class="form-control" value="1320">
-                                    <label for="txtAslCurrentReading1" id="lblAslCurrentReading1">Current Reading</label>
-                                    <p class="font-small text-danger" id="txtAslCurrentReading1Err"></p>
-                                </div>
-                                <div class="md-form mt-0 mb-0">
-                                    <input type="text" id="txtAslTotalSold1" class="form-control" value="12">
-                                    <label for="txtAslTotalSold1" id="lblAslTotalSold1">Total Sold</label>
-                                    <p class="font-small text-danger" id="txtAslTotalSold1Err"></p>
-                                </div>
-                                <button id="btnAslSave1" class="btn btn-info waves-effect float-right"><i class="far fa-save ml-1"></i>&nbsp;&nbsp;Save</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-3">
-                    <div class="card">
-                        <div class="p-3">
-                            <!-- Title -->
-                            <h4 class="card-title font-weight-bold mb-2">Slot 2</h4>
-                            <!-- Subtitle -->
-                            <p class="card-text"><i class="fas fa-info-circle pr-2"></i>Bottle Slot, 2/6</p>
-                        </div>
-                        <div class="view overlay">
-                            <img class="card-img-top rounded-0" src="img/brand/brand_10.jpg" style="max-height: 100px; object-fit: contain">
-                            <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <div class="card-body pb-3">
-                            <form id="formAsl2">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <select id="optAslBrand2" class="mdb-select md-form colorful-select dropdown-info mt-0">
-                                            <option value="" disabled>Choose your option</option>
-                                            <option value="1" selected>Nescafe Original</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>
-                                        <label for="optAslBrand2">Brand</label>
-                                    </div>
-                                </div>
-                                <div class="md-form mt-0">
-                                    <input type="text" id="txtAslInitialReading2" class="form-control" value="1320">
-                                    <label for="txtAslInitialReading2" id="lblAslInitialReading2">Initial Reading</label>
-                                    <p class="font-small text-danger" id="txtAslInitialReading2Err"></p>
-                                </div>
-                                <div class="md-form mt-0">
-                                    <input type="text" id="txtAslCurrentReading2" class="form-control" value="1320">
-                                    <label for="txtAslCurrentReading2" id="lblAslCurrentReading2">Current Reading</label>
-                                    <p class="font-small text-danger" id="txtAslCurrentReading2Err"></p>
-                                </div>
-                                <div class="md-form mt-0 mb-0">
-                                    <input type="text" id="txtAslTotalSold2" class="form-control" value="12">
-                                    <label for="txtAslTotalSold2" id="lblAslTotalSold2">Total Sold</label>
-                                    <p class="font-small text-danger" id="txtAslTotalSold2Err"></p>
-                                </div>
-                            </form>
-                            <button id="btnAslSave2" class="btn btn-info waves-effect float-right"><i class="far fa-save ml-1"></i>&nbsp;&nbsp;Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <div class="includeHtml" id="h-section_item_counter"></div>
     </div>
     <div class="includeHtml" id="h-modal_change_password"></div>
 </main>
@@ -232,6 +121,7 @@
 
     let versionLocal_;
     let changePasswordClass_;
+    let itemCounterClass_;
     let salesClass_;
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -242,11 +132,16 @@
 
                 versionLocal_ = mzGetDataVersion();
                 changePasswordClass_ = new ModalChangePassword();
+                itemCounterClass_ = new SectionItemCounter();
                 salesClass_ = new MainSales();
 
+                const refStatus_ = mzGetLocalArray('vending_status', versionLocal_, 'statusId');
                 const refSite_ = mzGetLocalArray('vending_site', versionLocal_, 'siteId', [], 'site');
                 const refMachine_ = mzGetLocalArray('vending_machine', versionLocal_, 'machineId', [], 'machine');
 
+                itemCounterClass_.init();
+                
+                salesClass_.setRefStatus(refStatus_);
                 salesClass_.setRefSite(refSite_);
                 salesClass_.setRefMachine(refMachine_);
                 salesClass_.init();
@@ -259,6 +154,7 @@
     });
 
     document.write('<scr' + 'ipt src="js/pages/modal_change_password.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt src="js/pages/section_item_counter.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
     document.write('<scr' + 'ipt src="js/pages/main_sales.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
 
 </script>

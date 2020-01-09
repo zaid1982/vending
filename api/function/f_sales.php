@@ -93,6 +93,7 @@ class Class_sales {
                 $row_result['bslsCollection'] = $this->fn_general->clear_null($dataLocal['bsls_collection']);
                 $row_result['bslsProfitActual'] = $this->fn_general->clear_null($dataLocal['bsls_profit_actual']);
                 $row_result['bslsProfitDiff'] = $this->fn_general->clear_null($dataLocal['bsls_profit_diff']);
+                $row_result['bslsStatus'] = $dataLocal['bsls_status'];
                 array_push($result, $row_result);
             }
 
