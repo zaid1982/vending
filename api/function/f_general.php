@@ -374,42 +374,6 @@ class Class_general {
      * @return array
      * @throws Exception
      */
-    public function getPpmFrequency () {
-        try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('ppm_frequency', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['frequency_id'])] = $dataLocal['frequency_name'];
-            }
-            return $refArray;
-        } catch(Exception $ex) {
-            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function getPpmFrequencyCode () {
-        try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('ppm_frequency', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['frequency_id'])] = $dataLocal['frequency_code'];
-            }
-            return $refArray;
-        } catch(Exception $ex) {
-            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
     public function getRefStatus () {
         try {
             $refArray = array('');
@@ -479,89 +443,36 @@ class Class_general {
     }
 
     /**
+     * @param $dataInputs
      * @return array
      * @throws Exception
      */
-    public function getCheckPointName () {
+    public function convertDbIndexs ($dataInputs) {
         try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('wfl_checkpoint', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['checkpoint_id'])] = $dataLocal['checkpoint_desc'];
+            $dataOutputs = array();
+            $newIndexs = array();
+            $cnt = 0;
+            foreach ($dataInputs as $dataInput) {
+                if ($cnt === 0) {
+                    foreach ($dataInput as $key=>$value) {
+                        $keyTemps = explode('_', $key);
+                        foreach ($keyTemps as $j=>$keyTemp) {
+                            if ($j > 0) {
+                                $keyTemps[$j] = ucfirst($keyTemp);
+                            }
+                        }
+                        $newIndex = implode('', $keyTemps);
+                        $newIndexs[$key] = $newIndex;
+                    }
+                    $cnt++;
+                }
+                $newData = array();
+                foreach ($dataInput as $key=>$value) {
+                    $newData[$newIndexs[$key]] = is_null($value) ? '' : $value;
+                }
+                array_push($dataOutputs, $newData);
             }
-            return $refArray;
-        } catch(Exception $ex) {
-            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function getGroupName () {
-        try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('sys_group', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['group_id'])] = $dataLocal['group_name'];
-            }
-            return $refArray;
-        } catch(Exception $ex) {
-            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function getLocationCode () {
-        try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('cli_location_code', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['location_code_id'])] = $dataLocal['location_code_name'];
-            }
-            return $refArray;
-        } catch(Exception $ex) {
-            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function getSiteName () {
-        try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('cli_site', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['site_id'])] = $dataLocal['site_name'];
-            }
-            return $refArray;
-        } catch(Exception $ex) {
-            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function getPpmGroupName () {
-        try {
-            $refArray = array('');
-            $arr_dataLocal = Class_db::getInstance()->db_select('ppm_group', array(), null, null, 1);
-            foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['ppm_group_id'])] = $dataLocal['ppm_group_name'];
-            }
-            return $refArray;
+            return $dataOutputs;
         } catch(Exception $ex) {
             $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
             throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
