@@ -138,7 +138,9 @@
                 const refStatus_ = mzGetLocalArray('vending_status', versionLocal_, 'statusId');
                 const refSite_ = mzGetLocalArray('vending_site', versionLocal_, 'siteId', [], 'site');
                 const refMachine_ = mzGetLocalArray('vending_machine', versionLocal_, 'machineId', [], 'machine');
+                const refBrand_ = mzGetLocalArray('vending_brand', versionLocal_, 'brandId', [], 'brand');
 
+                itemCounterClass_.setRefBrand(refBrand_);
                 itemCounterClass_.init();
 
                 salesClass_.setRefStatus(refStatus_);
