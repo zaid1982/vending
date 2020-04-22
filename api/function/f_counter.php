@@ -73,14 +73,17 @@ class Class_counter {
     }
 
     /**
+     * @param $machineId
+     * @param $counterDate
      * @return array
      * @throws Exception
      */
-    public function get_counter_list () {
+    public function get_counter_list ($machineId, $counterDate) {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
-            $dataLocals = Class_db::getInstance()->db_select('vm_counter');
+            $this->fn_general->checkEmptyParams(array($machineId, $counterDate));
+            $dataLocals = Class_db::getInstance()->db_select('vw_counter_slot', array('vm_counter.machine_id'=>$machineId, 'vm_counter.counter_date'=>$counterDate));
             return $this->fn_general->convertDbIndexs($dataLocals);
         }
         catch(Exception $ex) {

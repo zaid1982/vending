@@ -2,9 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b67ab80-0f4d-41ea-8c00-ff1dbf8c857f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/counter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_17.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_18.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_19.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_20.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_21.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_22.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_23.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_24.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_25.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_26.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_27.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_28.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_29.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_30.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_31.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_32.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_33.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_34.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_35.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_36.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_37.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_38.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_39.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_63.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_64.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_65.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/brand/brand_97.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/brand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/function/f_counter.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/function/f_counter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/function/f_general.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/function/f_general.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/function/f_sales.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/function/f_sales.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/library/sql.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/library/sql.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/machine.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/machine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/sales.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/sales.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/site.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/section_item_counter.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/section_item_counter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/brand/brand_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/brand/brand_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/pages/main_sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/main_sales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/pages/section_item_counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/section_item_counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/sales.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +96,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,11 +109,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\php\vending\api" />
+      <recent name="C:\Users\User\Documents\php\vending\api\function" />
       <recent name="C:\Users\User\Documents\php\vending\html" />
       <recent name="C:\Users\User\Documents\php\vending\js\pages" />
       <recent name="C:\Users\User\Documents\php\vending\js\vendor\datatables\js" />
-      <recent name="C:\Users\User\Documents\php\vending\api\function" />
-      <recent name="C:\Users\User\Documents\php\vending\api" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -76,7 +132,8 @@
       <workItem from="1578593846433" duration="1947000" />
       <workItem from="1579104602270" duration="2844000" />
       <workItem from="1579224657531" duration="50000" />
-      <workItem from="1586835973504" duration="101000" />
+      <workItem from="1586835973504" duration="10027000" />
+      <workItem from="1587553000868" duration="10590000" />
     </task>
     <servers />
   </component>
@@ -101,5 +158,23 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/vending" />
     </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Inspections" timestamp="1587560807423">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Inspections/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587560807423" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1587022614989">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587022614989" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1587558988690">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587558988690" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587560778797">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587560778797" />
   </component>
 </project>

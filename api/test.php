@@ -19,7 +19,7 @@ Class_db::getInstance()->db_connect();
 //$icNo = filter_input(INPUT_GET, 'icNo');
 //$fn_counter->__set('icNo', $icNo);
 
-$getData = $fn_counter->get_counter_list();
+$getData = $fn_counter->get_counter_list('1', '2019-11-05');
 //$response = json_decode($getData, true);
 //$errors = $response['response']['errors'];
 //$data = $response['response']['data'][0];

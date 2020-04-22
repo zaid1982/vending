@@ -6,7 +6,7 @@ require_once 'function/f_general.php';
 require_once 'function/f_login.php';
 require_once 'function/f_brand.php';
 
-$api_name = 'api_asset_group';
+$api_name = 'api_brand';
 $is_transaction = false;
 $form_data = array('success' => false, 'result' => '', 'error' => '', 'errmsg' => '');
 $result = '';

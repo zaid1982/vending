@@ -449,6 +449,7 @@ class Class_general {
      */
     public function convertDbIndexs ($dataInputs) {
         try {
+            $this->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
             $dataOutputs = array();
             $newIndexs = array();
             $cnt = 0;
@@ -473,6 +474,20 @@ class Class_general {
                 array_push($dataOutputs, $newData);
             }
             return $dataOutputs;
+        } catch(Exception $ex) {
+            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    public function checkEmptyParams ($params) {
+        try {
+            $this->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+            foreach ($params as $key=>$param) {
+                if (empty($param)) {
+                    throw new Exception('[' . __LINE__ . '] - Parameter no '.$key.' empty');
+                }
+            }
         } catch(Exception $ex) {
             $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
             throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());

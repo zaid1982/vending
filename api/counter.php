@@ -4,9 +4,9 @@ require_once 'library/constant.php';
 require_once 'function/db.php';
 require_once 'function/f_general.php';
 require_once 'function/f_login.php';
-require_once 'function/f_site.php';
+require_once 'function/f_counter.php';
 
-$api_name = 'api_site';
+$api_name = 'api_counter';
 $is_transaction = false;
 $form_data = array('success'=>false, 'result'=>'', 'error'=>'', 'errmsg'=>'');
 $result = '';
@@ -14,14 +14,14 @@ $result = '';
 $constant = new Class_constant();
 $fn_general = new Class_general();
 $fn_login = new Class_login();
-$fn_site = new Class_site();
+$fn_counter = new Class_counter();
 
 try {
     $fn_general->__set('constant', $constant);
     $fn_login->__set('constant', $constant);
     $fn_login->__set('fn_general', $fn_general);
-    $fn_site->__set('constant', $constant);
-    $fn_site->__set('fn_general', $fn_general);
+    $fn_counter->__set('constant', $constant);
+    $fn_counter->__set('fn_general', $fn_general);
 
     Class_db::getInstance()->db_connect();
     $request_method = $_SERVER['REQUEST_METHOD'];
@@ -34,7 +34,18 @@ try {
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
     if ('GET' === $request_method) {
-        $result = $fn_site->get_site_list();
+        $t = filter_input(INPUT_GET, 't');
+        $counterId = filter_input(INPUT_GET, 'counterId');
+        if ($t === 'xxx') {
+            //
+        } else if (!is_null($counterId)) {
+            //$fn_counter->__set('counterId', $counterId);
+            //$result = $fn_counter->get_counter();
+        } else {
+            $machineId = filter_input(INPUT_GET, 'machineId');
+            $counterDate = filter_input(INPUT_GET, 'counterDate');
+            $result = $fn_counter->get_counter_list($machineId, $counterDate);
+        }
         $form_data['result'] = $result;
         $form_data['success'] = true;
     } else {

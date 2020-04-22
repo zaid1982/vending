@@ -6,6 +6,7 @@ function MainSales() {
     let refStatus;
     let refSite;
     let refMachine;
+    let sectionItemCounterClass;
 
     this.init = function () {
         oTableSales =  $('#dtAslList').DataTable({
@@ -18,13 +19,13 @@ function MainSales() {
             },
             drawCallback: function () {
                 $('[data-toggle="tooltip"]').tooltip();
-                $('.lnkAslListEdit').off('click').on('click', function () {
+                $('.lnkAslListSlots').off('click').on('click', function () {
                     const linkId = $(this).attr('id');
                     const linkIndex = linkId.indexOf('_');
                     if (linkIndex > 0) {
                         const rowId = linkId.substr(linkIndex+1);
                         const currentRow = oTableSales.row(parseInt(rowId)).data();
-                        //modalClientClass.edit(currentRow['clientId'], rowId);
+                        sectionItemCounterClass.refreshItemCards(currentRow['bslsDate'], currentRow['machineId'], currentRow['siteId']);
                     }
                 });
             },
@@ -34,9 +35,7 @@ function MainSales() {
                     {mData: null, bSortable: false},
                     {mData: null, bSortable: false, sClass: 'text-center',
                         mRender: function (data, type, row, meta) {
-                            let label  = '<a><i class="fas fa-hand-holding-usd lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>&nbsp;&nbsp;';
-                            label += '<a><i class="fas fa-edit lnkAslListEdit" id="lnkAslListEdit_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>';
-                            return label;
+                            return '<a><i class="fas fa-columns lnkAslListSlots" id="lnkAslListSlots_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Slots"></i></a>';
                         }
                     },
                     {mData: 'bslsDate', bSortable: false},
@@ -89,8 +88,8 @@ function MainSales() {
     };
 
     this.genTableAsl = function () {
-        const dataSales = mzAjaxRequest('sales.php', 'GET');
-        oTableSales.clear().rows.add(dataSales).draw();
+        const dataAPI = mzAjaxRequest('sales.php', 'GET');
+        oTableSales.clear().rows.add(dataAPI).draw();
     };
 
     this.getClassName = function () {
@@ -107,5 +106,9 @@ function MainSales() {
 
     this.setRefMachine = function (_refMachine) {
         refMachine = _refMachine;
+    };
+
+    this.setSectionItemCounterClass = function (_sectionItemCounterClass) {
+        sectionItemCounterClass = _sectionItemCounterClass;
     };
 }

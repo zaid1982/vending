@@ -80,24 +80,8 @@ class Class_sales {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
-            $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('bal_sales');
-            foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['bslsId'] = $dataLocal['bsls_id'];
-                $row_result['bslsDate'] = str_replace('-', '/', $dataLocal['bsls_date']);
-                $row_result['siteId'] = $dataLocal['site_id'];
-                $row_result['machineId'] = $dataLocal['machine_id'];
-                $row_result['bslsCanSold'] = $this->fn_general->clear_null($dataLocal['bsls_can_sold']);
-                $row_result['bslsStockCost'] = $this->fn_general->clear_null($dataLocal['bsls_stock_cost']);
-                $row_result['bslsProfitTarget'] = $this->fn_general->clear_null($dataLocal['bsls_profit_target']);
-                $row_result['bslsCollection'] = $this->fn_general->clear_null($dataLocal['bsls_collection']);
-                $row_result['bslsProfitActual'] = $this->fn_general->clear_null($dataLocal['bsls_profit_actual']);
-                $row_result['bslsProfitDiff'] = $this->fn_general->clear_null($dataLocal['bsls_profit_diff']);
-                $row_result['bslsStatus'] = $dataLocal['bsls_status'];
-                array_push($result, $row_result);
-            }
-
-            return $result;
+            $dataLocals = Class_db::getInstance()->db_select('bal_sales');
+            return $this->fn_general->convertDbIndexs($dataLocals);
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
