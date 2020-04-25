@@ -12,32 +12,18 @@ function MainSales() {
         oTableSales =  $('#dtAslList').DataTable({
             bLengthChange: false,
             bFilter: true,
-            "aaSorting": [2, 'desc'],
+            "aaSorting": [1, 'desc'],
             fnRowCallback : function(nRow, aData, iDisplayIndex){
                 const info = oTableSales.page.info();
                 $('td', nRow).eq(0).html(info.page * info.length + (iDisplayIndex + 1));
             },
             drawCallback: function () {
                 $('[data-toggle="tooltip"]').tooltip();
-                $('.lnkAslListSlots').off('click').on('click', function () {
-                    const linkId = $(this).attr('id');
-                    const linkIndex = linkId.indexOf('_');
-                    if (linkIndex > 0) {
-                        const rowId = linkId.substr(linkIndex+1);
-                        const currentRow = oTableSales.row(parseInt(rowId)).data();
-                        sectionItemCounterClass.refreshItemCards(currentRow['bslsDate'], currentRow['machineId'], currentRow['siteId']);
-                    }
-                });
             },
             language: _DATATABLE_LANGUAGE,
             aoColumns:
                 [
                     {mData: null, bSortable: false},
-                    {mData: null, bSortable: false, sClass: 'text-center',
-                        mRender: function (data, type, row, meta) {
-                            return '<a><i class="fas fa-columns lnkAslListSlots" id="lnkAslListSlots_' + meta.row + '" data-toggle="tooltip" data-placement="top" title="Slots"></i></a>';
-                        }
-                    },
                     {mData: 'bslsDate', bSortable: false},
                     {mData: null, bSortable: false, mRender: function (data, type, row){
                             return row['siteId'] !== '' ? refSite[row['siteId']]['siteName'] : '';
@@ -47,22 +33,25 @@ function MainSales() {
                         }},
                     {mData: 'bslsCanSold', bSortable: false, sClass: 'text-right'},
                     {mData: 'bslsStockCost', bSortable: false, sClass: 'text-right'},
-                    {mData: 'bslsProfitTarget', bSortable: false, sClass: 'text-right'},
                     {mData: 'bslsCollection', bSortable: false, sClass: 'text-right'},
                     {mData: 'bslsProfitActual', bSortable: false, sClass: 'text-right',
                         mRender: function (data) {
-                            return '<h6><span class="badge badge-pill unique-color z-depth-2">'+data+'</span></h6>';
-                        }
-                    },
-                    {mData: 'bslsProfitDiff', bSortable: false, sClass: 'text-right',
-                        mRender: function (data) {
-                            const badgeColor = parseInt(data) < 0 ? 'danger-color-dark' : 'success-color-dark';
-                            return '<h6><span class="badge badge-pill '+badgeColor+' z-depth-2">'+data+'</span></h6>';
-                        }
-                    },
-                    {mData: null, bSortable: false, sClass: 'text-center',
-                        mRender: function (data, type, row) {
-                            return '<h6><span class="badge '+refStatus[row['bslsStatus']]['statusColor']+' z-depth-2">'+refStatus[row['bslsStatus']]['statusDesc']+'</span></h6>';
+                            let badgeColor = 'lighten-1';
+                            let profit = parseFloat(data);
+                            if (profit >= 600) {
+                                badgeColor = 'darken-5';
+                            } else if (profit >= 500) {
+                                badgeColor = 'darken-4';
+                            } else if (profit >= 400) {
+                                badgeColor = 'darken-3';
+                            } else if (profit >= 300) {
+                                badgeColor = 'darken-2';
+                            } else if (profit >= 200) {
+                                badgeColor = 'darken-1';
+                            } else if (profit >= 100) {
+                                badgeColor = '';
+                            }
+                            return '<h6><span class="badge badge-pill green '+badgeColor+' z-depth-2">'+data+'</span></h6>';
                         }
                     },
                     {mData: 'bslsId', visible: false}
@@ -71,6 +60,19 @@ function MainSales() {
         $("#dtAslList_filter").hide();
         $('#txtAslListSearch').on('keyup change', function () {
             oTableSales.search($(this).val()).draw();
+        });
+        $('#dtAslList tbody').delegate('tr', 'click', function (evt) {
+            const data = oTableSales.row( this ).data();
+            const $cell = $(evt.target).closest('td');
+            if ($cell.index() < 8) {
+                sectionItemCounterClass.refreshItemCards(data['bslsDate'], data['machineId'], data['siteId']);
+            }
+        });
+        $('#dtAslList tbody').delegate('tr', 'mouseenter', function (evt) {
+            const $cell = $(evt.target).closest('td');
+            if ($cell.index() < 8) {
+                $cell.css( 'cursor', 'pointer' );
+            }
         });
 
         $('#btnDtAslListRefresh').on('click', function () {

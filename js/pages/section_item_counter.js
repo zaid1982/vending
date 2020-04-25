@@ -7,16 +7,49 @@ function SectionItemCounter() {
     let refMachine;
     let machineId;
     let counterDate;
+    let formValidate = [];
 
     this.init = function () {
         $('#sectionItcCounter').hide();
         self.generateItemCards();
 
+        for (let i=0; i<70; i++) {
+            const vDataItc = [
+                {
+                    field_id: 'optItcBrand'+i,
+                    type: 'select',
+                    name: 'Brand',
+                    validator: {
+                        notEmpty: true
+                    }
+                },
+                {
+                    field_id: 'txtItcCurrentReading'+i,
+                    type: 'text',
+                    name: 'Current',
+                    validator: {
+                        notEmpty: true,
+                        numeric: true,
+                        min: -100000,
+                        max: 100000
+                    }
+                }
+            ];
+
+            formValidate[i] = new MzValidate('formItc'+i);
+            formValidate[i].registerFields(vDataItc);
+        }
+
         $('.txtItcCurrentReading').on('keyup change', function () {
             const fieldId = $(this).attr('id');
             const slotId = fieldId.substr(20);
-            const initialReading = $('#txtItcInitialReading'+slotId).val();
-            $('#txtItcTotalSold'+slotId).val(parseInt($(this).val())-parseInt(initialReading));
+            const initialReading = parseInt($('#txtItcInitialReading'+slotId).val());
+            const cost = parseFloat($('#txtItcCost'+slotId).val());
+            const price = parseFloat($('#txtItcPrice'+slotId).val());
+            const sold = parseInt($(this).val())-initialReading;
+            const profit = sold*(price-cost);
+            $('#txtItcTotalSold'+slotId).val(sold);
+            $('#txtItcTotalProfit'+slotId).val(profit.toFixed(2));
         });
     };
 
@@ -49,43 +82,51 @@ function SectionItemCounter() {
                 '                    <form id="formItc'+i+'">\n' +
                 '                        <div class="row">\n' +
                 '                            <div class="col-md-12">\n' +
-                '                                <select id="optItcBrand'+i+'" class="mdb-select md-form colorful-select dropdown-info mt-0" searchable="Search here">\n' +
+                '                                <select id="optItcBrand'+i+'" class="mdb-select md-form colorful-select dropdown-info mt-0 mb-0" searchable="Search here">\n' +
                 '                                </select>\n' +
-                '                                <label for="optItcBrand'+i+'">Brand</label>\n' +
+                '                                <label for="optItcBrand'+i+'" id="optItcBrand'+i+'">Brand</label>\n' +
+                '                                <p class="font-small text-danger" id="optItcBrand'+i+'Err"></p>\n' +
                 '                            </div>\n' +
                 '                            <div class="col-6">\n' +
-                '                                <div class="md-form mt-0">\n' +
+                '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="number" id="txtItcCost'+i+'" class="form-control" value="1.30" disabled>\n' +
                 '                                    <label for="txtItcCost'+i+'" id="lblItcCost'+i+'" class="active">Cost</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcCost'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                            <div class="col-6">\n' +
-                '                                <div class="md-form mt-0">\n' +
+                '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="number" id="txtItcPrice'+i+'" class="form-control" value="2.30" disabled>\n' +
                 '                                    <label for="txtItcPrice'+i+'" id="lblItcPrice'+i+'" class="active">Price</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcPrice'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
-                '                            <div class="col-12">\n' +
-                '                                <div class="md-form mt-0">\n' +
+                '                            <div class="col-6">\n' +
+                '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="number" id="txtItcInitialReading'+i+'" class="form-control" value="1320" disabled>\n' +
-                '                                    <label for="txtItcInitialReading'+i+'" id="lblItcInitialReading'+i+'" class="active">Initial Reading</label>\n' +
+                '                                    <label for="txtItcInitialReading'+i+'" id="lblItcInitialReading'+i+'" class="active">Initial</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcInitialReading'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
-                '                            <div class="col-12">\n' +
-                '                                <div class="md-form mt-0">\n' +
+                '                            <div class="col-6">\n' +
+                '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="number" id="txtItcCurrentReading'+i+'" class="form-control txtItcCurrentReading" value="1320">\n' +
-                '                                    <label for="txtItcCurrentReading'+i+'" id="lblItcCurrentReading'+i+'" class="active">Current Reading</label>\n' +
+                '                                    <label for="txtItcCurrentReading'+i+'" id="lblItcCurrentReading'+i+'" class="active">Current</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcCurrentReading'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
-                '                            <div class="col-12">\n' +
+                '                            <div class="col-6">\n' +
                 '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="text" id="txtItcTotalSold'+i+'" class="form-control" value="12" disabled>\n' +
                 '                                    <label for="txtItcTotalSold'+i+'" id="lblItcTotalSold'+i+'" class="active">Total Sold</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcTotalSold'+i+'Err"></p>\n' +
+                '                                </div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-6">\n' +
+                '                                <div class="md-form mt-0 mb-0">\n' +
+                '                                    <input type="text" id="txtItcTotalProfit'+i+'" class="form-control" value="12" disabled>\n' +
+                '                                    <label for="txtItcTotalProfit'+i+'" id="lblItcTotalProfit'+i+'" class="active">Total Profit</label>\n' +
+                '                                    <p class="font-small text-danger" id="txtItcTotalProfit'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                        </div>\n' +
@@ -95,7 +136,7 @@ function SectionItemCounter() {
                 '            </div>\n' +
                 '        </div>';
             $('#divItcItems').append(htmlStr);
-            mzOption('optItcBrand'+i, refBrand, 'Select Brand', 'brandId', 'brandName', {}, 'required');
+            mzOption('optItcBrand'+i, refBrand, 'Select Brand', 'brandId', 'brandName');
         }
     };
 
@@ -107,6 +148,10 @@ function SectionItemCounter() {
                 machineId = _machineId;
                 counterDate = _counterDate;
 
+                for (let i=0; i<70; i++) {
+                    formValidate[i].clearValidation();
+                }
+
                 $('#lblItcDate').html(counterDate);
                 $('#lblItcSiteName').html(refSite[_siteId]['siteName']);
                 $('#lblItcMachineName').html(refMachine[machineId]['machineName']);
@@ -117,12 +162,17 @@ function SectionItemCounter() {
                 for (let i = 0; i < dataAPI.length; i++) {
                     $('#lblItcSlotInfo'+i).html(dataAPI[i]['slotType']+' Slot, Column '+dataAPI[i]['slotColumn']+':'+dataAPI[i]['slotRow']);
                     $('#imgItcSlot'+i).attr('src', 'img/brand/brand_'+dataAPI[i]['brandId']+'.jpg');
+                    const cost = parseFloat(dataAPI[i]['counterCost']);
+                    const price = parseFloat(dataAPI[i]['counterPrice']);
+                    const sold = parseInt(dataAPI[i]['counterCanSold']);
+                    const profit = sold*(price-cost);
                     mzSetFieldValue('ItcBrand'+i, dataAPI[i]['brandId'], 'select', 'Brand');
-                    mzSetFieldValue('ItcCost'+i, dataAPI[i]['counterCost'], 'text');
-                    mzSetFieldValue('ItcPrice'+i, dataAPI[i]['counterPrice'], 'text');
+                    mzSetFieldValue('ItcCost'+i, cost, 'text');
+                    mzSetFieldValue('ItcPrice'+i, price, 'text');
                     mzSetFieldValue('ItcInitialReading'+i, dataAPI[i]['counterBalanceInitial'], 'text');
                     mzSetFieldValue('ItcCurrentReading'+i, dataAPI[i]['counterBalanceFinal'], 'text');
-                    mzSetFieldValue('ItcTotalSold'+i, dataAPI[i]['counterCanSold'], 'text');
+                    mzSetFieldValue('ItcTotalSold'+i, sold, 'text');
+                    mzSetFieldValue('ItcTotalProfit'+i, profit.toFixed(2), 'text');
                     $('#divItcSlot'+i).show();
                 }
             } catch (e) {

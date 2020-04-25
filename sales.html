@@ -10,7 +10,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="css/mdb.min.css">
+    <link rel="stylesheet" href="css/mdb.css">
     <!-- DataTables.net -->
     <link rel="stylesheet" type="text/css" href="js/vendor/datatables/css/dataTables.bootstrap4.min.css"/>
     <!-- Your custom styles (optional) -->
@@ -39,6 +39,7 @@
                     <div class="card card-cascade narrower">
                         <div class="view view-cascade gradient-card-header aqua-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center z-depth-3">
                             <div>
+                                <button type="button" id="btnDtAslListAdd" class="btn btn-outline-white btn-rounded btn-sm px-2 material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add Slot Data"><i class="fas fa-plus mt-0"></i></button>
                                 <a tabindex="0" role="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
                                    data-toggle="popover" data-trigger="focus" title="Sales by Machine"
                                    data-content="Track sales performance by Machine."><i class="fas fa-info mt-0 mx-1"></i></a>
@@ -61,17 +62,13 @@
                                     <thead>
                                     <tr class="th-strong">
                                         <th scope="row" style="width: 30px; max-width: 30px">#</th>
-                                        <th style="width: 24px; min-width: 24px"></th>
                                         <th style="width: 10%">Date</th>
                                         <th style="width: 12%">Site</th>
                                         <th>Machine</th>
-                                        <th style="width: 8%">Unit Sold</th>
-                                        <th style="width: 8%">Stock Cost</th>
-                                        <th style="width: 8%">Target Profit</th>
-                                        <th style="width: 8%">Collection</th>
-                                        <th style="width: 7%">Profit</th>
-                                        <th style="width: 7%">Discrepancy</th>
-                                        <th style="width: 7%">Status</th>
+                                        <th style="width: 10%">Unit Sold</th>
+                                        <th style="width: 10%">Stock Cost</th>
+                                        <th style="width: 10%">Collection</th>
+                                        <th style="width: 10%">Profit</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
