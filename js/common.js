@@ -399,7 +399,7 @@ function mzAjaxRequest(url, type, data, functionStr) {
 
     let errMsg = '';
     $.ajax({
-        url: 'api/'+url,
+        url: url,
         type: type,
         //contentType: 'application/json',
         headers: header,
@@ -757,7 +757,7 @@ function mzEmailShort(emailInput, shortLength) {
 }
 
 function mzGetDataVersion() {
-    return mzAjaxRequest('version.php', 'GET');
+    return mzAjaxRequest('version', 'GET');
 }
 
 function mzGetLocalSimple(name, version, id, value, filters, sort) {

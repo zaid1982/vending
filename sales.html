@@ -26,9 +26,9 @@
 <!--Main Navigation-->
 <header>
     <!-- Sidebar navigation -->
-    <div class="includeHtml" id="h-nav_left"></div>
+    <div class="includeHtml" id="h-b-nav_left"></div>
     <!-- Navbar -->
-    <div class="includeHtml" id="h-nav_top"></div>
+    <div class="includeHtml" id="h-b-nav_top"></div>
 </header>
 <!--Main layout-->
 <main>
@@ -81,19 +81,14 @@
             </div>
         </section>
 
-        <div class="includeHtml" id="h-section_item_counter"></div>
+        <div class="includeHtml" id="h-s-section_item_counter"></div>
     </div>
-    <div class="includeHtml" id="h-modal_change_password"></div>
+    <div class="includeHtml" id="h-m-modal_change_password"></div>
+    <div class="includeHtml" id="h-m-modal_add_counter"></div>
 </main>
 
 <!-- SCRIPTS -->
-<script type="text/javascript">
-    $('.includeHtml').each(function () {
-        const divId = $(this).attr('id');
-        $('#'+divId).load('html/'+divId.substr(2)+'.html?' + new Date().valueOf());
-    });
-</script>
-
+<script type="text/javascript" src="js/include.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
@@ -118,6 +113,7 @@
 
     let versionLocal_;
     let changePasswordClass_;
+    let modalAddCounterClass_;
     let itemCounterClass_;
     let salesClass_;
 
@@ -129,6 +125,7 @@
 
                 versionLocal_ = mzGetDataVersion();
                 changePasswordClass_ = new ModalChangePassword();
+                modalAddCounterClass_ = new ModalAddCounter();
                 itemCounterClass_ = new SectionItemCounter();
                 salesClass_ = new MainSales();
 
@@ -146,6 +143,7 @@
                 salesClass_.setRefSite(refSite_);
                 salesClass_.setRefMachine(refMachine_);
                 salesClass_.setSectionItemCounterClass(itemCounterClass_);
+                salesClass_.setModalAddCounterClass(modalAddCounterClass_);
                 salesClass_.init();
             } catch (e) {
                 toastr['error'](e.message, _ALERT_TITLE_ERROR);
@@ -155,8 +153,9 @@
         }, 300);
     });
 
-    document.write('<scr' + 'ipt src="js/pages/modal_change_password.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
-    document.write('<scr' + 'ipt src="js/pages/section_item_counter.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
-    document.write('<scr' + 'ipt src="js/pages/main_sales.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt src="js/pages/modals/modal_change_password.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt src="js/pages/modals/modal_add_counter.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt src="js/pages/sections/section_item_counter.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt src="js/pages/mains/main_sales.js?' + new Date().valueOf() + '" type="text/javascript"></scr' + 'ipt>');
 
 </script>

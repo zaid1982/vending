@@ -156,7 +156,7 @@ function SectionItemCounter() {
                 $('#lblItcSiteName').html(refSite[_siteId]['siteName']);
                 $('#lblItcMachineName').html(refMachine[machineId]['machineName']);
 
-                const dataAPI = mzAjaxRequest('counter.php?machineId=' + machineId + '&counterDate=' + counterDate, 'GET');
+                const dataAPI = mzAjaxRequest('counter?machineId=' + machineId + '&counterDate=' + counterDate, 'GET');
                 $('#sectionItcCounter').show();
                 $('.divItcSlot').hide();
                 for (let i = 0; i < dataAPI.length; i++) {

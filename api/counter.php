@@ -34,18 +34,8 @@ try {
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
     if ('GET' === $request_method) {
-        $t = filter_input(INPUT_GET, 't');
-        $counterId = filter_input(INPUT_GET, 'counterId');
-        if ($t === 'xxx') {
-            //
-        } else if (!is_null($counterId)) {
-            //$fn_counter->__set('counterId', $counterId);
-            //$result = $fn_counter->get_counter();
-        } else {
-            $machineId = filter_input(INPUT_GET, 'machineId');
-            $counterDate = filter_input(INPUT_GET, 'counterDate');
-            $result = $fn_counter->get_counter_list($machineId, $counterDate);
-        }
+        $machineId = filter_input(INPUT_GET, 'machineId', FILTER_VALIDATE_INT);
+        $result = $fn_counter->get_counter_list($machineId, $_GET['counterDate']);
         $form_data['result'] = $result;
         $form_data['success'] = true;
     } else {

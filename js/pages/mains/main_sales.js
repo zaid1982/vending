@@ -7,6 +7,7 @@ function MainSales() {
     let refSite;
     let refMachine;
     let sectionItemCounterClass;
+    let modalAddCounterClass;
 
     this.init = function () {
         oTableSales =  $('#dtAslList').DataTable({
@@ -86,11 +87,24 @@ function MainSales() {
                 HideLoader();
             }, 300);
         });
+
+        $('#btnDtAslListAdd').on('click', function () {
+            ShowLoader();
+            setTimeout(function () {
+                try {
+                    modalAddCounterClass.add();
+                } catch (e) {
+                    toastr['error'](e.message, _ALERT_TITLE_ERROR);
+                }
+                HideLoader();
+            }, 200);
+        });
+
         self.genTableAsl();
     };
 
     this.genTableAsl = function () {
-        const dataAPI = mzAjaxRequest('sales.php', 'GET');
+        const dataAPI = mzAjaxRequest('sales', 'GET');
         oTableSales.clear().rows.add(dataAPI).draw();
     };
 
@@ -112,5 +126,9 @@ function MainSales() {
 
     this.setSectionItemCounterClass = function (_sectionItemCounterClass) {
         sectionItemCounterClass = _sectionItemCounterClass;
+    };
+
+    this.setModalAddCounterClass = function (_modalAddCounterClass) {
+        modalAddCounterClass = _modalAddCounterClass;
     };
 }

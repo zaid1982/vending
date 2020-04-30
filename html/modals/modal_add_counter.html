@@ -1,0 +1,35 @@
+<div class="modal fade" id="modal_add_counter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info mt-3 pt-5 mb-5" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+                <h4 class="text-white mt-2 ml-2"><i class="fas fa-calendar-plus text-white"></i> &nbsp;Add New Sales Data</h4>
+                <button type="button" class="close waves-effect waves-light mr-0 text-white pt-4" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <form id="formMca">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select id="optMcaSiteId" class="mdb-select md-form colorful-select mt-0 mb-0"></select>
+                            <label for="optMcaSiteId" id="lblMcaSiteId">Site</label>
+                            <p class="font-small text-danger" id="optMcaSiteIdErr"></p>
+                        </div>
+                        <div class="col-md-12">
+                            <select id="optMcaMachineId" class="mdb-select md-form colorful-select mt-0 mb-0" data-stop-refresh="true"></select>
+                            <label for="optMcaMachineId" id="lblMcaMachineId">Machine</label>
+                            <p class="font-small text-danger" id="optMcaMachineIdErr"></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer flex-center">
+                <button class="btn btn-outline-info waves-effect" data-dismiss="modal"><i class="fas fa-undo-alt ml-1"></i> Close</button>
+                <button id="btnMcaSubmit" class="btn btn-info waves-effect"><i class="far fa-paper-plane ml-1"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteRule ^p_home/?$ home.html
+RewriteRule ^p_sales/?$ sales.html
+
+RewriteRule ^login/?$ api/login.php
+RewriteRule ^version/?$ api/version.php
+RewriteRule ^sales/?$ api/sales.php
+RewriteRule ^counter/?$ api/counter.php

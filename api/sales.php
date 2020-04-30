@@ -34,13 +34,7 @@ try {
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
     if ('GET' === $request_method) {
-        $bslsId = filter_input(INPUT_GET, 'bslsId');
-        if (!is_null($bslsId)) {
-            $fn_sales->__set('bslsId', $bslsId);
-            //$result = $fn_sales->get_sales();
-        } else {
-            $result = $fn_sales->get_sales_list();
-        }
+        $result = $fn_sales->get_sales_list();
         $form_data['result'] = $result;
         $form_data['success'] = true;
     } else {
