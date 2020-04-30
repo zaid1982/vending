@@ -22,7 +22,7 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 </head>
 
-<body class="fixed-sn mdb-skin">
+<body class="fixed-sn cyan-skin">
 <!--Main Navigation-->
 <header>
     <!-- Sidebar navigation -->
@@ -33,11 +33,11 @@
 <!--Main layout-->
 <main>
     <div class="container-fluid">
-        <section class="section mb-5 mt-lg-2">
+        <section class="section mb-5 mt-sm-3">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-cascade narrower">
-                        <div class="view view-cascade gradient-card-header aqua-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center z-depth-3">
+                        <div class="view view-cascade gradient-card-header mdb-color lighten-1 narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center z-depth-3">
                             <div>
                                 <button type="button" id="btnDtAslListAdd" class="btn btn-outline-white btn-rounded btn-sm px-2 material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add Slot Data"><i class="fas fa-plus mt-0"></i></button>
                                 <a tabindex="0" role="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
@@ -133,6 +133,12 @@
                 const refSite_ = mzGetLocalArray('vending_site', versionLocal_, 'siteId', [], 'site');
                 const refMachine_ = mzGetLocalArray('vending_machine', versionLocal_, 'machineId', [], 'machine');
                 const refBrand_ = mzGetLocalArray('vending_brand', versionLocal_, 'brandId', [], 'brand');
+
+                modalAddCounterClass_.setRefSite(refSite_);
+                modalAddCounterClass_.setRefMachine(refMachine_);
+                modalAddCounterClass_.setClassFrom(salesClass_);
+                modalAddCounterClass_.setSectionFrom(itemCounterClass_);
+                modalAddCounterClass_.init();;
 
                 itemCounterClass_.setRefBrand(refBrand_);
                 itemCounterClass_.setRefSite(refSite_);

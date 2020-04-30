@@ -161,7 +161,11 @@ function MzValidate(name) {
             if (!checkField(field_id, n2, u2)) {
                 switch (n2) {
                     case 'notEmpty':
-                        msg += '<br>Please fill in '+name;
+                        if (type === 'select') {
+                            msg += '<br>Please select ' + name;
+                        } else {
+                            msg += '<br>Please fill in ' + name;
+                        }
                         return false;
                     case 'eqLength':
                         msg += '<br>Length must equal to ' + u2 + ' letters';
@@ -964,6 +968,8 @@ function mzOptionStopClear(name, defaultText, type) {
     }
     $('#'+name).val(null);
     $('#'+name).materialSelect();
+    $('#'+name).removeClass('invalid');
+    $('#'+name+'Err').html('');
 }
 
 function mzOptionStop(name, data, defaultText, keyIndex, valIndex, filters, type, isSort) {
