@@ -10,7 +10,7 @@ function SectionItemCounter() {
     let formValidate = [];
 
     this.init = function () {
-        $('#sectionItcCounter').hide();
+        //$('#sectionItcCounter').hide();
         self.generateItemCards();
 
         for (let i=0; i<70; i++) {
