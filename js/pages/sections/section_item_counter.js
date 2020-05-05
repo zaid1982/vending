@@ -2,6 +2,7 @@ function SectionItemCounter() {
 
     const className = 'SectionItemCounter';
     let self = this;
+    let bslsId;
     let refBrand;
     let refSite;
     let refMachine;
@@ -10,7 +11,7 @@ function SectionItemCounter() {
     let formValidate = [];
 
     this.init = function () {
-        //$('#sectionItcCounter').hide();
+        $('#sectionItcCounter').hide();
         self.generateItemCards();
 
         for (let i=0; i<70; i++) {
@@ -140,11 +141,12 @@ function SectionItemCounter() {
         }
     };
 
-    this.refreshItemCards = function (_counterDate, _machineId, _siteId) {
+    this.refreshItemCards = function (_bslsId, _counterDate, _machineId, _siteId) {
         ShowLoader();
         setTimeout(function () {
             try {
-                mzCheckFuncParam([_counterDate, _machineId, _siteId]);
+                mzCheckFuncParam([_bslsId, _counterDate, _machineId, _siteId]);
+                bslsId = _bslsId;
                 machineId = _machineId;
                 counterDate = _counterDate;
 
@@ -156,7 +158,8 @@ function SectionItemCounter() {
                 $('#lblItcSiteName').html(refSite[_siteId]['siteName']);
                 $('#lblItcMachineName').html(refMachine[machineId]['machineName']);
 
-                const dataAPI = mzAjaxRequest('counter?machineId=' + machineId + '&counterDate=' + counterDate, 'GET');
+                //const dataAPI = mzAjaxRequest('counter?machineId=' + machineId + '&counterDate=' + counterDate, 'GET');
+                const dataAPI = mzAjaxRequest('counter/' + bslsId, 'GET');
                 $('#sectionItcCounter').show();
                 $('.divItcSlot').hide();
                 for (let i = 0; i < dataAPI.length; i++) {

@@ -34,8 +34,9 @@ try {
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
     if ('GET' === $request_method) {
-        $machineId = filter_input(INPUT_GET, 'machineId', FILTER_VALIDATE_INT);
-        $result = $fn_counter->get_counter_list($machineId, $_GET['counterDate']);
+        $urlArr = explode('/', $_SERVER['REQUEST_URI']);
+        $bslsId = filter_var($urlArr[array_key_last($urlArr)], FILTER_VALIDATE_INT);
+        $result = $fn_counter->get_counter_list($bslsId);
         $form_data['result'] = $result;
         $form_data['success'] = true;
     } else {
