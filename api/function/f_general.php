@@ -483,6 +483,51 @@ class Class_general {
         }
     }
 
+    /**
+     * @param $dataInputs
+     * @param $indexs
+     * @return array
+     * @throws Exception
+     */
+    public function convertToMysqlArr ($dataInputs, $indexs) {
+        try {
+            $this->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            if (empty($dataInputs)) {
+                throw new Exception('[' . __LINE__ . '] - Array dataInputs empty');
+            }
+
+            $dataOutputs = array();
+            foreach ($indexs as $index) {
+                if (!array_key_exists($index, $dataInputs)) {
+                    throw new Exception('[' . __LINE__ . '] - '.$index.' not exist');
+                }
+
+                $newIndexs = '';
+                for ($i = 0; $i < strlen($index); $i++){
+                    if (ctype_digit($index[$i])) {
+                        $newIndexs .= '_' . $index[$i];
+                    } else if (ctype_upper($index[$i])) {
+                        $newIndexs .= '_' . strtolower($index[$i]);
+                    } else {
+                        $newIndexs .= $index[$i];
+                    }
+                }
+
+                $dataOutputs[$newIndexs] = $dataInputs[$index];
+            }
+            return $dataOutputs;
+        } catch(Exception $ex) {
+            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @param $params
+     * @return void
+     * @throws Exception
+     */
     public function checkEmptyParams ($params) {
         try {
             $this->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
@@ -491,6 +536,24 @@ class Class_general {
                     throw new Exception('[' . __LINE__ . '] - Parameter no '.$key.' empty');
                 }
             }
+        } catch(Exception $ex) {
+            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function getBrandCost () {
+        try {
+            $refArray = array('');
+            $arr_dataLocal = Class_db::getInstance()->db_select('vm_brand', array(), null, null, 1);
+            foreach ($arr_dataLocal as $dataLocal) {
+                $refArray[intval($dataLocal['brand_id'])] = $dataLocal['brand_cost_unit'];
+            }
+            return $refArray;
         } catch(Exception $ex) {
             $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
             throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());

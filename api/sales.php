@@ -5,6 +5,7 @@ require_once 'function/db.php';
 require_once 'function/f_general.php';
 require_once 'function/f_login.php';
 require_once 'function/f_sales.php';
+require_once 'function/f_counter.php';
 
 $api_name = 'api_sales';
 $is_transaction = false;
@@ -15,6 +16,7 @@ $constant = new Class_constant();
 $fn_general = new Class_general();
 $fn_login = new Class_login();
 $fn_sales = new Class_sales();
+$fn_counter = new Class_counter();
 
 try {
     $fn_general->__set('constant', $constant);
@@ -22,6 +24,8 @@ try {
     $fn_login->__set('fn_general', $fn_general);
     $fn_sales->__set('constant', $constant);
     $fn_sales->__set('fn_general', $fn_general);
+    $fn_counter->__set('constant', $constant);
+    $fn_counter->__set('fn_general', $fn_general);
 
     Class_db::getInstance()->db_connect();
     $request_method = $_SERVER['REQUEST_METHOD'];
@@ -35,6 +39,15 @@ try {
 
     if ('GET' === $request_method) {
         $result = $fn_sales->get_sales_list();
+        $form_data['result'] = $result;
+        $form_data['success'] = true;
+    }
+    else if ('POST' === $request_method) {
+        Class_db::getInstance()->db_beginTransaction();
+        $is_transaction = true;
+        $bslsId = $fn_sales->add_sales($_POST);
+        $fn_counter->add_counter_sales($bslsId);
+        Class_db::getInstance()->db_commit();
         $form_data['result'] = $result;
         $form_data['success'] = true;
     } else {

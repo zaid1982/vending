@@ -99,28 +99,14 @@ class Class_sales {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
             $constant = $this->constant;
 
-            if (empty($params)) {
-                throw new Exception('[' . __LINE__ . '] - Array params empty');
-            }
-            if (!array_key_exists('salesName', $params) || empty($params['salesName'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter salesName empty');
-            }
-            if (!array_key_exists('salesDesc', $params)) {
-                throw new Exception('[' . __LINE__ . '] - Parameter salesDesc not exist');
-            }
-            if (!array_key_exists('salesStatus', $params) || empty($params['salesStatus'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter salesStatus empty');
-            }
+            $this->fn_general->checkEmptyParams(array($params['siteId'], $params['machineId']));
+            $sqlArr = $this->fn_general->convertToMysqlArr($params, array('siteId', 'machineId'));
+            $sqlArr['bsls_date'] = date("Y-m-d");
 
-            $salesName = $params['salesName'];
-            $salesDesc = $params['salesDesc'];
-            $salesStatus = $params['salesStatus'];
-
-            if (Class_db::getInstance()->db_count('ast_asset_group', array('asset_group_name'=>$salesName)) > 0) {
-                throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_ASSET_GROUP_SIMILAR, 31);
+            if (Class_db::getInstance()->db_count('bal_sales', array('machine_id'=>$sqlArr['machine_id'], 'bsls_date'=>$sqlArr['bsls_date'])) > 0) {
+                throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_SALES_EXIST, 31);
             }
-
-            return Class_db::getInstance()->db_insert('ast_asset_group', array('asset_group_name'=>$salesName, 'asset_group_desc'=>$salesDesc, 'asset_group_status'=>$salesStatus));
+            return Class_db::getInstance()->db_insert('bal_sales', $sqlArr);
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

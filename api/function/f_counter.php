@@ -93,6 +93,36 @@ class Class_counter {
     }
 
     /**
+     * @param $bslsId
+     * @throws Exception
+     */
+    public function add_counter_sales ($bslsId) {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+            $constant = $this->constant;
+
+            $this->fn_general->checkEmptyParams(array($bslsId));
+            $sales = Class_db::getInstance()->db_select_single('bal_sales', array('bsls_id'=>$bslsId), null, 1);
+            $previousDate = Class_db::getInstance()->db_select_col('bal_sales', array('machine_id'=>$sales['machine_id'], 'bsls_date'=>'<'.$sales['bsls_date']), 'bsls_date', 'bsls_date DESC');
+            if (empty($previousDate)) {
+                throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_SALES_NO_PREVIOUS, 31);
+            }
+
+            $brandCosts = $this->fn_general->getBrandCost();
+            $previousCounters = Class_db::getInstance()->db_select('vm_counter', array('machine_id'=>$sales['machine_id'], 'counter_date'=>$previousDate), 'counter_slot_no', null, 1);
+            foreach ($previousCounters as $previousCounter) {
+                $brandId = $previousCounter['brand_id'];
+                Class_db::getInstance()->db_insert('vm_counter', array('counter_date'=>$sales['bsls_date'], 'site_id'=>$sales['site_id'], 'machine_id'=>$sales['machine_id'], 'counter_slot_no'=>$previousCounter['counter_slot_no'],
+                    'brand_id'=>$brandId, 'counter_cost'=>$brandCosts[intval($brandId)], 'counter_price'=>$previousCounter['counter_price'], 'counter_balance_initial'=>$previousCounter['counter_balance_final']));
+            }
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
      * @param $params
      * @return mixed
      * @throws Exception

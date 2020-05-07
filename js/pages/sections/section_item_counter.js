@@ -60,12 +60,11 @@ function SectionItemCounter() {
 
     this.generateItemCards = function () {
         for (let i=0; i<70; i++) {
-            const slotNo = i+1;
             let htmlStr = '<div class="col-md-4 col-lg-3 divItcSlot" id="divItcSlot'+i+'">\n' +
                 '            <div class="card mb-4">\n' +
                 '                <div class="p-3">\n' +
                 '                    <!-- Title -->\n' +
-                '                    <h4 class="card-title font-weight-bold mb-2">Slot '+slotNo+'\n' +
+                '                    <h4 class="card-title font-weight-bold mb-2">Slot <span id="lblItcSlotNo'+i+'"></span>\n' +
                 '                        <a href="#!" class="text-black-50">\n' +
                 '                            <i class="fas fa-edit pr-2 float-right"></i>\n' +
                 '                        </a>\n' +
@@ -163,6 +162,7 @@ function SectionItemCounter() {
                 $('#sectionItcCounter').show();
                 $('.divItcSlot').hide();
                 for (let i = 0; i < dataAPI.length; i++) {
+                    $('#lblItcSlotNo'+i).html(dataAPI[i]['counterSlotNo']);
                     $('#lblItcSlotInfo'+i).html(dataAPI[i]['slotType']+' Slot, Column '+dataAPI[i]['slotColumn']+':'+dataAPI[i]['slotRow']);
                     $('#imgItcSlot'+i).attr('src', 'img/brand/brand_'+dataAPI[i]['brandId']+'.jpg');
                     const cost = parseFloat(dataAPI[i]['counterCost']);

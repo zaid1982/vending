@@ -39,6 +39,18 @@ try {
         $result = $fn_counter->get_counter_list($bslsId);
         $form_data['result'] = $result;
         $form_data['success'] = true;
+    }
+    else if ('POST' === $request_method) {
+        $urlArr = explode('/', $_SERVER['REQUEST_URI']);
+        throw new Exception('[' . __LINE__ . '] - Wrong Request Method - '.$urlArr[0]);
+
+        Class_db::getInstance()->db_beginTransaction();
+        $is_transaction = true;
+
+
+        Class_db::getInstance()->db_commit();
+        $form_data['result'] = $result;
+        $form_data['success'] = true;
     } else {
         throw new Exception('[' . __LINE__ . '] - Wrong Request Method');
     }

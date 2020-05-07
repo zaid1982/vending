@@ -57,10 +57,10 @@ function ModalAddCounter() {
                             siteId: $('#optMcaSiteId').val(),
                             machineId: $('#optMcaMachineId').val()
                         };
-                        //const returnVal = mzAjaxRequest('sales', 'POST', data);
+                        const returnVal = mzAjaxRequest('sales', 'POST', data);
                         if (classFrom.getClassName() === 'MainSales') {
                             classFrom.genTableAsl();
-                            sectionFrom.refreshItemCards('2020-04-30', '1', '1');
+                            sectionFrom.refreshItemCards('327', '2020-05-06', '25', '6');
                         }
                         $('#modal_add_counter').modal('hide');
                     }
