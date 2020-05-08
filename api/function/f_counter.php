@@ -113,7 +113,7 @@ class Class_counter {
             foreach ($previousCounters as $previousCounter) {
                 $brandId = $previousCounter['brand_id'];
                 Class_db::getInstance()->db_insert('vm_counter', array('counter_date'=>$sales['bsls_date'], 'site_id'=>$sales['site_id'], 'machine_id'=>$sales['machine_id'], 'counter_slot_no'=>$previousCounter['counter_slot_no'],
-                    'brand_id'=>$brandId, 'counter_cost'=>$brandCosts[intval($brandId)], 'counter_price'=>$previousCounter['counter_price'], 'counter_balance_initial'=>$previousCounter['counter_balance_final']));
+                    'brand_id'=>$brandId, 'counter_cost'=>$brandCosts[intval($brandId)], 'counter_price'=>$previousCounter['counter_price'], 'counter_balance_initial'=>$previousCounter['counter_balance_final'], 'counter_balance_final'=>$previousCounter['counter_balance_final']));
             }
         }
         catch(Exception $ex) {
@@ -123,105 +123,18 @@ class Class_counter {
     }
 
     /**
-     * @param $params
-     * @return mixed
+     * @param $bslsId
+     * @param $dataCounters
      * @throws Exception
      */
-    public function add_counter ($params) {
+    public function update_counter_sales ($bslsId, $dataCounters) {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
-            $constant = $this->constant;
 
-            if (empty($params)) {
-                throw new Exception('[' . __LINE__ . '] - Array params empty');
+            $this->fn_general->checkEmptyParams(array($bslsId));
+            foreach ($dataCounters as $dataCounter) {
+                Class_db::getInstance()->db_update('vm_counter', array('brand_id'=>$dataCounter['brandId'], 'counter_balance_final'=>$dataCounter['counterBalanceFinal'], 'counter_can_sold'=>$dataCounter['counterCanSold']), array('counter_id'=>$dataCounter['counterId']));
             }
-            if (!array_key_exists('counterName', $params) || empty($params['counterName'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterName empty');
-            }
-            if (!array_key_exists('counterDesc', $params)) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterDesc not exist');
-            }
-            if (!array_key_exists('counterStatus', $params) || empty($params['counterStatus'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterStatus empty');
-            }
-
-            $counterName = $params['counterName'];
-            $counterDesc = $params['counterDesc'];
-            $counterStatus = $params['counterStatus'];
-
-            if (Class_db::getInstance()->db_count('ast_asset_group', array('asset_group_name'=>$counterName)) > 0) {
-                throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_ASSET_GROUP_SIMILAR, 31);
-            }
-
-            return Class_db::getInstance()->db_insert('ast_asset_group', array('asset_group_name'=>$counterName, 'asset_group_desc'=>$counterDesc, 'asset_group_status'=>$counterStatus));
-        }
-        catch(Exception $ex) {
-            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @param $counterId
-     * @param $put_vars
-     * @throws Exception
-     */
-    public function update_counter ($counterId, $put_vars) {
-        try {
-            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
-            $constant = $this->constant;
-
-            if (empty($counterId)) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterId empty');
-            }
-            if (empty($put_vars)) {
-                throw new Exception('[' . __LINE__ . '] - Array put_vars empty');
-            }
-
-            if (!isset($put_vars['counterName']) || empty($put_vars['counterName'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterName empty');
-            }
-            if (!isset($put_vars['counterDesc'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterDesc not exist');
-            }
-            if (!isset($put_vars['counterStatus']) || empty($put_vars['counterStatus'])) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterStatus empty');
-            }
-
-            $counterName = $put_vars['counterName'];
-            $counterDesc = $put_vars['counterDesc'];
-            $counterStatus = $put_vars['counterStatus'];
-
-            if (Class_db::getInstance()->db_count('ast_asset_group', array('asset_group_name'=>$counterName, 'asset_group_id'=>'<>'.$counterId)) > 0) {
-                throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_ASSET_GROUP_SIMILAR, 31);
-            }
-
-            Class_db::getInstance()->db_update('ast_asset_group', array('asset_group_name'=>$counterName, 'asset_group_desc'=>$counterDesc, 'asset_group_status'=>$counterStatus), array('asset_group_id'=>$counterId));
-        }
-        catch(Exception $ex) {
-            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @param $counterId
-     * @return mixed
-     * @throws Exception
-     */
-    public function delete_counter ($counterId) {
-        try {
-            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
-            $constant = $this->constant;
-
-            if (empty($counterId)) {
-                throw new Exception('[' . __LINE__ . '] - Parameter counterId empty');
-            }
-            if (Class_db::getInstance()->db_count('ast_asset_group', array('asset_group_id'=>$counterId)) == 0) {
-                throw new Exception('[' . __LINE__ . '] - Asset Group data not exist');
-            }
-
-            Class_db::getInstance()->db_delete('ast_asset_group', array('asset_group_id'=>$counterId));
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

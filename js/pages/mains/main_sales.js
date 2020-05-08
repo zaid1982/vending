@@ -66,7 +66,7 @@ function MainSales() {
             const data = oTableSales.row( this ).data();
             const $cell = $(evt.target).closest('td');
             if ($cell.index() < 8) {
-                sectionItemCounterClass.refreshItemCards(data['bslsId'], data['bslsDate'], data['machineId'], data['siteId']);
+                sectionItemCounterClass.refreshItemCards(data['bslsId'], data['bslsDate'], data['machineId'], data['siteId'], data['bslsStatus']);
             }
         });
         $('#dtAslList tbody').delegate('tr', 'mouseenter', function (evt) {

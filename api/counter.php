@@ -40,13 +40,20 @@ try {
         $form_data['result'] = $result;
         $form_data['success'] = true;
     }
-    else if ('POST' === $request_method) {
+    else if ('PUT' === $request_method) {
         $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-        throw new Exception('[' . __LINE__ . '] - Wrong Request Method - '.$urlArr[0]);
+        $putAction = $urlArr[3];
+        $putData = file_get_contents("php://input");
+        parse_str($putData, $putVars);
 
         Class_db::getInstance()->db_beginTransaction();
         $is_transaction = true;
 
+        if ($putAction === 'saveDataSlots') {
+            $fn_counter->update_counter_sales($putVars['bslsId'], $putVars['dataCounter']);
+        } else {
+            throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$putAction.')');
+        }
 
         Class_db::getInstance()->db_commit();
         $form_data['result'] = $result;

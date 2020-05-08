@@ -48,6 +48,7 @@ try {
         $bslsId = $fn_sales->add_sales($_POST);
         $fn_counter->add_counter_sales($bslsId);
         Class_db::getInstance()->db_commit();
+        $result = $bslsId;
         $form_data['result'] = $result;
         $form_data['success'] = true;
     } else {

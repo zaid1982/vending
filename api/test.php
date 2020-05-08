@@ -1,6 +1,6 @@
 <?php
 
-require_once 'library/constant.php';
+/*require_once 'library/constant.php';
 require_once 'function/db.php';
 require_once 'function/f_general.php';
 require_once 'function/f_counter.php';
@@ -24,4 +24,6 @@ $getData = $fn_counter->get_counter_list('1', '2019-11-05');
 //$errors = $response['response']['errors'];
 //$data = $response['response']['data'][0];
 
-print_r($getData);
+print_r($getData);*/
+
+echo date("Y-m-d h:i:sa");
