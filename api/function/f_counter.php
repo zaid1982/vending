@@ -132,9 +132,19 @@ class Class_counter {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
             $this->fn_general->checkEmptyParams(array($bslsId));
+            $totalSold = 0.0;
+            $totalCost = 0.0;
+            $totalCollection = 0.0;
             foreach ($dataCounters as $dataCounter) {
-                Class_db::getInstance()->db_update('vm_counter', array('brand_id'=>$dataCounter['brandId'], 'counter_balance_final'=>$dataCounter['counterBalanceFinal'], 'counter_can_sold'=>$dataCounter['counterCanSold']), array('counter_id'=>$dataCounter['counterId']));
+                $totalSold += floatval($dataCounter['counterCanSold']);
+                $totalCost += (floatval($dataCounter['counterCanSold'])*floatval($dataCounter['counterCost']));
+                $totalCollection += (floatval($dataCounter['counterCanSold'])*floatval($dataCounter['counterPrice']));
+                $sqlArr = $this->fn_general->convertToMysqlArr($dataCounter, array('brandId', 'counterCost', 'counterPrice', 'counterBalanceFinal', 'counterCanSold'));
+                Class_db::getInstance()->db_update('vm_counter', $sqlArr, array('counter_id'=>$dataCounter['counterId']));
             }
+            $totalProfit = $totalCollection - $totalCost;
+            Class_db::getInstance()->db_update('bal_sales', array('bsls_can_sold'=>$totalSold, 'bsls_stock_cost'=>$totalCost, 'bsls_profit_target'=>$totalProfit, 'bsls_collection'=>$totalCollection, 'bsls_profit_actual'=>$totalProfit,
+                'bsls_profit_diff'=>'0', 'bsls_status'=>'16'), array('bsls_id'=>$bslsId));
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

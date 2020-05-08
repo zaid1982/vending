@@ -63,8 +63,8 @@ function SectionItemCounter() {
             const price = parseFloat($('#txtItcPrice'+slotId).val());
             const sold = parseInt($(this).val())-initialReading;
             const profit = sold*(price-cost);
-            $('#txtItcTotalSold'+slotId).val(sold);
-            $('#txtItcTotalProfit'+slotId).val(profit.toFixed(2));
+            mzSetFieldValue('ItcTotalSold'+slotId, sold, 'text');
+            mzSetFieldValue('ItcTotalProfit'+slotId, profit.toFixed(2), 'text');
         });
 
         $('.aItcEdit').off('click').on('click', function () {
@@ -83,6 +83,28 @@ function SectionItemCounter() {
             }
         });
 
+        $('.optItcBrand').on('change', function () {
+            const fieldId = $(this).attr('id');
+            const slotId = fieldId.substr(11);
+            const sold = parseInt($('#txtItcTotalSold'+slotId).val());
+            const price = parseFloat($('#txtItcPrice'+slotId).val());
+            const cost = refBrand[parseInt($(this).val())]['brandCostUnit'];
+            const profit = sold*(price-cost);
+            $('#imgItcSlot'+slotId).attr('src', 'img/brand/brand_'+$(this).val()+'.jpg');
+            mzSetFieldValue('ItcCost'+slotId, cost, 'text');
+            mzSetFieldValue('ItcTotalProfit'+slotId, profit.toFixed(2), 'text');
+        });
+
+        $('.txtItcPrice').on('keyup change', function () {
+            const fieldId = $(this).attr('id');
+            const slotId = fieldId.substr(11);
+            const sold = parseInt($('#txtItcTotalSold'+slotId).val());
+            const price = parseFloat($(this).val());
+            const cost = parseFloat($('#txtItcCost'+slotId).val());
+            const profit = sold*(price-cost);
+            mzSetFieldValue('ItcTotalProfit'+slotId, profit.toFixed(2), 'text');
+        });
+
         $('#btnItcSubmit').on('click', function () {
             ShowLoader();
             setTimeout(function () {
@@ -98,8 +120,10 @@ function SectionItemCounter() {
                     if (isValid) {
                         for (let i = 0; i < dataCounter.length; i++) {
                             dataCounter[i]['brandId'] = $('#optItcBrand'+i).val();
-                            dataCounter[i]['counterBalanceFinal'] = $('#txtItcCurrentReading'+i).val();
+                            dataCounter[i]['counterCost'] = $('#txtItcCost'+i).val();
+                            dataCounter[i]['counterPrice'] = $('#txtItcPrice'+i).val();
                             dataCounter[i]['counterCanSold'] = $('#txtItcTotalSold'+i).val();
+                            dataCounter[i]['counterBalanceFinal'] = $('#txtItcCurrentReading'+i).val();
                         }
                         let data = {
                             bslsId: bslsId,
@@ -146,7 +170,7 @@ function SectionItemCounter() {
                 '                    <form id="formItc'+i+'">\n' +
                 '                        <div class="row">\n' +
                 '                            <div class="col-md-12">\n' +
-                '                                <select id="optItcBrand'+i+'" class="mdb-select md-form colorful-select dropdown-info mt-0 mb-0" searchable="Search here">\n' +
+                '                                <select id="optItcBrand'+i+'" class="mdb-select md-form colorful-select dropdown-info mt-0 mb-0 optItcBrand" searchable="Search here">\n' +
                 '                                </select>\n' +
                 '                                <label for="optItcBrand'+i+'" id="optItcBrand'+i+'">Brand</label>\n' +
                 '                                <p class="font-small text-danger" id="optItcBrand'+i+'Err"></p>\n' +
@@ -160,7 +184,7 @@ function SectionItemCounter() {
                 '                            </div>\n' +
                 '                            <div class="col-6">\n' +
                 '                                <div class="md-form mt-0 mb-0">\n' +
-                '                                    <input type="number" id="txtItcPrice'+i+'" class="form-control" step="0.1" disabled>\n' +
+                '                                    <input type="number" id="txtItcPrice'+i+'" class="form-control txtItcPrice" step="0.1" disabled>\n' +
                 '                                    <label for="txtItcPrice'+i+'" id="lblItcPrice'+i+'" class="active">Price</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcPrice'+i+'Err"></p>\n' +
                 '                                </div>\n' +

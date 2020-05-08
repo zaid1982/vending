@@ -34,198 +34,81 @@
 
 <main>
     <div class="container-fluid">
-        <section class="section mb-5 mt-lg-4">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card card-cascade cascading-admin-card user-card mt-4">
-                        <div class="admin-up d-flex justify-content-start">
-                            <i class="fas fa-eye rgba-cyan-strong py-4 z-depth-3"></i>
-                            <div class="data">
-                                <h3 class="font-weight-bold dark-grey-text ml-3">Audit Trail</h3>
+        <section class="mt-2 mb-4 sectionHmeMain">
+            <div class="row mt-4_5">
+                <!-- Intro Card: Jumlah Seminar -->
+                <div class="col-xl-3 col-md-6 mb-4 divHmeTopStats_ppm">
+                    <div class="card card-cascade cascading-admin-card card-image z-depth-4" style="background-image: url('img/background/pen_book.jpg');">
+                        <div class="rgba-black-strong">
+                            <div class="admin-up">
+                                <i class="fa fas fa-qrcode blue accent-1"></i>
+                                <div class="data">
+                                    <p class="text-white">TOTAL ASSETS</p>
+                                    <h4 class="font-weight-bold text-white" id="lblHmeTotalAsset">0</h4>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body card-body-cascade pb-0">
-                            <form id="formAdtSearch">
-                                <h6 class="pb-3">Filter:</h6>
-                                <div class="row">
-                                    <div class="col-md-3 select-outline">
-                                        <select id="optAdtYear" class="mdb-select md-form md-outline colorful-select dropdown-primary">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>
-                                        <label for="optAdtYear">Year</label>
-                                    </div>
-                                    <div class="col-md-6 select-outline">
-                                        <select id="optAdtMonth" class="mdb-select md-form md-outline colorful-select dropdown-info mt-0">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>
-                                        <label for="optAdtMonth">Month</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 select-outline">
-                                        <select id="optAdtModule" class="mdb-select md-form md-outline colorful-select dropdown-info mt-0"></select>
-                                        <label for="optAdtModule">Module</label>
-                                    </div>
-                                    <div class="col-md-6 select-outline">
-                                        <select id="optAdtAction" class="mdb-select md-form md-outline colorful-select dropdown-info mt-0" data-stop-refresh="true"></select>
-                                        <label for="optAdtAction">Action</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-footer">
-                            <button type="button" id="btnAdtSearch" class="btn btn-outline-orange btn-rounded waves-effect btn-sm float-right" disabled>
-                                <i class="fas fa-search mr-1"></i> View
-                            </button>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text text-white">Total active asset<br/><strong>Current</strong></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="section mb-5 mt-lg-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-cascade narrower">
-                        <div class="view view-cascade gradient-card-header aqua-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center z-depth-3">
-                            <div>
-                                <a tabindex="0" role="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
-                                   data-toggle="popover" data-trigger="focus" title="Track and Monitoring"
-                                   data-content="Track current checkpoint for all transactions."><i class="fas fa-info mt-0 mx-1"></i></a>
-                                <button type="button" id="btnDtAdtListRefresh" class="btn btn-outline-white btn-rounded btn-sm px-2" data-toggle="tooltip" data-placement="top" title="Refresh data"><i class="fas fa-sync mt-0"></i></button>
+                <!-- Intro Card: Jumlah Syarikat -->
+                <div class="col-xl-3 col-md-6 mb-4 divHmeTopStats_ppm">
+                    <div class="card card-cascade cascading-admin-card card-image z-depth-4" style="background-image: url('img/background/pen_book.jpg');">
+                        <div class="rgba-black-strong">
+                            <div class="admin-up">
+                                <i class="fa far fa-tasks warning-color"></i>
+                                <div class="data">
+                                    <p class="text-white">TOTAL PPM</p>
+                                    <h4 class="font-weight-bold text-white" id="lblHmeTotalPpm"></h4>
+                                </div>
                             </div>
-                            <a href="javascript:void(0);" class="text-white mx-3 pl-5">Audit Trail</a>
-                            <div>
-                                <div id="btnDtAdtListExport"></div>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text text-white" id="lblHmeTotalPpmTitle"></p>
                             </div>
-                        </div>
-                        <div class="px-4 py-4">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-lg-6">
-                    <div class="card my-4">
-                        <div class="p-3">
-                            <div class="table-responsive">
-                                <table id="dtAdtList" class="table table-hover table-sm table-condensed table-bordered mb-0 display responsive" style="border-spacing: 0; width: 100%">
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItcSlot1" src="img/brand/brand_1.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItcSlot2" src="img/brand/brand_2.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItcSlot3" src="img/brand/brand_3.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItcSlot4" src="img/brand/brand_4.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItcSlot5" src="img/brand/brand_5.jpg" style="height: 100px; object-fit: contain"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table id="dtAdtList2" class="table table-hover table-sm table-condensed table-bordered mb-0 display responsive" style="border-spacing: 0; width: 100%">
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot1" src="img/brand/brand_11.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot2" src="img/brand/brand_21.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot3" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot4" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot5" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table id="dtAdtList2" class="table table-hover table-sm table-condensed table-bordered mb-0 display responsive" style="border-spacing: 0; width: 100%">
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot1" src="img/brand/brand_11.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot2" src="img/brand/brand_21.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot3" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot4" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot5" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table id="dtAdtList2" class="table table-hover table-sm table-condensed table-bordered mb-0 display responsive" style="border-spacing: 0; width: 100%">
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot1" src="img/brand/brand_11.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot2" src="img/brand/brand_21.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot3" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot4" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1 border-bottom-0"><img class="card-img-top rounded-0" id="imgItc2Slot5" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table id="dtAdtList2" class="table table-hover table-sm table-condensed table-bordered mb-0 display responsive" style="border-spacing: 0; width: 100%">
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td style="width: 20%" class="p-1"><img class="card-img-top rounded-0" id="imgItc2Slot1" src="img/brand/brand_11.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1"><img class="card-img-top rounded-0" id="imgItc2Slot2" src="img/brand/brand_21.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1"><img class="card-img-top rounded-0" id="imgItc2Slot3" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1"><img class="card-img-top rounded-0" id="imgItc2Slot4" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                        <td style="width: 20%" class="p-1"><img class="card-img-top rounded-0" id="imgItc2Slot5" src="img/brand/brand_31.jpg" style="height: 100px; object-fit: contain"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                <!-- Intro Card: Jumlah Peserta -->
+                <div class="col-xl-3 col-md-6 mb-4 divHmeTopStats_ppm">
+                    <div class="card card-cascade cascading-admin-card card-image z-depth-4" style="background-image: url('img/background/pen_book.jpg');">
+                        <div class="rgba-black-strong">
+                            <div class="admin-up">
+                                <i class="fa fas fa-exclamation-triangle red accent-2"></i>
+                                <div class="data">
+                                    <p class="text-white">TOTAL LATE PPM</p>
+                                    <h4 class="font-weight-bold text-white" id="lblHmeTotalPpmLate"></h4>
+                                </div>
+                            </div>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text text-white" id="lblHmeTotalPpmLateTitle"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Intro Card: Attendance -->
+                <div class="col-xl-3 col-md-6 mb-4 divHmeTopStats_ppm">
+                    <div class="card card-cascade cascading-admin-card card-image z-depth-4" style="background-image: url('img/background/pen_book.jpg');">
+                        <div class="rgba-black-strong">
+                            <div class="admin-up">
+                                <i class="fa fas fa-check green lighten-1"></i>
+                                <div class="data">
+                                    <p class="text-white">% PPM DONE</p>
+                                    <h4 class="font-weight-bold text-white" id="lblHmePercPpmDone"></h4>
+                                </div>
+                            </div>
+                            <div class="card-body card-body-cascade">
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-primary" id="divBarHmePercAttendance" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="card-text text-white" id="lblHmePercPpmDoneTitle"></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="section mb-5 mt-lg-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            sac
-                        </div>
-                        <div class="card-body">
-                            <form id="formAdp1">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAdpComplainerIcNo" class="form-control">
-                                            <label for="txtAdpComplainerIcNo" id="lblAdpComplainerIcNo">1. FT Black Current (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAdpComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAdpComplainerIcNo1" class="form-control">
-                                            <label for="txtAdpComplainerIcNo1" id="lblAdpComplainerIcNo">2. Nescafe Tarik Kaw (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAdpComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAdpComplainerIcNo2" class="form-control">
-                                            <label for="txtAdpComplainerIcNo2" id="lblAdpComplainerIcNo">3. FT Black Current (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAdpComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="md-form md-outline mt-0">
-                                            <input type="text" id="txtAdpComplainerIcNo3" class="form-control">
-                                            <label for="txtAdpComplainerIcNo3" id="lblAdpComplainerIcNo">4. Nescafe Tarik Kaw (1,231)</label>
-                                            <p class="font-small text-danger" id="txtAdpComplainerIcNoErr"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-footer">
-                            ds
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </div>
     <div class="includeHtml" id="h-m-modal_change_password"></div>
 </main>
@@ -249,6 +132,13 @@
 <script type="text/javascript" src="js/vendor/datatables/js/jszip.min.js"></script>
 <script type="text/javascript" src="js/vendor/datatables/js/pdfmake.min.js"></script>
 <script type="text/javascript" src="js/vendor/datatables/js/vfs_fonts.js"></script>
+<!-- Highchart -->
+<script type="text/javascript" src="js/vendor/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/data.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/drilldown.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/export-data.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/themes/dark-unica.js"></script>
 
 <!--Custom scripts-->
 <script type="text/javascript">
