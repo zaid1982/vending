@@ -794,7 +794,7 @@ function mzGetLocalSimple(name, version, id, value, filters, sort) {
     }
 
     if (getNew) {
-        rawData = mzAjaxRequest('local_data.php', 'GET', {Name:name});
+        rawData = mzAjaxRequest('local_data', 'GET', {Name:name});
         localStorage.setItem(name, JSON.stringify({version:version[name], data:rawData}));
     }
 
@@ -862,9 +862,9 @@ function mzGetLocalArray(name, version, id, filters, api) {
 
     if (getNew) {
         if (typeof api === 'undefined') {
-            rawData = mzAjaxRequest('local_data.php', 'GET', {Name:name});
+            rawData = mzAjaxRequest('local_data', 'GET', {Name:name});
         } else {
-            rawData = mzAjaxRequest(api+'.php', 'GET');
+            rawData = mzAjaxRequest(api, 'GET');
         }
         localStorage.setItem(name, JSON.stringify({version:version[name], data:rawData}));
     }
@@ -924,9 +924,9 @@ function mzGetLocalRaw(name, version, filters, api) {
 
     if (getNew) {
         if (typeof api === 'undefined') {
-            rawData = mzAjaxRequest('local_data.php', 'GET', {Name:name});
+            rawData = mzAjaxRequest('local_data', 'GET', {Name:name});
         } else {
-            rawData = mzAjaxRequest(api+'.php', 'GET');
+            rawData = mzAjaxRequest(api, 'GET');
         }
         localStorage.setItem(name, JSON.stringify({version:version[name], data:rawData}));
     }

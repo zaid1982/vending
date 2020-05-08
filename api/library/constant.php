@@ -39,6 +39,9 @@ class Class_constant {
     const ERR_TASK_ALREADY_SUBMITTED = 'This task already submitted';
     const ERR_TASK_CLAIMED = 'This task currently processed by other user';
 
+    const SUC_SALES_ADD = 'Sales Data successfully added. Please continue update the slot data';
+    const SUC_UPDATE_COUNTER = 'Slot Data successfully added and Sales Data has been calculated and updated';
+
     const ERR_SALES_EXIST = 'This site and machine already added. Please check the Sales Data list';
     const ERR_SALES_NO_PREVIOUS = 'No previous sales data to be copied. Please contact administrator';
 }

@@ -51,6 +51,7 @@ try {
 
         if ($putAction === 'saveDataSlots') {
             $fn_counter->update_counter_sales($putVars['bslsId'], $putVars['dataCounter']);
+            $form_data['errmsg'] = $constant::SUC_UPDATE_COUNTER;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$putAction.')');
         }
