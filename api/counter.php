@@ -35,13 +35,6 @@ try {
 
     if ('GET' === $request_method) {
         $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-        $putAction = '';
-        foreach ($urlArr as $i=>$param) {
-            if ($param === 'counter') {
-                throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$i.')');
-            }
-        }
-
         $bslsId = filter_var($urlArr[array_key_last($urlArr)], FILTER_VALIDATE_INT);
         $result = $fn_counter->get_counter_list($bslsId);
         $form_data['result'] = $result;
