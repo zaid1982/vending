@@ -35,6 +35,13 @@ try {
 
     if ('GET' === $request_method) {
         $urlArr = explode('/', $_SERVER['REQUEST_URI']);
+        $putAction = '';
+        foreach ($urlArr as $i=>$param) {
+            if ($param === 'counter') {
+                throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$i.')');
+            }
+        }
+
         $bslsId = filter_var($urlArr[array_key_last($urlArr)], FILTER_VALIDATE_INT);
         $result = $fn_counter->get_counter_list($bslsId);
         $form_data['result'] = $result;
@@ -42,7 +49,13 @@ try {
     }
     else if ('PUT' === $request_method) {
         $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-        $putAction = $urlArr[3];
+        $putAction = '';
+        foreach ($urlArr as $i=>$param) {
+            if ($param === 'counter') {
+                $putAction = $urlArr[$i+1];
+                break;
+            }
+        }
         $putData = file_get_contents("php://input");
         parse_str($putData, $putVars);
 
