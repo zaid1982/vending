@@ -35,7 +35,7 @@ try {
 
     if ('GET' === $request_method) {
         $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-        $bslsId = filter_var($urlArr[array_key_last($urlArr)], FILTER_VALIDATE_INT);
+        $bslsId = filter_var(end($urlArr), FILTER_VALIDATE_INT);
         $result = $fn_counter->get_counter_list($bslsId);
         $form_data['result'] = $result;
         $form_data['success'] = true;
