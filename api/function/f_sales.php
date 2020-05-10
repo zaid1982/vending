@@ -101,6 +101,7 @@ class Class_sales {
 
             $this->fn_general->checkEmptyParams(array($params['siteId'], $params['machineId']));
             $sqlArr = $this->fn_general->convertToMysqlArr($params, array('siteId', 'machineId'));
+            date_default_timezone_set('Asia/Kuala_Lumpur');
             $sqlArr['bsls_date'] = date("Y-m-d");
 
             if (Class_db::getInstance()->db_count('bal_sales', array('machine_id'=>$sqlArr['machine_id'], 'bsls_date'=>$sqlArr['bsls_date'])) > 0) {
