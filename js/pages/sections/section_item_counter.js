@@ -132,6 +132,7 @@ function SectionItemCounter() {
                         mzAjaxRequest('counter/saveDataSlots', 'PUT', data);
                         if (classFrom.getClassName() === 'MainSales') {
                             classFrom.genTableAsl();
+                            $('#sectionItcCounter').hide();
                         }
                     }
                 } catch (e) {
