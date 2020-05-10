@@ -125,6 +125,7 @@ class Class_counter {
     /**
      * @param $bslsId
      * @param $dataCounters
+     * @return float|int
      * @throws Exception
      */
     public function update_counter_sales ($bslsId, $dataCounters) {
@@ -140,11 +141,12 @@ class Class_counter {
                 $totalCost += (floatval($dataCounter['counterCanSold'])*floatval($dataCounter['counterCost']));
                 $totalCollection += (floatval($dataCounter['counterCanSold'])*floatval($dataCounter['counterPrice']));
                 $sqlArr = $this->fn_general->convertToMysqlArr($dataCounter, array('brandId', 'counterCost', 'counterPrice', 'counterBalanceFinal', 'counterCanSold'));
-                Class_db::getInstance()->db_update('vm_counter', $sqlArr, array('counter_id'=>$dataCounter['counterId']));
+                //Class_db::getInstance()->db_update('vm_counter', $sqlArr, array('counter_id'=>$dataCounter['counterId']));
             }
             $totalProfit = $totalCollection - $totalCost;
-            Class_db::getInstance()->db_update('bal_sales', array('bsls_can_sold'=>$totalSold, 'bsls_stock_cost'=>$totalCost, 'bsls_profit_target'=>$totalProfit, 'bsls_collection'=>$totalCollection, 'bsls_profit_actual'=>$totalProfit,
-                'bsls_profit_diff'=>'0', 'bsls_status'=>'16'), array('bsls_id'=>$bslsId));
+            //Class_db::getInstance()->db_update('bal_sales', array('bsls_can_sold'=>$totalSold, 'bsls_stock_cost'=>$totalCost, 'bsls_profit_target'=>$totalProfit, 'bsls_collection'=>$totalCollection, 'bsls_profit_actual'=>$totalProfit,
+            //    'bsls_profit_diff'=>'0', 'bsls_status'=>'16'), array('bsls_id'=>$bslsId));
+            return $totalCollection;
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

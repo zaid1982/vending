@@ -5,6 +5,8 @@ require_once 'function/db.php';
 require_once 'function/f_general.php';
 require_once 'function/f_login.php';
 require_once 'function/f_counter.php';
+require_once 'function/f_machine.php';
+require_once 'function/f_all.php';
 
 $api_name = 'api_counter';
 $is_transaction = false;
@@ -15,6 +17,8 @@ $constant = new Class_constant();
 $fn_general = new Class_general();
 $fn_login = new Class_login();
 $fn_counter = new Class_counter();
+$fn_machine = new Class_machine();
+$fn_all = new Class_all();
 
 try {
     $fn_general->__set('constant', $constant);
@@ -22,6 +26,10 @@ try {
     $fn_login->__set('fn_general', $fn_general);
     $fn_counter->__set('constant', $constant);
     $fn_counter->__set('fn_general', $fn_general);
+    $fn_machine->__set('constant', $constant);
+    $fn_machine->__set('fn_general', $fn_general);
+    $fn_all->__set('constant', $constant);
+    $fn_all->__set('fn_general', $fn_general);
 
     Class_db::getInstance()->db_connect();
     $request_method = $_SERVER['REQUEST_METHOD'];
@@ -56,7 +64,17 @@ try {
         $is_transaction = true;
 
         if ($putAction === 'saveDataSlots') {
-            $fn_counter->update_counter_sales($putVars['bslsId'], $putVars['dataCounter']);
+            $collection = $fn_counter->update_counter_sales($putVars['bslsId'], $putVars['dataCounter']);
+            $fn_machine->__set('machineId', $putVars['machineId']);
+            $machine = $fn_machine->get_machine();
+            $param = array(
+                'ballDate'=>'Now()',
+                'ballDesc'=>$machine['machineName'],
+                'ballCategory'=>'Sales',
+                'ballRemark'=>'',
+                'ballAmount'=>$collection
+            );
+            $fn_all->add_all($param);
             $form_data['errmsg'] = $constant::SUC_UPDATE_COUNTER;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$putAction.')');

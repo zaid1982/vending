@@ -127,6 +127,7 @@ function SectionItemCounter() {
                         }
                         let data = {
                             bslsId: bslsId,
+                            machineId: machineId,
                             dataCounter: dataCounter
                         };
                         mzAjaxRequest('counter/saveDataSlots', 'PUT', data);

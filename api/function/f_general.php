@@ -484,6 +484,34 @@ class Class_general {
     }
 
     /**
+     * @param $dataInput
+     * @return array
+     * @throws Exception
+     */
+    public function convertDbIndex ($dataInput) {
+        try {
+            $this->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $dataOutput = array();
+            foreach ($dataInput as $key=>$value) {
+                $keyTemps = explode('_', $key);
+                foreach ($keyTemps as $j=>$keyTemp) {
+                    if ($j > 0) {
+                        $keyTemps[$j] = ucfirst($keyTemp);
+                    }
+                }
+                $newIndex = implode('', $keyTemps);
+                $dataOutput[$newIndex] = is_null($value) ? '' : $value;
+            }
+
+            return $dataOutput;
+        } catch(Exception $ex) {
+            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
      * @param $dataInputs
      * @param $indexs
      * @return array

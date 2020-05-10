@@ -1,10 +1,10 @@
 <?php
 
-class Class_account {
+class Class_all {
 
     private $constant;
     private $fn_general;
-    private $accountId;
+    private $ballId;
 
     function __construct() {
     }
@@ -73,15 +73,20 @@ class Class_account {
     }
 
     /**
-     * @param $machineId
+     * @param $params
      * @return mixed
      * @throws Exception
      */
-    public function add_data_sales ($machineId) {
+    public function add_all ($params) {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
-
+            $this->fn_general->checkEmptyParams(array($params['ballDate'], $params['ballDesc'], $params['ballCategory'], $params['ballAmount']));
+            $balanceOld = Class_db::getInstance()->db_sum('bal_all', array(), 'ball_amount');
+            $balanceNew = floatval($balanceOld) + floatval($params['ballAmount']);
+            $params['ballBalance'] = strval($balanceNew);
+            $sqlArr = $this->fn_general->convertToMysqlArr($params, array('ballDate', 'ballDesc', 'ballCategory', 'ballRemark', 'ballAmount', 'ballBalance'));
+            return Class_db::getInstance()->db_insert('bal_all', $sqlArr);
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

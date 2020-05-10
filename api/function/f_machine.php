@@ -1,10 +1,10 @@
 <?php
 
-class Class_machine
-{
+class Class_machine {
 
     private $constant;
     private $fn_general;
+    private $machineId;
 
     function __construct()
     {
@@ -87,21 +87,30 @@ class Class_machine
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering ' . __FUNCTION__);
 
-            $result = array();
-            $arr_dataLocal = Class_db::getInstance()->db_select('vm_machine');
-            foreach ($arr_dataLocal as $dataLocal) {
-                $row_result['machineId'] = $dataLocal['machine_id'];
-                $row_result['machineName'] = $dataLocal['machine_name'];
-                $row_result['siteId'] = $dataLocal['site_id'];
-                $row_result['machineLocation'] = $this->fn_general->clear_null($dataLocal['machine_location']);
-                array_push($result, $row_result);
-            }
-
-            return $result;
+            $dataLocals = Class_db::getInstance()->db_select('vm_machine');
+            return $this->fn_general->convertDbIndexs($dataLocals);
         } catch (Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
             throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
         }
     }
 
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function get_machine () {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($this->machineId));
+            $dataLocal = Class_db::getInstance()->db_select_single('vm_machine', array('machine_id'=>$this->machineId));
+            return $this->fn_general->convertDbIndex($dataLocal);
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
 }

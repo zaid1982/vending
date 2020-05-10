@@ -662,6 +662,38 @@ class Class_db{
     }
 
     /**
+     * @param $tablename
+     * @param array $columns
+     * @param $fieldName
+     * @return mixed
+     * @throws Exception
+     */
+    public function db_sum($tablename, $columns=array(), $fieldName='')
+    {
+        try {
+            if (empty($this->DBH)) {
+                throw new Exception($this->get_exception('0006', __FUNCTION__, __LINE__, 'Connection lost'));
+            }
+            if (empty($fieldName)) {
+                throw new Exception($this->get_exception('0014', __FUNCTION__, __LINE__, 'Parameter fieldName empty'));
+            }
+
+            $where_str = '';
+            if (!empty($columns)) {
+                $where_str = $this->get_whereAnd_str($columns);
+            }
+            $sql = "SELECT SUM(".$fieldName.") FROM ".$tablename.$where_str;
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, $sql);
+            $stmt = $this->DBH->query($sql);
+            $result = $stmt->fetch();
+            return $result[0];
+        }
+        catch(PDOException $e) {
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $e->getMessage()));
+        }
+    }
+
+    /**
      * @throws Exception
      */
     public function db_beginTransaction() {
