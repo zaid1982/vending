@@ -19069,7 +19069,7 @@ jQuery(function ($) {
         }
 
         this.view.bindHtmlClick();
-        this.view.bindMobileDevicesMousedown();
+        //this.view.bindMobileDevicesMousedown();
         this.view.bindSaveBtnClick(); // @Depreciated
       }
     }, {
