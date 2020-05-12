@@ -229,7 +229,7 @@ function SectionItemCounter() {
             mzOption('optItcBrand'+i, refBrand, 'Select Brand', 'brandId', 'brandName');
         }
         $('#divItcItems').append('<div class="col-md-4 col-lg-3 pl-2 pr-3">\n' +
-            '<button id="btnItcSubmit" class="btn btn-success waves-effect col-12"><i class="far fa-save ml-1"></i>&nbsp;&nbsp;Submit</button>\n' +
+            '<button id="btnItcSubmit" class="btn btn-default waves-effect btn-lg btn-block"><i class="far fa-save ml-1"></i>&nbsp;&nbsp;Submit</button>\n' +
             '</div>');
     };
 
