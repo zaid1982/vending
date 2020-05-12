@@ -202,14 +202,14 @@ class Class_db{
                 continue;            
             }
             $l1 = substr($value, 0, 1);
-            if ($value == 'Now()') {
+            if ($value === 'Now()') {
                 $comma_str .= "$value, ";
             }
-            else if ($l1 == '|') {
+            else if ($l1 === '|') {
                 $r1 = substr($value, 1);
                 $comma_str .= "$r1, ";
             } 
-            else if ($value == 'Curdate()') {
+            else if ($value === 'Curdate()') {
                 $comma_str .= "$value, ";
             } 
             else {

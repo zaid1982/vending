@@ -95,7 +95,6 @@ class Class_machine {
         }
     }
 
-
     /**
      * @return array
      * @throws Exception
@@ -105,7 +104,7 @@ class Class_machine {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
             $this->fn_general->checkEmptyParams(array($this->machineId));
-            $dataLocal = Class_db::getInstance()->db_select_single('vm_machine', array('machine_id'=>$this->machineId));
+            $dataLocal = Class_db::getInstance()->db_select_single('vm_machine', array('machine_id'=>$this->machineId), null, 1);
             return $this->fn_general->convertDbIndex($dataLocal);
         }
         catch(Exception $ex) {

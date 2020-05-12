@@ -172,7 +172,7 @@ function SectionItemCounter() {
                 '                    <form id="formItc'+i+'">\n' +
                 '                        <div class="row">\n' +
                 '                            <div class="col-md-12">\n' +
-                '                                <select id="optItcBrand'+i+'" class="mdb-select md-form colorful-select dropdown-info mt-0 mb-0 optItcBrand" searchable="Search here">\n' +
+                '                                <select id="optItcBrand'+i+'" class="mdb-select md-form colorful-select dropdown-info mt-0 mb-0 optItcBrand">\n' +
                 '                                </select>\n' +
                 '                                <label for="optItcBrand'+i+'" id="optItcBrand'+i+'">Brand</label>\n' +
                 '                                <p class="font-small text-danger" id="optItcBrand'+i+'Err"></p>\n' +

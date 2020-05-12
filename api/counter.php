@@ -7,6 +7,8 @@ require_once 'function/f_login.php';
 require_once 'function/f_counter.php';
 require_once 'function/f_machine.php';
 require_once 'function/f_all.php';
+require_once 'function/f_sales.php';
+require_once 'function/f_account.php';
 
 $api_name = 'api_counter';
 $is_transaction = false;
@@ -19,6 +21,8 @@ $fn_login = new Class_login();
 $fn_counter = new Class_counter();
 $fn_machine = new Class_machine();
 $fn_all = new Class_all();
+$fn_sales = new Class_sales();
+$fn_account = new Class_account();
 
 try {
     $fn_general->__set('constant', $constant);
@@ -30,6 +34,10 @@ try {
     $fn_machine->__set('fn_general', $fn_general);
     $fn_all->__set('constant', $constant);
     $fn_all->__set('fn_general', $fn_general);
+    $fn_sales->__set('constant', $constant);
+    $fn_sales->__set('fn_general', $fn_general);
+    $fn_account->__set('constant', $constant);
+    $fn_account->__set('fn_general', $fn_general);
 
     Class_db::getInstance()->db_connect();
     $request_method = $_SERVER['REQUEST_METHOD'];
@@ -75,6 +83,9 @@ try {
                 'ballAmount'=>$collection
             );
             $fn_all->add_all($param);
+            $fn_sales->__set('bslsId', $putVars['bslsId']);
+            $sales = $fn_sales->get_sales();
+            $fn_account->add_data_sales($sales, $putVars['machineId'], $machine['machineName']);
             $form_data['errmsg'] = $constant::SUC_UPDATE_COUNTER;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$putAction.')');

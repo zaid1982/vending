@@ -90,6 +90,24 @@ class Class_sales {
     }
 
     /**
+     * @return array
+     * @throws Exception
+     */
+    public function get_sales () {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($this->bslsId));
+            $dataLocal = Class_db::getInstance()->db_select_single('bal_sales', array('bsls_id'=>$this->bslsId), null, 1);
+            return $this->fn_general->convertDbIndex($dataLocal);
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
      * @param $params
      * @return mixed
      * @throws Exception
