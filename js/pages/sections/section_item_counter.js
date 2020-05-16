@@ -180,14 +180,14 @@ function SectionItemCounter() {
                 '                            <div class="col-6">\n' +
                 '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="number" id="txtItcCost'+i+'" class="form-control" disabled>\n' +
-                '                                    <label for="txtItcCost'+i+'" id="lblItcCost'+i+'" class="active">Cost</label>\n' +
+                '                                    <label for="txtItcCost'+i+'" id="lblItcCost'+i+'" class="active">Cost (RM)</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcCost'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                            <div class="col-6">\n' +
                 '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="number" id="txtItcPrice'+i+'" class="form-control txtItcPrice" step="0.1" disabled>\n' +
-                '                                    <label for="txtItcPrice'+i+'" id="lblItcPrice'+i+'" class="active">Price</label>\n' +
+                '                                    <label for="txtItcPrice'+i+'" id="lblItcPrice'+i+'" class="active">Price (RM)</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcPrice'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
@@ -215,7 +215,7 @@ function SectionItemCounter() {
                 '                            <div class="col-6">\n' +
                 '                                <div class="md-form mt-0 mb-0">\n' +
                 '                                    <input type="text" id="txtItcTotalProfit'+i+'" class="form-control" disabled>\n' +
-                '                                    <label for="txtItcTotalProfit'+i+'" id="lblItcTotalProfit'+i+'" class="active">Total Profit</label>\n' +
+                '                                    <label for="txtItcTotalProfit'+i+'" id="lblItcTotalProfit'+i+'" class="active">Total Profit (RM)</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcTotalProfit'+i+'Err"></p>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +

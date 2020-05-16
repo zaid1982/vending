@@ -1,0 +1,60 @@
+<div class="modal fade" id="modal_add_activity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info mt-3 pt-5 mb-5" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+                <h4 class="text-white mt-2 ml-2"><i class="fas fa-calendar-plus text-white"></i> &nbsp;Add New Activity</h4>
+                <button type="button" class="close waves-effect waves-light mr-0 text-white pt-4" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <form id="formMaa">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select id="optMaaActivityType" class="mdb-select md-form colorful-select mb-0" data-visible-options="-1">
+                                <option value="" disabled selected>Select Activity Type</option>
+                                <option value="1">Stock Purchase</option>
+                                <option value="2">Pay Rental</option>
+                                <option value="3">Purchase Machine</option>
+                                <option value="4">Repair Machine</option>
+                            </select>
+                            <label for="optMaaActivityType" id="lblMaaActivityType">Activity Type *</label>
+                            <p class="font-small text-danger" id="optMaaActivityTypeErr"></p>
+                        </div>
+                        <div class="col-md-12" id="divMaaSiteId">
+                            <select id="optMaaSiteId" class="mdb-select md-form colorful-select mt-2 mb-0" data-visible-options="-1"></select>
+                            <label for="optMaaSiteId" id="lblMaaSiteId">Site *</label>
+                            <p class="font-small text-danger" id="optMaaSiteIdErr"></p>
+                        </div>
+                        <div class="col-md-12" id="divMaaMachineId">
+                            <select id="optMaaMachineId" class="mdb-select md-form colorful-select mt-2 mb-0" data-stop-refresh="true"></select>
+                            <label for="optMaaMachineId" id="lblMaaMachineId">Machine *</label>
+                            <p class="font-small text-danger" id="optMaaMachineIdErr"></p>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="md-form mt-1">
+                                <input type="number" id="txtMaaAmount" class="form-control" step="0.1">
+                                <label for="txtMaaAmount" id="lblMaaAmount">Amount (RM) *</label>
+                                <p class="font-small text-danger" id="txtMaaAmountErr"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="md-form mt-0">
+                                <input type="number" id="txtMaaQuantity" class="form-control">
+                                <label for="txtMaaQuantity" id="lblMaaQuantity">Quantity *</label>
+                                <p class="font-small text-danger" id="txtMaaQuantityErr"></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer flex-center">
+                <button class="btn btn-outline-info waves-effect" data-dismiss="modal"><i class="fas fa-undo-alt ml-1"></i> Close</button>
+                <button id="btnMaaSubmit" class="btn btn-info waves-effect"><i class="far fa-paper-plane ml-1"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

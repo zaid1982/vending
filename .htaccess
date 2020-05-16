@@ -6,9 +6,11 @@ RewriteRule ^p_sales/?$ sales.html
 RewriteRule ^login/?$ api/login.php
 RewriteRule ^version/?$ api/version.php
 RewriteRule ^local_data/?$ api/local_data.php
+RewriteRule ^account/?$ api/account.php
+RewriteRule ^account/(.+)/?$ api/account.php
+RewriteRule ^brand/?$ api/brand.php
 RewriteRule ^site/?$ api/site.php
 RewriteRule ^machine/?$ api/machine.php
-RewriteRule ^brand/?$ api/brand.php
 RewriteRule ^sales/?$ api/sales.php
 RewriteRule ^sales/(.+)/?$ api/sales.php
 RewriteRule ^counter/?$ api/counter.php

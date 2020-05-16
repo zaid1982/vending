@@ -10,6 +10,8 @@ function MainSales() {
     let modalAddCounterClass;
 
     this.init = function () {
+        mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName');
+
         oTableSales =  $('#dtAslList').DataTable({
             bLengthChange: false,
             bFilter: true,
@@ -55,7 +57,8 @@ function MainSales() {
                             return '<h6><span class="badge badge-pill green '+badgeColor+' z-depth-2">'+data+'</span></h6>';
                         }
                     },
-                    {mData: 'bslsId', visible: false}
+                    {mData: 'bslsId', visible: false},
+                    {mData: 'machineId', visible: false}
                 ]
             });
         $("#dtAslList_filter").hide();
@@ -74,6 +77,9 @@ function MainSales() {
             if ($cell.index() < 8) {
                 $cell.css( 'cursor', 'pointer' );
             }
+        });
+        $('#optMaaAslFilterMachine').on('change', function () {
+            oTableSales.column(9).search($(this).val(), false, true, false).draw();
         });
 
         $('#btnDtAslListRefresh').on('click', function () {

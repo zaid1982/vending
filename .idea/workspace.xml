@@ -2,93 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b67ab80-0f4d-41ea-8c00-ff1dbf8c857f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/modals/modal_add_counter.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/include.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/pages/modals/modal_add_counter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/account.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/modals/modal_add_activity.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/background/analytics.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/pages/mains/main_home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/pages/modals/modal_add_activity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/counter.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/counter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/library/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/api/library/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/sales.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/sales.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/function/f_account.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/function/f_account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/library/constant.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/library/constant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/alerts/alerts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/calendar/calendar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/charts/charts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/_navigation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/buttons.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/cards.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/collapse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/date.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/pagination.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/panels.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/popovers.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/progress.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/stepper.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/tabs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/tags.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/time.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/components/tooltips.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/_navigation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/animations.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/code.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/colors.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/grid.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/hover.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/icons.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/images.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/masks.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/media.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/shadows.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/skins.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/typography.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/css/utilities.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/_navigation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/v-1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/v-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/v-3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/v-4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/v-5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/dashboards/v-6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/forms/_navigation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/forms/basic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/forms/extended.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/maps/full.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/maps/google.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/maps/vector.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/modal_change_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/modals/modal_change_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/modal_forgot_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/modals/modal_forgot_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/modals/modals.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/nav_left.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/base/nav_left.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/nav_top.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/base/nav_top.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/_navigation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/chat.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/customers.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/invoice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/landing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/page-creator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/post.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/pricing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/single.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/pages/support.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/profile/basic-1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/profile/basic-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/profile/extended.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/section_item_counter.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sections/section_item_counter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/sections/sections.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/tables/_navigation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/tables/basic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/tables/datatables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/tables/extended.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/pages/main_sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/mains/main_sales.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/pages/modal_change_password.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/modals/modal_change_password.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/pages/modal_forgot_password.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/modals/modal_forgot_password.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/pages/section_item_counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/sections/section_item_counter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/pages/mains/main_sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/mains/main_sales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/pages/sections/section_item_counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pages/sections/section_item_counter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/sales.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +53,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/function" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -138,19 +65,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\php\vending\api\function" />
+      <recent name="C:\Users\User\Documents\php\vending\api" />
+      <recent name="C:\Users\User\Documents\php\vending\html" />
+      <recent name="C:\Users\User\Documents\php\vending\js\pages" />
+      <recent name="C:\Users\User\Documents\php\vending\js\vendor\datatables\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\Documents\php\vending\js\pages\modals" />
       <recent name="C:\Users\User\Documents\php\vending\js\pages\mains" />
       <recent name="C:\Users\User\Documents\php\vending\js\pages\sections" />
       <recent name="C:\Users\User\Documents\php\vending\html\base" />
       <recent name="C:\Users\User\Documents\php\vending\html\sections" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\User\Documents\php\vending\api" />
-      <recent name="C:\Users\User\Documents\php\vending\api\function" />
-      <recent name="C:\Users\User\Documents\php\vending\html" />
-      <recent name="C:\Users\User\Documents\php\vending\js\pages" />
-      <recent name="C:\Users\User\Documents\php\vending\js\vendor\datatables\js" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -173,6 +100,14 @@
       <workItem from="1587553000868" duration="10590000" />
       <workItem from="1587644225078" duration="8508000" />
       <workItem from="1588263057023" duration="6364000" />
+      <workItem from="1588271541280" duration="4618000" />
+      <workItem from="1588573990554" duration="950000" />
+      <workItem from="1588757610863" duration="42186000" />
+      <workItem from="1589312620014" duration="7249000" />
+      <workItem from="1589411235273" duration="2799000" />
+      <workItem from="1589476307151" duration="1973000" />
+      <workItem from="1589545675157" duration="1300000" />
+      <workItem from="1589564895608" duration="17106000" />
     </task>
     <servers />
   </component>
@@ -203,26 +138,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Inspections/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587560807423" />
-    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588271490509">
+    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588823897142">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588271490509" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1587022614989">
+    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588823897142" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1589570384518">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587022614989" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1588263057370">
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589570384518" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589545675325">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588263057370" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589545675325" />
+    <state x="656" y="252" width="607" height="536" key="find.popup" timestamp="1589592200166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589592200166" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1588268181046">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588268181046" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588269031119">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1589582681803">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589582681803" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1589592126310">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="498" y="178" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587835729628" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588269031119" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589592126310" />
   </component>
 </project>

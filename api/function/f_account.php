@@ -76,7 +76,7 @@ class Class_account {
      * @return array
      * @throws Exception
      */
-    public function getAccountName () {
+    public function getAccountNames () {
         try {
             $refArray = array('');
             $arr_dataLocal = Class_db::getInstance()->db_select('vm_account', array(), null, null, 1);
@@ -87,36 +87,6 @@ class Class_account {
         } catch(Exception $ex) {
             $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
             throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
-        }
-    }
-
-    /**
-     * @param $sales
-     * @param $machineId
-     * @param $machineName
-     * @return mixed
-     * @throws Exception
-     */
-    public function add_data_sales ($sales, $machineId, $machineName) {
-        try {
-            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
-
-            $this->fn_general->checkEmptyParams(array($sales, $machineId, $sales['bslsStockCost']));
-            $accountNames = $this->getAccountName();
-            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>'|Now() - INTERVAL 10 MINUTE', 'baccDesc'=>$machineName.' Stock Paid', 'baccCategory'=>'Stock Paid', 'baccRemark'=>$sales['bslsStockCost'], 'baccAmount'=>$sales['bslsStockCost']));
-            $shares = Class_db::getInstance()->db_select('vm_share', array('share_category'=>'profit', 'machine_id'=>$machineId), null, null, 1);
-            foreach ($shares as $share) {
-                $shareBeauty = $this->fn_general->convertDbIndex($share);
-                $this->fn_general->checkEmptyParams(array($shareBeauty['accountId'], $shareBeauty['machineId'], $shareBeauty['sharePerc']));
-                $accountName = $accountNames[intval($shareBeauty['accountId'])];
-                $amount = floatval($sales['bslsProfitActual']) * intval($shareBeauty['sharePerc']) / 100;
-                $remark = $shareBeauty['sharePerc']. '% from '.$sales['bslsProfitActual'];
-                $this->add_account(array('accountId'=>$shareBeauty['accountId'], 'baccAccount'=>$accountName, 'baccDate'=>'Now()', 'baccDesc'=>$machineName.' Profit', 'baccCategory'=>'Profit', 'baccRemark'=>$remark, 'baccAmount'=>$amount));
-            }
-        }
-        catch(Exception $ex) {
-            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
-            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
         }
     }
 
@@ -135,6 +105,56 @@ class Class_account {
             $params['baccBalance'] = strval($balanceNew);
             $sqlArr = $this->fn_general->convertToMysqlArr($params, array('accountId', 'baccAccount', 'baccDate', 'baccDesc', 'baccCategory', 'baccRemark', 'baccAmount', 'baccBalance'));
             return Class_db::getInstance()->db_insert('bal_account', $sqlArr);
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @param $sales
+     * @param $machineId
+     * @param $machineName
+     * @return mixed
+     * @throws Exception
+     */
+    public function add_data_sales ($sales, $machineId, $machineName) {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($sales, $machineId, $sales['bslsStockCost']));
+            $accountNames = $this->getAccountNames();
+            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>'|Now() - INTERVAL 10 MINUTE', 'baccDesc'=>$machineName.' Stock Paid', 'baccCategory'=>'Stock Paid', 'baccRemark'=>$sales['bslsStockCost'], 'baccAmount'=>$sales['bslsStockCost']));
+            $shares = Class_db::getInstance()->db_select('vm_share', array('share_category'=>'profit', 'machine_id'=>$machineId), null, null, 1);
+            foreach ($shares as $share) {
+                $shareBeauty = $this->fn_general->convertDbIndex($share);
+                $this->fn_general->checkEmptyParams(array($shareBeauty['accountId'], $shareBeauty['machineId'], $shareBeauty['sharePerc']));
+                $accountName = $accountNames[intval($shareBeauty['accountId'])];
+                $amount = floatval($sales['bslsProfitActual']) * intval($shareBeauty['sharePerc']) / 100;
+                $remark = $shareBeauty['sharePerc']. '% from '.$sales['bslsProfitActual'];
+                $this->add_account(array('accountId'=>$shareBeauty['accountId'], 'baccAccount'=>$accountName, 'baccDate'=>'Now()', 'baccDesc'=>$machineName.' Profit', 'baccCategory'=>'Profit', 'baccRemark'=>$remark, 'baccAmount'=>$amount));
+            }
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @param $amount
+     * @param $quantity
+     * @return mixed
+     * @throws Exception
+     */
+    public function add_stock_purchase ($amount, $quantity) {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($amount, $quantity));
+            $accountNames = $this->getAccountNames();
+            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>'Now()', 'baccDesc'=>'Stock Purchase', 'baccCategory'=>'Stocking', 'baccRemark'=>$quantity, 'baccAmount'=>'-'.$amount));
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

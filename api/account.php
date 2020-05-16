@@ -4,13 +4,10 @@ require_once 'library/constant.php';
 require_once 'function/db.php';
 require_once 'function/f_general.php';
 require_once 'function/f_login.php';
-require_once 'function/f_counter.php';
-require_once 'function/f_machine.php';
 require_once 'function/f_all.php';
-require_once 'function/f_sales.php';
 require_once 'function/f_account.php';
 
-$api_name = 'api_counter';
+$api_name = 'api_account';
 $is_transaction = false;
 $form_data = array('success'=>false, 'result'=>'', 'error'=>'', 'errmsg'=>'');
 $result = '';
@@ -18,24 +15,15 @@ $result = '';
 $constant = new Class_constant();
 $fn_general = new Class_general();
 $fn_login = new Class_login();
-$fn_counter = new Class_counter();
-$fn_machine = new Class_machine();
 $fn_all = new Class_all();
-$fn_sales = new Class_sales();
 $fn_account = new Class_account();
 
 try {
     $fn_general->__set('constant', $constant);
     $fn_login->__set('constant', $constant);
     $fn_login->__set('fn_general', $fn_general);
-    $fn_counter->__set('constant', $constant);
-    $fn_counter->__set('fn_general', $fn_general);
-    $fn_machine->__set('constant', $constant);
-    $fn_machine->__set('fn_general', $fn_general);
     $fn_all->__set('constant', $constant);
     $fn_all->__set('fn_general', $fn_general);
-    $fn_sales->__set('constant', $constant);
-    $fn_sales->__set('fn_general', $fn_general);
     $fn_account->__set('constant', $constant);
     $fn_account->__set('fn_general', $fn_general);
 
@@ -50,45 +38,36 @@ try {
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
     if ('GET' === $request_method) {
-        $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-        $bslsId = filter_var(end($urlArr), FILTER_VALIDATE_INT);
-        $result = $fn_counter->get_counter_list($bslsId);
-        $form_data['result'] = $result;
-        $form_data['success'] = true;
+
     }
-    else if ('PUT' === $request_method) {
+    else if ('POST' === $request_method) {
         $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-        $putAction = '';
+        $postAction = '';
         foreach ($urlArr as $i=>$param) {
-            if ($param === 'counter') {
-                $putAction = $urlArr[$i+1];
+            if ($param === 'account') {
+                $postAction = $urlArr[$i+1];
+                $postType = $urlArr[$i+2];
                 break;
             }
         }
-        $putData = file_get_contents("php://input");
-        parse_str($putData, $putVars);
 
         Class_db::getInstance()->db_beginTransaction();
         $is_transaction = true;
-
-        if ($putAction === 'saveDataSlots') {
-            $collection = $fn_counter->update_counter_sales($putVars['bslsId'], $putVars['dataCounter']);
-            $fn_machine->__set('machineId', $putVars['machineId']);
-            $machine = $fn_machine->get_machine();
+        if ($postAction === 'addNewActivity') {
             $param = array(
-                'ballDate'=>'Now()',
-                'ballDesc'=>$machine['machineName'],
-                'ballCategory'=>'Sales',
-                'ballRemark'=>'',
-                'ballAmount'=>$collection
+                'ballDate' => 'Now()',
+                'ballAmount' => '-'.$_POST['amount']
             );
-            $fn_all->add_all($param);
-            $fn_sales->__set('bslsId', $putVars['bslsId']);
-            $sales = $fn_sales->get_sales();
-            $fn_account->add_data_sales($sales, $putVars['machineId'], $machine['machineName']);
-            $form_data['errmsg'] = $constant::SUC_COUNTER_UPDATE;
+            if ($postAction === 'addNewActivity') {
+                $param['ballDesc'] = 'Stock Purchase';
+                $param['ballCategory'] = 'Stocking';
+                $param['ballRemark'] = $_POST['quantity'];
+                $fn_all->add_all($param);
+                $fn_account->add_stock_purchase($_POST['amount'], $_POST['quantity']);
+            }
+            $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
         } else {
-            throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$putAction.')');
+            throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$postAction.')');
         }
 
         Class_db::getInstance()->db_commit();
