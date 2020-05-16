@@ -1,5 +1,8 @@
 RewriteEngine On
 
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
 RewriteRule ^p_home/?$ home.html
 RewriteRule ^p_sales/?$ sales.html
 
