@@ -73,6 +73,23 @@ class Class_all {
     }
 
     /**
+     * @return array
+     * @throws Exception
+     */
+    public function get_all_list () {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $dataLocals = Class_db::getInstance()->db_select('bal_all');
+            return $this->fn_general->convertDbIndexs($dataLocals);
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
      * @param $params
      * @return mixed
      * @throws Exception

@@ -37,11 +37,24 @@ try {
     }
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
+    $urlArr = explode('/', $_SERVER['REQUEST_URI']);
     if ('GET' === $request_method) {
+        $getAction = '';
+        foreach ($urlArr as $i=>$param) {
+            if ($param === 'account') {
+                $getAction = $urlArr[$i+1];
+                break;
+            }
+        }
 
+        if ($getAction === 'allList') {
+            $result = $fn_all->get_all_list();
+        }
+
+        $form_data['result'] = $result;
+        $form_data['success'] = true;
     }
     else if ('POST' === $request_method) {
-        $urlArr = explode('/', $_SERVER['REQUEST_URI']);
         $postAction = '';
         foreach ($urlArr as $i=>$param) {
             if ($param === 'account') {

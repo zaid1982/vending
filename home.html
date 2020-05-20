@@ -94,7 +94,7 @@
                             <div class="admin-up">
                                 <i class="fa fas fa-percent green lighten-1"></i>
                                 <div class="data">
-                                    <p class="text-white">MONTHLY PERFORMANCE</p>
+                                    <p class="text-white">MONTHLY KPI</p>
                                     <h4 class="font-weight-bold text-white" id="lblHmePercPpmDone">75 %</h4>
                                 </div>
                             </div>
@@ -102,26 +102,52 @@
                                 <div class="progress mb-3">
                                     <div class="progress-bar red lighten-1" id="divBarHmePercAttendance" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <p class="card-text text-white" id="lblHmePercPpmDoneTitle"><strong>Feb 2020</strong> - RM 12,320 / KPI RM 15k</p>
+                                <p class="card-text text-white" id="lblHmePercPpmDoneTitle"><strong>RM 12,320</strong> (KPI - RM 15k)</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card z-depth-4" style="background-image: url('img/background/analytics.jpg');">
-                        <div class="rgba-lime-slight">
-                            <div class="card-header bg-transparent">
-                                <h5 class="font-weight-bold dark-grey-text text-center mb-1">Record Activity</h5>
-                            </div>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-dark-green text-white btn-lg btn-block z-depth-3 mb-3" onclick="modalAddActivityClass_.add(1);"><i class="fas fa-shopping-cart mr-1"></i> Stock Purchase</button>
-                                <button type="button" class="btn btn-danger btn-lg btn-block z-depth-3 mb-3" onclick="modalAddActivityClass_.add(2);"><i class="fas fa-building mr-1"></i> Pay Rental</button>
-                                <button type="button" class="btn btn-primary btn-lg btn-block z-depth-3 mb-3" onclick=""><i class="fas fa-pencil-alt mr-1"></i> Record Sales Data</button>
-                                <button type="button" class="btn warning-color-dark text-white btn-lg btn-block z-depth-3 mb-3" onclick="modalAddActivityClass_.add(3);"><i class="fab fa-cc-visa mr-1"></i> Purchase Machine</button>
-                                <button type="button" class="btn teal text-white btn-lg btn-block z-depth-3 mb-3" onclick="modalAddActivityClass_.add(4);"><i class="fas fa-tools mr-1"></i> Repair Machine</button>
+                <div class="col-12">
+                <div class="row d-flex">
+                    <div class="col-lg-3 mb-4 d-flex">
+                        <div class="card z-depth-4" style="background-image: url('img/background/analytics.jpg');">
+                            <div class="rgba-lime-light">
+                                <div class="card-header grey darken-3">
+                                    <h5 class="font-weight-bold white-text text-center mb-1">Record Activity</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-12">
+                                            <button type="button" class="btn btn-dark-green text-white btn-lg btn-block z-depth-3 mb-3 px-1" onclick="modalAddActivityClass_.add(1);"><i class="fas fa-shopping-cart mr-1"></i> Stock Purchase</button>
+                                        </div>
+                                        <div class="col-md-6 col-lg-12">
+                                            <button type="button" class="btn btn-danger btn-lg btn-block z-depth-3 mb-3 px-1" onclick="modalAddActivityClass_.add(2);"><i class="fas fa-building mr-1"></i> Pay Rental</button>
+                                        </div>
+                                        <div class="col-md-6 col-lg-12">
+                                            <button type="button" class="btn btn-primary btn-lg btn-block z-depth-3 mb-3 px-1" onclick=""><i class="fas fa-pencil-alt mr-1"></i> Record Sales Data</button>
+                                        </div>
+                                        <div class="col-md-6 col-lg-12">
+                                            <button type="button" class="btn btn-teal text-white btn-lg btn-block z-depth-3 mb-3 px-1" onclick="modalAddActivityClass_.add(4);"><i class="fas fa-tools mr-1"></i> Repair Machine</button>
+                                        </div>
+                                        <div class="col-md-6 col-lg-12">
+                                            <button type="button" class="btn btn-warning text-white btn-lg btn-block z-depth-3 mb-3 px-1" onclick="modalAddActivityClass_.add(3);"><i class="fab fa-cc-visa mr-1"></i> Purchase Machine</button>
+                                        </div>
+                                        <div class="col-md-6 col-lg-12">
+                                            <button type="button" class="btn btn-blue-grey text-white btn-lg btn-block z-depth-3 mb-3 px-1" onclick="modalAddActivityClass_.add(3);"><i class="fas fa-dolly mr-1"></i> Other Cost</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-9 mb-4 d-flex">
+                        <div class="card z-depth-4" style="width: 100%">
+                            <div class="card-body p-0">
+                                <div id="chartHmeAll" style="height: 100%; margin: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </section>
