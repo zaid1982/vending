@@ -94,7 +94,7 @@ function ModalAddActivity() {
                         };
                         mzAjaxRequest('account/addNewActivity/'+$('#optMaaActivityType').val(), 'POST', data);
                         if (classFrom.getClassName() === 'MainHome') {
-                            //classFrom.genTableAsl();
+                            classFrom.generateChartAll();
                         }
                         $('#modal_add_activity').modal('hide');
                     }

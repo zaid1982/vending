@@ -45,10 +45,14 @@ function mzFormatNumber(num, fix) {
     if (num == null) 	num = 0;
     num = parseFloat(num);
     let p = num.toFixed(fix).split(".");
-    return p[0].split("").reduceRight(function(acc, num, i, orig) {
+    let result = p[0].split("").reduceRight(function(acc, num, i, orig) {
         const pos = orig.length - i - 1;
         return  num + (pos && !(pos % 3) ? "," : "") + acc;
     }, "") + (p[1] ? "." + p[1] : "");
+    if (result.substr(0, 2) === '-,') {
+        result = '-' + result.substr(2);
+    }
+    return result;
 }
 
 function mzValidMail(mail) {
