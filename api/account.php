@@ -67,17 +67,16 @@ try {
         Class_db::getInstance()->db_beginTransaction();
         $is_transaction = true;
         if ($postAction === 'addNewActivity') {
+            $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
             $param = array(
-                'ballDate' => 'Now()',
+                'ballDate' => $datetime,
                 'ballAmount' => '-'.$_POST['amount']
             );
-            if ($postAction === 'addNewActivity') {
-                $param['ballDesc'] = 'Stock Purchase';
-                $param['ballCategory'] = 'Stocking';
-                $param['ballRemark'] = $_POST['quantity'];
-                $fn_all->add_all($param);
-                $fn_account->add_stock_purchase($_POST['amount'], $_POST['quantity']);
-            }
+            $param['ballDesc'] = 'Stock Purchase';
+            $param['ballCategory'] = 'Stocking';
+            $param['ballRemark'] = $_POST['quantity'];
+            $fn_all->add_all($param);
+            $fn_account->add_stock_purchase($_POST['amount'], $_POST['quantity'], $datetime);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$postAction.')');

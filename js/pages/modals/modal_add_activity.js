@@ -47,6 +47,22 @@ function ModalAddActivity() {
                 }
             },
             {
+                field_id: 'txtMaaDate',
+                type: 'text',
+                name: 'Date',
+                validator: {
+                    notEmpty: true
+                }
+            },
+            {
+                field_id: 'txtMaaTime',
+                type: 'text',
+                name: 'Time',
+                validator: {
+                    notEmpty: true
+                }
+            },
+            {
                 field_id: 'txtMaaAmount',
                 type: 'text',
                 name: 'Amount (RM)',
@@ -90,7 +106,9 @@ function ModalAddActivity() {
                             siteId: $('#optMaaSiteId').val(),
                             machineId: $('#optMaaMachineId').val(),
                             amount: $('#txtMaaAmount').val(),
-                            quantity: $('#txtMaaQuantity').val()
+                            quantity: $('#txtMaaQuantity').val(),
+                            activityDate: mzConvertDate($('#txtMaaDate').val()),
+                            activityTime: $('#txtMaaTime').val()
                         };
                         mzAjaxRequest('account/addNewActivity/'+$('#optMaaActivityType').val(), 'POST', data);
                         if (classFrom.getClassName() === 'MainHome') {
@@ -125,9 +143,14 @@ function ModalAddActivity() {
             try {
                 mzCheckFuncParam([_activityType]);
                 activityType = _activityType;
-                $('#modal_add_activity').modal({backdrop: 'static', keyboard: false});
+
+                const date = new Date();
                 mzSetFieldValue('MaaActivityType', activityType, 'select', 'Activity Type *');
+                mzSetFieldValue('MaaDate', date.getFullYear()+'/'+(date.getMonth() + 1)+'/'+date.getDate(), 'date');
+                mzSetFieldValue('MaaTime', new Date().toString().slice(16, -28), 'text');
+
                 self.setActivityTypeChange();
+                $('#modal_add_activity').modal({backdrop: 'static', keyboard: false});
             } catch (e) {
                 toastr['error'](e.message, _ALERT_TITLE_ERROR);
             }

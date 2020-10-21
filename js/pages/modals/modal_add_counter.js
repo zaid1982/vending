@@ -34,6 +34,14 @@ function ModalAddCounter() {
                 validator: {
                     notEmpty: true
                 }
+            },
+            {
+                field_id: 'txtMcaDate',
+                type: 'text',
+                name: 'Date',
+                validator: {
+                    notEmpty: true
+                }
             }
         ];
 
@@ -55,7 +63,8 @@ function ModalAddCounter() {
                     else {
                         const data = {
                             siteId: $('#optMcaSiteId').val(),
-                            machineId: $('#optMcaMachineId').val()
+                            machineId: $('#optMcaMachineId').val(),
+                            bslsDate: mzConvertDate($('#txtMcaDate').val())
                         };
                         const bslsId = mzAjaxRequest('sales', 'POST', data);
                         if (classFrom.getClassName() === 'MainSales') {
@@ -76,6 +85,8 @@ function ModalAddCounter() {
         ShowLoader();
         setTimeout(function () {
             try {
+                const date = new Date();
+                mzSetFieldValue('McaDate', date.getFullYear()+'/'+(date.getMonth() + 1)+'/'+date.getDate(), 'date');
                 $('#modal_add_counter').modal({backdrop: 'static', keyboard: false});
             } catch (e) {
                 toastr['error'](e.message, _ALERT_TITLE_ERROR);

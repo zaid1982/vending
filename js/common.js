@@ -516,6 +516,7 @@ function initiatePages() {
         clear: 'Padam',
         close: 'Batal'*/
     });
+    $('.timepicker').pickatime({});
 
     const token = sessionStorage.getItem('token');
     const navId = sessionStorage.getItem('navId');

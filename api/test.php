@@ -26,16 +26,15 @@ $getData = $fn_counter->get_counter_list('1', '2019-11-05');
 print_r($getData);*/
 
 Class_db::getInstance()->db_connect();
-$alls = Class_db::getInstance()->db_select('bal_all');
-$dateCompare = '';
-$ctr = 0;
+$alls = Class_db::getInstance()->db_select('bal_account');
 foreach ($alls as $all) {
-    if ($dateCompare !== $all['ball_date']) {
-        $dateCompare = $all['ball_date'];
-        $ctr = 0;
+    $dataPrevious = Class_db::getInstance()->db_select_single('bal_account', array('account_id'=>$all['account_id'], 'bacc_id'=>'<'.$all['bacc_id']), 'bacc_id DESC');
+    if (!empty($dataPrevious)) {
+        Class_db::getInstance()->db_update('bal_account', array('temp'=>(floatval($all['bacc_amount'])+floatval($dataPrevious['temp']))), array('bacc_id'=>$all['bacc_id']));
+        echo 'Acc ID A - '.$all['account_id'].'</br>';
     } else {
-        Class_db::getInstance()->db_update('bal_all', array('ball_date'=>'|ball_date + INTERVAL '.$ctr.' hour'), array('ball_id'=>$all['ball_id']));
+        Class_db::getInstance()->db_update('bal_account', array('temp'=>$all['bacc_amount']), array('bacc_id'=>$all['bacc_id']));
+        echo 'Acc ID B - '.$all['account_id'].'</br>';
     }
-    echo 'YES - '.$ctr.' - '.$all['ball_date'].'</br>';
-    $ctr++;
 }
+Class_db::getInstance()->db_close();

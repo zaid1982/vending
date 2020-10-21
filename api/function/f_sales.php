@@ -117,10 +117,10 @@ class Class_sales {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
             $constant = $this->constant;
 
-            $this->fn_general->checkEmptyParams(array($params['siteId'], $params['machineId']));
-            $sqlArr = $this->fn_general->convertToMysqlArr($params, array('siteId', 'machineId'));
-            date_default_timezone_set('Asia/Kuala_Lumpur');
-            $sqlArr['bsls_date'] = date("Y-m-d");
+            $this->fn_general->checkEmptyParams(array($params['siteId'], $params['machineId'], $params['bslsDate']));
+            $sqlArr = $this->fn_general->convertToMysqlArr($params, array('siteId', 'machineId', 'bslsDate'));
+            //date_default_timezone_set('Asia/Kuala_Lumpur');
+            //$sqlArr['bsls_date'] = date("Y-m-d");
 
             if (Class_db::getInstance()->db_count('bal_sales', array('machine_id'=>$sqlArr['machine_id'], 'bsls_date'=>$sqlArr['bsls_date'])) > 0) {
                 throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_SALES_EXIST, 31);

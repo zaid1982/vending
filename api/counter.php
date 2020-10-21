@@ -75,17 +75,20 @@ try {
             $collection = $fn_counter->update_counter_sales($putVars['bslsId'], $putVars['dataCounter']);
             $fn_machine->__set('machineId', $putVars['machineId']);
             $machine = $fn_machine->get_machine();
+            $fn_sales->__set('bslsId', $putVars['bslsId']);
+            $sales = $fn_sales->get_sales();
+            date_default_timezone_set('Asia/Kuala_Lumpur');
+            $ballTime = empty($putVars['salesTime']) ? date("H:i:s") : $putVars['salesTime'].':00';
+            $ballDateTime = $sales['bslsDate'].' '.$ballTime;
             $param = array(
-                'ballDate'=>'Now()',
+                'ballDate'=>$ballDateTime,
                 'ballDesc'=>$machine['machineName'],
                 'ballCategory'=>'Sales',
                 'ballRemark'=>'',
                 'ballAmount'=>$collection
             );
             $fn_all->add_all($param);
-            $fn_sales->__set('bslsId', $putVars['bslsId']);
-            $sales = $fn_sales->get_sales();
-            $fn_account->add_data_sales($sales, $putVars['machineId'], $machine['machineName']);
+            $fn_account->add_data_sales($sales, $putVars['machineId'], $machine['machineName'], $ballDateTime);
             $form_data['errmsg'] = $constant::SUC_COUNTER_UPDATE;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$putAction.')');

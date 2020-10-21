@@ -128,6 +128,7 @@ function SectionItemCounter() {
                         let data = {
                             bslsId: bslsId,
                             machineId: machineId,
+                            salesTime: $('#txtItcTime').val(),
                             dataCounter: dataCounter
                         };
                         mzAjaxRequest('counter/saveDataSlots', 'PUT', data);
