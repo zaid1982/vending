@@ -76,6 +76,9 @@ function MainHome() {
                                     valueDecimals: 2,
                                     valuePrefix: 'RM '
                                 }
+                            },
+                            series: {
+                                turboThreshold: 0
                             }
                         },
                         series: [{
