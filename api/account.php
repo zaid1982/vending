@@ -66,17 +66,41 @@ try {
 
         Class_db::getInstance()->db_beginTransaction();
         $is_transaction = true;
-        if ($postAction === 'addNewActivity') {
+        if ($postAction === 'stock_purchase') {
             $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
             $param = array(
                 'ballDate' => $datetime,
-                'ballAmount' => '-'.$_POST['amount']
+                'ballAmount' => '-'.$_POST['amount'],
+                'ballDesc' => 'Stock Purchase',
+                'ballCategory' => 'Stocking',
+                'ballRemark' => $_POST['quantity']
             );
-            $param['ballDesc'] = 'Stock Purchase';
-            $param['ballCategory'] = 'Stocking';
-            $param['ballRemark'] = $_POST['quantity'];
             $fn_all->add_all($param);
             $fn_account->add_stock_purchase($_POST['amount'], $_POST['quantity'], $datetime);
+            $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
+        } else if ($postAction === 'petrol') {
+            $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
+            $param = array(
+                'ballDate' => $datetime,
+                'ballAmount' => '-'.$_POST['amount'],
+                'ballDesc' => 'Petrol',
+                'ballCategory' => 'Petrol',
+                'ballRemark' => $_POST['remark']
+            );
+            $fn_all->add_all($param);
+            $fn_account->add_petrol($_POST['amount'], $datetime, $_POST['remark']);
+            $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
+        } else if ($postAction === 'touch_n_go') {
+            $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
+            $param = array(
+                'ballDate' => $datetime,
+                'ballAmount' => '-'.$_POST['amount'],
+                'ballDesc' => 'Touch N Go',
+                'ballCategory' => 'Touch N Go',
+                'ballRemark' => $_POST['remark']
+            );
+            $fn_all->add_all($param);
+            $fn_account->add_tng($_POST['amount'], $datetime, $_POST['remark']);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$postAction.')');

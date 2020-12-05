@@ -83,6 +83,13 @@ function ModalAddActivity() {
                     min: 1,
                     max: 200
                 }
+            },
+            {
+                field_id: 'txtMaaRemark',
+                type: 'text',
+                name: 'Remark',
+                validator: {
+                }
             }
         ];
 
@@ -108,9 +115,16 @@ function ModalAddActivity() {
                             amount: $('#txtMaaAmount').val(),
                             quantity: $('#txtMaaQuantity').val(),
                             activityDate: mzConvertDate($('#txtMaaDate').val()),
-                            activityTime: $('#txtMaaTime').val()
+                            activityTime: $('#txtMaaTime').val(),
+                            remark: $('#txtMaaRemark').val()
                         };
-                        mzAjaxRequest('account/addNewActivity/'+$('#optMaaActivityType').val(), 'POST', data);
+                        if (activityType === 1) {
+                            mzAjaxRequest('account/stock_purchase/'+$('#optMaaActivityType').val(), 'POST', data);
+                        } else if (activityType === 5) {
+                            mzAjaxRequest('account/petrol/'+$('#optMaaActivityType').val(), 'POST', data);
+                        } else if (activityType === 6) {
+                            mzAjaxRequest('account/touch_n_go/'+$('#optMaaActivityType').val(), 'POST', data);
+                        }
                         if (classFrom.getClassName() === 'MainHome') {
                             classFrom.generateChartAll();
                         }
@@ -141,7 +155,7 @@ function ModalAddActivity() {
         ShowLoader();
         setTimeout(function () {
             try {
-                mzCheckFuncParam([_activityType]);
+                //mzCheckFuncParam([_activityType]);
                 activityType = _activityType;
 
                 const date = new Date();
@@ -159,14 +173,20 @@ function ModalAddActivity() {
     };
 
     this.setActivityTypeChange = function () {
+        $('#divMaaQuantity, #divMaaMachineId, #divMaaSiteId').hide();
+        formValidate.disableField('optMaaSiteId');
+        formValidate.disableField('optMaaMachineId');
+        formValidate.disableField('txtMaaQuantity');
         if (activityType === 1) {
-            $('#divMaaMachineId, #divMaaSiteId').hide();
-            formValidate.disableField('optMaaSiteId');
-            formValidate.disableField('optMaaMachineId');
+            $('#divMaaQuantity').show();
+            formValidate.enableField('txtMaaQuantity');
+        } else if (activityType === 5 || activityType === 6) {
+            $('#divMaaRemark').show();
         } else {
             $('#divMaaMachineId, #divMaaSiteId').show();
             formValidate.enableField('optMaaSiteId');
             formValidate.enableField('optMaaMachineId');
+            formValidate.disableField('txtMaaQuantity');
         }
     };
 

@@ -163,4 +163,46 @@ class Class_account {
             throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
         }
     }
+
+    /**
+     * @param $amount
+     * @param $datetime
+     * @param string $remark
+     * @return mixed
+     * @throws Exception
+     */
+    public function add_petrol ($amount, $datetime, $remark='') {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($amount, $datetime));
+            $accountNames = $this->getAccountNames();
+            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>'Petrol', 'baccCategory'=>'Petrol', 'baccAmount'=>'-'.$amount, 'baccRemark'=>$remark));
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @param $amount
+     * @param $datetime
+     * @param string $remark
+     * @return mixed
+     * @throws Exception
+     */
+    public function add_tng ($amount, $datetime, $remark='') {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($amount, $datetime));
+            $accountNames = $this->getAccountNames();
+            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>'Touch N Go', 'baccCategory'=>'Touch N Go', 'baccAmount'=>'-'.$amount, 'baccRemark'=>$remark));
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
 }

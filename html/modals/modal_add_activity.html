@@ -20,6 +20,8 @@
                                 <option value="2">Pay Rental</option>
                                 <option value="3">Purchase Machine</option>
                                 <option value="4">Repair Machine</option>
+                                <option value="5">Petrol</option>
+                                <option value="6">Touch N Go</option>
                             </select>
                             <label for="optMaaActivityType" id="lblMaaActivityType">Activity Type *</label>
                             <p class="font-small text-danger" id="optMaaActivityTypeErr"></p>
@@ -55,11 +57,18 @@
                                 <p class="font-small text-danger" id="txtMaaAmountErr"></p>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="divMaaQuantity">
                             <div class="md-form mt-0">
                                 <input type="number" id="txtMaaQuantity" class="form-control">
                                 <label for="txtMaaQuantity" id="lblMaaQuantity">Quantity *</label>
                                 <p class="font-small text-danger" id="txtMaaQuantityErr"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="divMaaRemark">
+                            <div class="md-form mt-1">
+                                <input type="text" id="txtMaaRemark" class="form-control">
+                                <label for="txtMaaRemark" id="lblMaaRemark">Remark</label>
+                                <p class="font-small text-danger" id="txtMaaRemarkErr"></p>
                             </div>
                         </div>
                     </div>
