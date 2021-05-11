@@ -46,8 +46,17 @@ try {
     }
 
     if ('GET' === $request_method) {
-        $siteId = isset ($urlArr[1]) && $urlArr[1] === 'nazrol' ? '(9,10)' : '';
-        $result = $fn_sales->get_sales_list($siteId);
+        if (isset ($urlArr[1])) {
+            if ($urlArr[1] === 'nazrol') {
+                $result = $fn_sales->get_sales_list('(9,10)');
+            } else if ($urlArr[1] === 'summary_11armor') {
+                $result = $fn_sales->get_summary_11armor();
+            } else {
+                throw new Exception('[' . __LINE__ . '] - Wrong Request Method');
+            }
+        } else {
+            $result = $fn_sales->get_sales_list();
+        }
         $form_data['result'] = $result;
         $form_data['success'] = true;
     }

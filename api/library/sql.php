@@ -113,6 +113,28 @@ class Class_sql
                     AND vm_slot.slot_no = vm_counter.counter_slot_no 
                     AND vm_slot.slot_dateStart <= vm_counter.counter_date 
                     AND IF(ISNULL(vm_slot.slot_dateEnd), CURDATE() >= vm_counter.counter_date, vm_slot.slot_dateEnd >= vm_counter.counter_date)";
+            } else if ($title === 'vw_summary_11armor') {
+                $sql = "SELECT
+                    YEAR(bsls_date) AS `Year`,
+                    MONTHNAME(bsls_date) AS `Month`,
+                    SUM(IF(machine_id = 34, bsls_profit_actual, 0)) AS `Akademik`,
+                    SUM(IF(machine_id = 35, bsls_profit_actual, 0)) AS `HQ`,
+                    SUM(IF(machine_id = 36, bsls_profit_actual, 0)) AS `Penginapan A`,
+                    SUM(IF(machine_id = 37, bsls_profit_actual, 0)) AS `Penginapan C`,
+                    SUM(IF(machine_id = 38, bsls_profit_actual, 0)) AS `Penginapan HQ`,
+                    SUM(IF(machine_id = 39, bsls_profit_actual, 0)) AS `Penginapan Workshop`,
+                    SUM(IF(machine_id = 40, bsls_profit_actual, 0)) AS `Pejabat`,
+                    SUM(IF(machine_id = 41, bsls_profit_actual, 0)) AS `Workshop`,
+                    SUM(IF(machine_id = 42, bsls_profit_actual, 0)) AS `MT`,
+                    SUM(bsls_profit_actual) AS `Total Profit`,
+                    CASE 
+                        WHEN bsls_date < '2020-12-01' THEN ROUND(SUM(bsls_profit_actual)/7,2)
+                        ELSE ROUND(SUM(bsls_profit_actual)/9,2)
+                    END AS `Average`
+                FROM bal_sales
+                WHERE site_id = 9
+                GROUP BY `Year`, `Month`
+                ORDER BY `Year` DESC, MONTH(bsls_date) DESC";
             } else {
                 throw new Exception($this->get_exception('0098', __FUNCTION__, __LINE__, 'Sql not exist : ' . $title));
             }

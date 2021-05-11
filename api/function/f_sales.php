@@ -76,7 +76,7 @@ class Class_sales {
      * @return array
      * @throws Exception
      */
-    public function get_sales_list ($siteId) {
+    public function get_sales_list ($siteId='') {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
@@ -126,6 +126,23 @@ class Class_sales {
                 throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_SALES_EXIST, 31);
             }
             return Class_db::getInstance()->db_insert('bal_sales', $sqlArr);
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function get_summary_11armor () {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $dataLocals = Class_db::getInstance()->db_select('vw_summary_11armor');
+            return $this->fn_general->convertDbIndexs($dataLocals);
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

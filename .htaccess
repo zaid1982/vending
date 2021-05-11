@@ -5,6 +5,7 @@ RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 
 RewriteRule ^p_home/?$ home.html
 RewriteRule ^p_sales/?$ sales.html
+RewriteRule ^p_summary_11armor/?$ summary_11armor.html
 
 RewriteRule ^login/?$ api/login.php
 RewriteRule ^version/?$ api/version.php
