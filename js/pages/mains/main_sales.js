@@ -104,7 +104,9 @@ function MainSales() {
             ShowLoader();
             setTimeout(function () {
                 try {
-                    modalAddCounterClass.add();
+                    if (userId === '2') {
+                        modalAddCounterClass.add();
+                    }
                 } catch (e) {
                     toastr['error'](e.message, _ALERT_TITLE_ERROR);
                 }
