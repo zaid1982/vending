@@ -37,8 +37,17 @@ try {
     }
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
+    $urlArr = explode('/', $_SERVER['REQUEST_URI']);
+    foreach ($urlArr as $i=>$param) {
+        if ($param === 'sales') {
+            break;
+        }
+        array_shift($urlArr);
+    }
+
     if ('GET' === $request_method) {
-        $result = $fn_sales->get_sales_list();
+        $siteId = isset ($urlArr[1]) && $urlArr[1] === 'nazrol' ? '(9,10)' : '';
+        $result = $fn_sales->get_sales_list($siteId);
         $form_data['result'] = $result;
         $form_data['success'] = true;
     }

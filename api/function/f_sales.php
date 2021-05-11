@@ -76,11 +76,11 @@ class Class_sales {
      * @return array
      * @throws Exception
      */
-    public function get_sales_list () {
+    public function get_sales_list ($siteId) {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
-            $dataLocals = Class_db::getInstance()->db_select('bal_sales');
+            $dataLocals = Class_db::getInstance()->db_select('bal_sales', array('site_id'=>$siteId));
             return $this->fn_general->convertDbIndexs($dataLocals);
         }
         catch(Exception $ex) {

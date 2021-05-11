@@ -119,11 +119,13 @@ function ModalAddActivity() {
                             remark: $('#txtMaaRemark').val()
                         };
                         if (activityType === 1) {
-                            mzAjaxRequest('account/stock_purchase/'+$('#optMaaActivityType').val(), 'POST', data);
+                            mzAjaxRequest('account/stock_purchase', 'POST', data);
                         } else if (activityType === 5) {
-                            mzAjaxRequest('account/petrol/'+$('#optMaaActivityType').val(), 'POST', data);
+                            mzAjaxRequest('account/petrol', 'POST', data);
                         } else if (activityType === 6) {
-                            mzAjaxRequest('account/touch_n_go/'+$('#optMaaActivityType').val(), 'POST', data);
+                            mzAjaxRequest('account/touch_n_go', 'POST', data);
+                        } else if (activityType === 7) {
+                            mzAjaxRequest('account/salary', 'POST', data);
                         }
                         if (classFrom.getClassName() === 'MainHome') {
                             classFrom.generateChartAll();
@@ -181,6 +183,8 @@ function ModalAddActivity() {
             $('#divMaaQuantity').show();
             formValidate.enableField('txtMaaQuantity');
         } else if (activityType === 5 || activityType === 6) {
+            $('#divMaaRemark').show();
+        } else if (activityType === 7) {
             $('#divMaaRemark').show();
         } else {
             $('#divMaaMachineId, #divMaaSiteId').show();

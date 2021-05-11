@@ -38,36 +38,32 @@ try {
     $jwt_data = $fn_login->check_jwt($headers['Authorization']);
 
     $urlArr = explode('/', $_SERVER['REQUEST_URI']);
-    if ('GET' === $request_method) {
-        $getAction = '';
-        foreach ($urlArr as $i=>$param) {
-            if ($param === 'account') {
-                $getAction = $urlArr[$i+1];
-                break;
-            }
+    foreach ($urlArr as $i=>$param) {
+        if ($param === 'account') {
+            break;
         }
+        array_shift($urlArr);
+    }
 
-        if ($getAction === 'allList') {
+    if ('GET' === $request_method) {
+        if (!isset ($urlArr[1])) {
+            throw new Exception('[' . __LINE__ . '] - Wrong Request Method');
+        }
+        if ($urlArr[1] === 'allList') {
             $result = $fn_all->get_all_list();
         }
-
         $form_data['result'] = $result;
         $form_data['success'] = true;
     }
     else if ('POST' === $request_method) {
-        $postAction = '';
-        foreach ($urlArr as $i=>$param) {
-            if ($param === 'account') {
-                $postAction = $urlArr[$i+1];
-                $postType = $urlArr[$i+2];
-                break;
-            }
-        }
-
         Class_db::getInstance()->db_beginTransaction();
         $is_transaction = true;
-        if ($postAction === 'stock_purchase') {
-            $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
+
+        if (!isset ($urlArr[1])) {
+            throw new Exception('[' . __LINE__ . '] - Wrong Request Method');
+        }
+        $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
+        if ($urlArr[1] === 'stock_purchase') {
             $param = array(
                 'ballDate' => $datetime,
                 'ballAmount' => '-'.$_POST['amount'],
@@ -78,8 +74,7 @@ try {
             $fn_all->add_all($param);
             $fn_account->add_stock_purchase($_POST['amount'], $_POST['quantity'], $datetime);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
-        } else if ($postAction === 'petrol') {
-            $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
+        } else if ($urlArr[1] === 'petrol') {
             $param = array(
                 'ballDate' => $datetime,
                 'ballAmount' => '-'.$_POST['amount'],
@@ -90,8 +85,7 @@ try {
             $fn_all->add_all($param);
             $fn_account->add_petrol($_POST['amount'], $datetime, $_POST['remark']);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
-        } else if ($postAction === 'touch_n_go') {
-            $datetime = $_POST['activityDate'].' '.$_POST['activityTime'].':00';
+        } else if ($urlArr[1] === 'touch_n_go') {
             $param = array(
                 'ballDate' => $datetime,
                 'ballAmount' => '-'.$_POST['amount'],
@@ -101,6 +95,17 @@ try {
             );
             $fn_all->add_all($param);
             $fn_account->add_tng($_POST['amount'], $datetime, $_POST['remark']);
+            $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
+        } else if ($urlArr[1] === 'salary') {
+            $param = array(
+                'ballDate' => $datetime,
+                'ballAmount' => '-'.$_POST['amount'],
+                'ballDesc' => 'Husaini Salary',
+                'ballCategory' => 'Salary',
+                'ballRemark' => $_POST['remark']
+            );
+            $fn_all->add_all($param);
+            $fn_account->add_salary($_POST['amount'], $datetime, $_POST['remark']);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
         } else {
             throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$postAction.')');

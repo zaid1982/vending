@@ -8,9 +8,15 @@ function MainSales() {
     let refMachine;
     let sectionItemCounterClass;
     let modalAddCounterClass;
+    let userId;
 
     this.init = function () {
-        mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName');
+        userId = mzGetUserInfoByParam('userId');
+        if (userId === '2') {
+            mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName');
+        } else {
+            mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName', {'siteId': '(9,10)'});
+        }
 
         oTableSales =  $('#dtAslList').DataTable({
             bLengthChange: false,
@@ -110,7 +116,8 @@ function MainSales() {
     };
 
     this.genTableAsl = function () {
-        const dataAPI = mzAjaxRequest('sales', 'GET');
+        const siteId = userId === '2' ? '' : '/nazrol';
+        const dataAPI = mzAjaxRequest('sales'+siteId, 'GET');
         oTableSales.clear().rows.add(dataAPI).draw();
     };
 
