@@ -48,7 +48,7 @@ try {
     if ('GET' === $request_method) {
         if (isset ($urlArr[1])) {
             if ($urlArr[1] === 'nazrol') {
-                $result = $fn_sales->get_sales_list('(9,10)');
+                $result = $fn_sales->get_sales_list('(6,9,10,12)');
             } else if ($urlArr[1] === 'summary_11armor') {
                 $result = $fn_sales->get_summary_11armor();
             } else {
