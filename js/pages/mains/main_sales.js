@@ -15,7 +15,7 @@ function MainSales() {
         if (userId === '2') {
             mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName');
         } else {
-            mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName', {'siteId': '(6,9,10.12)'});
+            mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName', {'siteId': '(6,9,10,12)'});
         }
 
         oTableSales =  $('#dtAslList').DataTable({
