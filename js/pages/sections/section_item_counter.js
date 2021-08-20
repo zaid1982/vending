@@ -244,9 +244,9 @@ function SectionItemCounter() {
                 counterDate = _counterDate;
                 bslsStatus = _bslsStatus;
 
-                for (let i=0; i<70; i++) {
-                    formValidate[i].clearValidation();
-                }
+                //for (let i=0; i<dataCounter.length; i++) {
+                //    formValidate[i].clearValidation();
+                //}
 
                 $('#lblItcDate').html(counterDate);
                 $('#lblItcSiteName').html(refSite[_siteId]['siteName']);
@@ -256,6 +256,7 @@ function SectionItemCounter() {
                 $('#sectionItcCounter').show();
                 $('.divItcSlot').hide();
                 for (let i = 0; i < dataCounter.length; i++) {
+                    formValidate[i].clearValidation();
                     $('#lblItcSlotNo'+i).html(dataCounter[i]['counterSlotNo']);
                     $('#lblItcSlotInfo'+i).html(dataCounter[i]['slotType']+' Slot, Column '+dataCounter[i]['slotColumn']+':'+dataCounter[i]['slotRow']);
                     $('#imgItcSlot'+i).attr('src', 'img/brand/brand_'+dataCounter[i]['brandId']+'.jpg');

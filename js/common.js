@@ -317,10 +317,10 @@ function MzValidate(name) {
                 fieldLblSelector.removeClass('active');
             }
             else if (u.type === 'select') {
-                fieldSelector.materialSelect('destroy');
+                //fieldSelector.materialSelect('destroy');
                 fieldSelector.val(null);
                 fieldLblSelector.removeClass('active');
-                fieldSelector.materialSelect();
+                //fieldSelector.materialSelect();
                 //$('.mdb-select').materialSelect('destroy');
                 //$('#' + fieldId).val(null).trigger( 'click');
                 //$('.mdb-select').materialSelect();
@@ -1130,11 +1130,13 @@ function mzSetFieldValue(name, value, type, label) {
             $('#lbl'+name).addClass('active');
         }
         else if (type === 'select') {
-            $('#opt'+name).materialSelect('destroy');
-            $('#opt'+name).val(value);
+            //$('#opt'+name).materialSelect('destroy');
+            //$('#opt'+name).val(value);
             //$('#opt' + name).prevAll('.select-dropdown').children('li:contains('+value+')').trigger('click');
-            $('#lbl'+name).html(label).addClass('active');
-            $('#opt'+name).materialSelect();
+            $('#opt'+name).val(value).trigger('change');
+            //$('#lbl'+name).html(label).addClass('active');
+            //$('#opt'+name).materialSelect();
+            //console.log($('#opt'+name).val());
         }
         else if (type === 'textarea') {
             $('#txa'+name).val(value);
@@ -1250,9 +1252,16 @@ function mzGetUserInfoByParam(parameter) {
 }
 
 function mzDisableSelect(fieldId, disable) {
-    $('#'+fieldId).materialSelect('destroy');
+    //$('#'+fieldId).materialSelect('destroy');
     $('#'+fieldId).prop('disabled', disable);
-    $('#'+fieldId).materialSelect();
+    //console.log($('#opt'+name).val());
+    const value = $('#'+fieldId).val();
+    if (value === '') {
+        $('#'+fieldId).val(null);
+    } else {
+        $('#'+fieldId).val(value).trigger('change');
+    }
+    //$('#'+fieldId).materialSelect();
 }
 
 function mzCheckFuncParam (arrParam) {
