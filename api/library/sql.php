@@ -122,7 +122,7 @@ class Class_sql
                     SUM(IF(machine_id = 36, bsls_profit_actual, 0)) AS `Penginapan A`,
                     SUM(IF(machine_id = 37, bsls_profit_actual, 0)) AS `Penginapan C`,
                     SUM(IF(machine_id = 38, bsls_profit_actual, 0)) AS `Penginapan HQ`,
-                    SUM(IF(machine_id = 39, bsls_profit_actual, 0)) AS `Penginapan Workshop`,
+                    SUM(IF(machine_id = 39, bsls_profit_actual, 0)) AS `Penuntut`,
                     SUM(IF(machine_id = 40, bsls_profit_actual, 0)) AS `Pejabat`,
                     SUM(IF(machine_id = 41, bsls_profit_actual, 0)) AS `Workshop`,
                     SUM(IF(machine_id = 42, bsls_profit_actual, 0)) AS `MT`,

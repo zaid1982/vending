@@ -145,18 +145,18 @@ class Class_account {
 
     /**
      * @param $amount
-     * @param $quantity
      * @param $datetime
+     * @param $remark
      * @return mixed
      * @throws Exception
      */
-    public function add_stock_purchase ($amount, $quantity, $datetime) {
+    public function add_stock_purchase ($amount, $datetime, $remark='') {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
-            $this->fn_general->checkEmptyParams(array($amount, $quantity, $datetime));
+            $this->fn_general->checkEmptyParams(array($amount, $datetime));
             $accountNames = $this->getAccountNames();
-            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>'Stock Purchase', 'baccCategory'=>'Stocking', 'baccRemark'=>$quantity, 'baccAmount'=>'-'.$amount));
+            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>'Stock Purchase', 'baccCategory'=>'Stocking', 'baccRemark'=>$remark, 'baccAmount'=>'-'.$amount));
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
@@ -213,13 +213,13 @@ class Class_account {
      * @return mixed
      * @throws Exception
      */
-    public function add_salary ($amount, $datetime, $remark='') {
+    public function add_salary ($amount, $datetime, $desc, $remark='') {
         try {
             $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
 
             $this->fn_general->checkEmptyParams(array($amount, $datetime));
             $accountNames = $this->getAccountNames();
-            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>'Husaini Salary', 'baccCategory'=>'Salary', 'baccAmount'=>'-'.$amount, 'baccRemark'=>$remark));
+            $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>$desc, 'baccCategory'=>'Salary', 'baccAmount'=>'-'.$amount, 'baccRemark'=>$remark));
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

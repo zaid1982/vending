@@ -33,14 +33,26 @@
 <!--Main layout-->
 <main>
     <div class="container-fluid">
-        <section class="section mb-5 mt-sm-3">
+        <nav class="navbar navbar-dark blue-grey darken-3 z-depth-4 rounded mt-2 mb-3">
+            <h5 class="navbar-text white-text font-weight-bold ml-4 pb-1">
+                <i class="fa fas fa-chart-bar mr-2"></i> Profit Summary at 11 ARMOR
+            </h5>
+        </nav>
+        <section class="section mb-5">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-cascade narrower">
-                        <div class="view view-cascade gradient-card-header mdb-color lighten-1 narrower py-2 mx-4 mb-3 d-flex align-items-center z-depth-3">
-                            <h5 class="text-white text-center mx-3 my-2">Sales Summary at 11 ARMOR</h5>
-                        </div>
-                        <div class="px-4 pb-4">
+                <div class="col-md-12 mb-4">
+                    <div class="card z-depth-4">
+                        <div class="card-body p-3">
+                            <div id="chartSgaGrouped" style="height: 100%; margin: 0;"></div>
+                        <!--</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card z-depth-4">
+                            <div class="card-header blue-grey darken-1">
+                                <h6 class="text-white text-center font-weight-bold my-1">Monthly Profit Statistics</h6>
+                            </div>-->
                             <div class="table-responsive">
                                 <table id="dtSgaList" class="table table-hover table-sm mb-0 display responsive" style="border-spacing: 0; width: 100%">
                                     <thead>
@@ -93,6 +105,13 @@
 <script type="text/javascript" src="js/vendor/datatables/js/jszip.min.js"></script>
 <script type="text/javascript" src="js/vendor/datatables/js/pdfmake.min.js"></script>
 <script type="text/javascript" src="js/vendor/datatables/js/vfs_fonts.js"></script>
+<!-- Highchart -->
+<script type="text/javascript" src="js/vendor/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/data.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/drilldown.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="js/vendor/highcharts/modules/export-data.js"></script>
+<!--<script type="text/javascript" src="js/vendor/highcharts/themes/dark-unica.js"></script>-->
 
 <!--Custom scripts-->
 <script type="text/javascript">

@@ -47,6 +47,14 @@ function ModalAddActivity() {
                 }
             },
             {
+                field_id: 'optMaaStaffId',
+                type: 'select',
+                name: 'Staff',
+                validator: {
+                    notEmpty: true
+                }
+            },
+            {
                 field_id: 'txtMaaDate',
                 type: 'text',
                 name: 'Date',
@@ -71,17 +79,6 @@ function ModalAddActivity() {
                     numeric: true,
                     min: 0,
                     max: 5000
-                }
-            },
-            {
-                field_id: 'txtMaaQuantity',
-                type: 'text',
-                name: 'Quantity',
-                validator: {
-                    notEmpty: true,
-                    digit: true,
-                    min: 1,
-                    max: 200
                 }
             },
             {
@@ -113,7 +110,6 @@ function ModalAddActivity() {
                             siteId: $('#optMaaSiteId').val(),
                             machineId: $('#optMaaMachineId').val(),
                             amount: $('#txtMaaAmount').val(),
-                            quantity: $('#txtMaaQuantity').val(),
                             activityDate: mzConvertDate($('#txtMaaDate').val()),
                             activityTime: $('#txtMaaTime').val(),
                             remark: $('#txtMaaRemark').val()
@@ -125,6 +121,10 @@ function ModalAddActivity() {
                         } else if (activityType === 6) {
                             mzAjaxRequest('account/touch_n_go', 'POST', data);
                         } else if (activityType === 7) {
+                            data['staff'] = $('#optMaaStaffId').val();
+                            if (data['remark'] === '') {
+                                data['remark'] = $('#txtMaaDate').val();
+                            }
                             mzAjaxRequest('account/salary', 'POST', data);
                         }
                         if (classFrom.getClassName() === 'MainHome') {
@@ -175,18 +175,15 @@ function ModalAddActivity() {
     };
 
     this.setActivityTypeChange = function () {
-        $('#divMaaQuantity, #divMaaMachineId, #divMaaSiteId').hide();
+        $('#divMaaMachineId, #divMaaSiteId, #divMaaStaffId').hide();
         formValidate.disableField('optMaaSiteId');
         formValidate.disableField('optMaaMachineId');
-        formValidate.disableField('txtMaaQuantity');
-        if (activityType === 1) {
-            $('#divMaaQuantity').show();
-            formValidate.enableField('txtMaaQuantity');
-        } else if (activityType === 5 || activityType === 6) {
+        formValidate.disableField('optMaaStaffId');
+        if (activityType === 5 || activityType === 6) {
             $('#divMaaRemark').show();
         } else if (activityType === 7) {
-            $('#divMaaRemark').show();
-        } else {
+            $('#divMaaRemark, #divMaaStaffId').show();
+        } else if (activityType !== 1){
             $('#divMaaMachineId, #divMaaSiteId').show();
             formValidate.enableField('optMaaSiteId');
             formValidate.enableField('optMaaMachineId');

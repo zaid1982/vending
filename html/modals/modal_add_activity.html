@@ -11,10 +11,10 @@
             </div>
             <!--Body-->
             <div class="modal-body">
-                <form id="formMaa">
+                <form id="formMaa" class="mt-2">
                     <div class="row">
-                        <div class="col-md-12">
-                            <select id="optMaaActivityType" class="mdb-select md-form colorful-select mb-0" data-visible-options="-1">
+                        <div class="col-md-12 mb-1">
+                            <select id="optMaaActivityType" class="mdb-select md-form colorful-select mt-2 mb-0" data-visible-options="-1">
                                 <option value="" disabled selected>Select Activity Type</option>
                                 <option value="1">Stock Purchase</option>
                                 <option value="2">Pay Rental</option>
@@ -27,46 +27,48 @@
                             <label for="optMaaActivityType" id="lblMaaActivityType">Activity Type *</label>
                             <p class="font-small text-danger" id="optMaaActivityTypeErr"></p>
                         </div>
-                        <div class="col-md-12" id="divMaaSiteId">
+                        <div class="col-md-12 mb-1" id="divMaaSiteId">
                             <select id="optMaaSiteId" class="mdb-select md-form colorful-select mt-2 mb-0" data-visible-options="-1"></select>
                             <label for="optMaaSiteId" id="lblMaaSiteId">Site *</label>
                             <p class="font-small text-danger" id="optMaaSiteIdErr"></p>
                         </div>
-                        <div class="col-md-12" id="divMaaMachineId">
+                        <div class="col-md-12 mb-1" id="divMaaMachineId">
                             <select id="optMaaMachineId" class="mdb-select md-form colorful-select mt-2 mb-0" data-stop-refresh="true"></select>
                             <label for="optMaaMachineId" id="lblMaaMachineId">Machine *</label>
                             <p class="font-small text-danger" id="optMaaMachineIdErr"></p>
                         </div>
+                        <div class="col-md-12 mb-1" id="divMaaStaffId">
+                            <select id="optMaaStaffId" class="mdb-select md-form colorful-select mt-2 mb-0">
+                                <option value="" disabled selected>Select Staff</option>
+                                <option value="Husaini Salary">Husaini</option>
+                                <option value="Ishak Salary">Ishak</option>
+                            </select>
+                            <label for="optMaaStaffId" id="lblMaaStaffId">Staff *</label>
+                            <p class="font-small text-danger" id="optMaaStaffIdErr"></p>
+                        </div>
                         <div class="col-md-12">
-                            <div class="md-form mt-1">
+                            <div class="md-form mt-2">
                                 <input type="text" id="txtMaaDate" class="form-control datepicker" readonly>
                                 <label for="txtMaaDate" id="lblMaaDate">Date *</label>
                                 <p class="font-small text-danger" id="txtMaaDateErr"></p>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="md-form mt-1">
+                            <div class="md-form mt-2">
                                 <input type="text" id="txtMaaTime" class="form-control timepicker">
                                 <label for="txtMaaTime" id="lblMaaTime">Time *</label>
                                 <p class="font-small text-danger" id="txtMaaTimeErr"></p>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="md-form mt-1">
+                            <div class="md-form mt-2">
                                 <input type="number" id="txtMaaAmount" class="form-control" step="0.1">
                                 <label for="txtMaaAmount" id="lblMaaAmount">Amount (RM) *</label>
                                 <p class="font-small text-danger" id="txtMaaAmountErr"></p>
                             </div>
                         </div>
-                        <div class="col-md-12" id="divMaaQuantity">
-                            <div class="md-form mt-0">
-                                <input type="number" id="txtMaaQuantity" class="form-control">
-                                <label for="txtMaaQuantity" id="lblMaaQuantity">Quantity *</label>
-                                <p class="font-small text-danger" id="txtMaaQuantityErr"></p>
-                            </div>
-                        </div>
                         <div class="col-md-12" id="divMaaRemark">
-                            <div class="md-form mt-1">
+                            <div class="md-form mt-2">
                                 <input type="text" id="txtMaaRemark" class="form-control">
                                 <label for="txtMaaRemark" id="lblMaaRemark">Remark</label>
                                 <p class="font-small text-danger" id="txtMaaRemarkErr"></p>
@@ -75,7 +77,7 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer flex-center">
+            <div class="modal-footer flex-center py-1">
                 <button class="btn btn-outline-info waves-effect" data-dismiss="modal"><i class="fas fa-undo-alt ml-1"></i> Close</button>
                 <button id="btnMaaSubmit" class="btn btn-info waves-effect"><i class="far fa-paper-plane ml-1"></i> Submit</button>
             </div>

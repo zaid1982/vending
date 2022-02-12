@@ -69,10 +69,10 @@ try {
                 'ballAmount' => '-'.$_POST['amount'],
                 'ballDesc' => 'Stock Purchase',
                 'ballCategory' => 'Stocking',
-                'ballRemark' => $_POST['quantity']
+                'ballRemark' => $_POST['remark']
             );
             $fn_all->add_all($param);
-            $fn_account->add_stock_purchase($_POST['amount'], $_POST['quantity'], $datetime);
+            $fn_account->add_stock_purchase($_POST['amount'], $datetime, $_POST['remark']);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
         } else if ($urlArr[1] === 'petrol') {
             $param = array(
@@ -100,15 +100,15 @@ try {
             $param = array(
                 'ballDate' => $datetime,
                 'ballAmount' => '-'.$_POST['amount'],
-                'ballDesc' => 'Husaini Salary',
+                'ballDesc' => $_POST['staff'],
                 'ballCategory' => 'Salary',
                 'ballRemark' => $_POST['remark']
             );
             $fn_all->add_all($param);
-            $fn_account->add_salary($_POST['amount'], $datetime, $_POST['remark']);
+            $fn_account->add_salary($_POST['amount'], $datetime, $_POST['staff'], $_POST['remark']);
             $form_data['errmsg'] = $constant::SUC_ACTIVITY_ADD;
         } else {
-            throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$postAction.')');
+            throw new Exception('[' . __LINE__ . '] - Invalid action parameter ('.$urlArr[1].')');
         }
 
         Class_db::getInstance()->db_commit();
