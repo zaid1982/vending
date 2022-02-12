@@ -65,17 +65,18 @@ function MainSummary11armorClass() {
             { name: 'Workshop', data: [] },
             { name: 'MT', data: [] }
         ];
-        for (let i = 0; i < dataSummary.length; i++) {
+        for (let i = dataSummary.length - 1; i >= 0; i--) {
             const data = dataSummary[i];
             categories.push(data['Year'] + ' ' + data['Month']);
             seriesData[0]['data'].push(parseInt(data['Akademik']));
-            seriesData[1]['data'].push(parseInt(data['Penginapan A']));
-            seriesData[2]['data'].push(parseInt(data['Penginapan C']));
-            seriesData[3]['data'].push(parseInt(data['Penginapan HQ']));
-            seriesData[4]['data'].push(parseInt(data['Penuntut']));
-            seriesData[5]['data'].push(parseInt(data['Pejabat']));
-            seriesData[6]['data'].push(parseInt(data['Workshop']));
-            seriesData[7]['data'].push(parseInt(data['MT']));
+            seriesData[1]['data'].push(parseInt(data['HQ']));
+            seriesData[2]['data'].push(parseInt(data['Penginapan A']));
+            seriesData[3]['data'].push(parseInt(data['Penginapan C']));
+            seriesData[4]['data'].push(parseInt(data['Penginapan HQ']));
+            seriesData[5]['data'].push(parseInt(data['Penuntut']));
+            seriesData[6]['data'].push(parseInt(data['Pejabat']));
+            seriesData[7]['data'].push(parseInt(data['Workshop']));
+            seriesData[8]['data'].push(parseInt(data['MT']));
         }
         Highcharts.chart(chartId, {
             chart: {
@@ -108,7 +109,7 @@ function MainSummary11armorClass() {
             },
             plotOptions: {
                 column: {
-                    pointPadding: 0.1,
+                    stacking: 'normal',
                     groupPadding: 0.05,
                     borderWidth: 0
                 }
