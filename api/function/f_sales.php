@@ -125,7 +125,25 @@ class Class_sales {
             if (Class_db::getInstance()->db_count('bal_sales', array('machine_id'=>$sqlArr['machine_id'], 'bsls_date'=>$sqlArr['bsls_date'])) > 0) {
                 throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_SALES_EXIST, 31);
             }
-            return Class_db::getInstance()->db_insert('bal_sales', $sqlArr);
+            $this->bslsId = Class_db::getInstance()->db_insert('bal_sales', $sqlArr);
+            return $this->bslsId;
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @param $params
+     * @return void
+     * @throws Exception
+     */
+    public function update_sales ($params) {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+            $this->fn_general->checkEmptyParams(array($this->bslsId));
+            Class_db::getInstance()->db_update('bal_sales', $this->fn_general->convertToMysqlArrAll($params), array('bsls_id'=>$this->bslsId));
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());

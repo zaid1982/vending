@@ -552,6 +552,38 @@ class Class_general {
     }
 
     /**
+     * @param $dataInputs
+     * @return array
+     * @throws Exception
+     */
+    public function convertToMysqlArrAll ($dataInputs) {
+        try {
+            //$this->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $dataOutputs = array();
+            if (!empty($dataInputs)) {
+                foreach ($dataInputs as $index => $dataInput) {
+                    $newIndexs = '';
+                    for ($i = 0; $i < strlen($index); $i++) {
+                        if (ctype_digit($index[$i])) {
+                            $newIndexs .= '_' . $index[$i];
+                        } else if (ctype_upper($index[$i])) {
+                            $newIndexs .= '_' . strtolower($index[$i]);
+                        } else {
+                            $newIndexs .= $index[$i];
+                        }
+                    }
+                    $dataOutputs[$newIndexs] = $dataInput;
+                }
+            }
+            return $dataOutputs;
+        } catch(Exception $ex) {
+            $this->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0051', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
      * @param $params
      * @return void
      * @throws Exception

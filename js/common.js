@@ -319,7 +319,7 @@ function MzValidate(name) {
             else if (u.type === 'select') {
                 //fieldSelector.materialSelect('destroy');
                 fieldSelector.val(null);
-                fieldLblSelector.removeClass('active');
+                //fieldLblSelector.removeClass('active');
                 //fieldSelector.materialSelect();
                 //$('.mdb-select').materialSelect('destroy');
                 //$('#' + fieldId).val(null).trigger( 'click');
@@ -975,6 +975,8 @@ function mzOptionStopClear(name, defaultText, type) {
     $('#'+name).materialSelect();
     $('#'+name).removeClass('invalid');
     $('#'+name+'Err').html('');
+    $('#lbl' + name.substr(3)).removeClass('active');
+    $('#lbl' + name.substr(3)).addClass('active');
 }
 
 function mzOptionStop(name, data, defaultText, keyIndex, valIndex, filters, type, isSort) {
@@ -1066,6 +1068,8 @@ function mzOption(name, data, defaultText, keyIndex, valIndex, filters, type, is
     //document.getElementById(name).innerHTML = htmlStr.join('');
     //$('#' + name).html(htmlStr.join(''));
     $('#' + name).val(null);
+    $('#lbl' + name.substr(3)).removeClass('active');
+    $('#lbl' + name.substr(3)).addClass('active');
     //document.getElementById(name).setAttribute('data-stop-refresh', 'true');
     //$('#'+name).prevAll('.select-dropdown').children('li:eq()').trigger('click');
 }

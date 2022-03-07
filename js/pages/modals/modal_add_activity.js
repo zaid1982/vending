@@ -12,9 +12,11 @@ function ModalAddActivity() {
         mzOption('optMaaSiteId', refSite, 'Select Site', 'siteId', 'siteName');
 
         $('#optMaaSiteId').on('change', function () {
-            if (activityType !== 1) {
-                if ($(this).val() === '') {
-                    mzOptionStopClear('optMaaMachineId', 'Select Machine');
+            if ($(this).val() === '') {
+                mzOptionStopClear('optMaaMachineId', 'Select Machine');
+            } else {
+                if (activityType === 3) {
+                    mzOptionStop('optMaaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:$(this).val(), machineType:'RO'});
                 } else {
                     mzOptionStop('optMaaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:$(this).val()});
                 }
@@ -116,6 +118,8 @@ function ModalAddActivity() {
                         };
                         if (activityType === 1) {
                             mzAjaxRequest('account/stock_purchase', 'POST', data);
+                        } else if (activityType === 3) {
+                            mzAjaxRequest('account/ro_sales', 'POST', data);
                         } else if (activityType === 5) {
                             mzAjaxRequest('account/petrol', 'POST', data);
                         } else if (activityType === 6) {
@@ -175,7 +179,7 @@ function ModalAddActivity() {
     };
 
     this.setActivityTypeChange = function () {
-        $('#divMaaMachineId, #divMaaSiteId, #divMaaStaffId').hide();
+        $('#divMaaMachineId, #divMaaSiteId, #divMaaStaffId, #divMaaRemark').hide();
         formValidate.disableField('optMaaSiteId');
         formValidate.disableField('optMaaMachineId');
         formValidate.disableField('optMaaStaffId');

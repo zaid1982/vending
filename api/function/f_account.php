@@ -117,7 +117,7 @@ class Class_account {
      * @param $machineId
      * @param $machineName
      * @param $datetime
-     * @return mixed
+     * @return void
      * @throws Exception
      */
     public function add_data_sales ($sales, $machineId, $machineName, $datetime) {
@@ -147,7 +147,7 @@ class Class_account {
      * @param $amount
      * @param $datetime
      * @param $remark
-     * @return mixed
+     * @return void
      * @throws Exception
      */
     public function add_stock_purchase ($amount, $datetime, $remark='') {
@@ -168,7 +168,7 @@ class Class_account {
      * @param $amount
      * @param $datetime
      * @param string $remark
-     * @return mixed
+     * @return void
      * @throws Exception
      */
     public function add_petrol ($amount, $datetime, $remark='') {
@@ -189,7 +189,7 @@ class Class_account {
      * @param $amount
      * @param $datetime
      * @param string $remark
-     * @return mixed
+     * @return void
      * @throws Exception
      */
     public function add_tng ($amount, $datetime, $remark='') {
@@ -210,8 +210,8 @@ class Class_account {
      * @param $amount
      * @param $datetime
      * @param string $remark
-     * @return mixed
-     * @throws Exception
+     * @return void
+      * @throws Exception
      */
     public function add_salary ($amount, $datetime, $desc, $remark='') {
         try {
@@ -220,6 +220,35 @@ class Class_account {
             $this->fn_general->checkEmptyParams(array($amount, $datetime));
             $accountNames = $this->getAccountNames();
             $this->add_account(array('accountId'=>'1', 'baccAccount'=>$accountNames[1], 'baccDate'=>$datetime, 'baccDesc'=>$desc, 'baccCategory'=>'Salary', 'baccAmount'=>'-'.$amount, 'baccRemark'=>$remark));
+        }
+        catch(Exception $ex) {
+            $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
+            throw new Exception($this->get_exception('0005', __FUNCTION__, __LINE__, $ex->getMessage()), $ex->getCode());
+        }
+    }
+
+    /**
+     * @param $collection
+     * @param $machineId
+     * @param $machineName
+     * @param $datetime
+     * @return void
+     * @throws Exception
+     */
+    public function add_ro_sales ($collection, $machineId, $machineName, $datetime) {
+        try {
+            $this->fn_general->log_debug(__CLASS__, __FUNCTION__, __LINE__, 'Entering '.__FUNCTION__);
+
+            $this->fn_general->checkEmptyParams(array($collection, $machineId, $machineName, $datetime));
+            $accountNames = $this->getAccountNames();
+            $shares = $this->fn_general->convertDbIndexs(Class_db::getInstance()->db_select('vm_share', array('share_category'=>'profit', 'machine_id'=>$machineId), null, null, 1));
+            foreach ($shares as $share) {
+                $this->fn_general->checkEmptyParams(array($share['accountId'], $share['machineId'], $share['sharePerc']));
+                $accountName = $accountNames[intval($share['accountId'])];
+                $amount = floatval($collection) * intval($share['sharePerc']) / 100;
+                $remark = $share['sharePerc']. '% from '.$collection;
+                $this->add_account(array('accountId'=>$share['accountId'], 'baccAccount'=>$accountName, 'baccDate'=>$datetime, 'baccDesc'=>$machineName.' Profit', 'baccCategory'=>'Profit', 'baccRemark'=>$remark, 'baccAmount'=>$amount));
+            }
         }
         catch(Exception $ex) {
             $this->fn_general->log_error(__CLASS__, __FUNCTION__, __LINE__, $ex->getMessage());
