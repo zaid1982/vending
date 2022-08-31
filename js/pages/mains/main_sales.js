@@ -12,7 +12,7 @@ function MainSales() {
 
     this.init = function () {
         userId = mzGetUserInfoByParam('userId');
-        if (userId === 2) {
+        if (userId === '2') {
             mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName');
         } else {
             mzOption('optMaaAslFilterMachine', refMachine, 'All Machine', 'machineId', 'machineName', {'siteId': '(6,9,10,12)'});
@@ -104,7 +104,7 @@ function MainSales() {
             ShowLoader();
             setTimeout(function () {
                 try {
-                    if (userId === 2) {
+                    if (userId === '2') {
                         modalAddCounterClass.add();
                     }
                 } catch (e) {
@@ -118,7 +118,7 @@ function MainSales() {
     };
 
     this.genTableAsl = function () {
-        const siteId = userId === 2 ? '' : '/nazrol';
+        const siteId = userId === '2' ? '' : '/nazrol';
         const dataAPI = mzAjaxRequest('sales'+siteId, 'GET');
         oTableSales.clear().rows.add(dataAPI).draw();
     };

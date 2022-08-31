@@ -300,7 +300,7 @@ class Class_login {
             if ($profile['user_password'] !== md5($password)) {
                 throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_LOGIN_WRONG_PASSWORD, 31);
             }
-            if ($profile['user_status'] !== 1) {
+            if ($profile['user_status'] !== '1') {
                 throw new Exception('[' . __LINE__ . '] - '.$constant::ERR_LOGIN_NOT_ACTIVE, 31);
             }
 

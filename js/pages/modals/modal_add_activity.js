@@ -16,9 +16,9 @@ function ModalAddActivity() {
                 mzOptionStopClear('optMaaMachineId', 'Select Machine');
             } else {
                 if (activityType === 3) {
-                    mzOptionStop('optMaaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:parseInt($(this).val()), machineType:'RO'});
+                    mzOptionStop('optMaaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:$(this).val(), machineType:'RO'});
                 } else {
-                    mzOptionStop('optMaaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:parseInt($(this).val())});
+                    mzOptionStop('optMaaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:$(this).val()});
                 }
             }
         });
@@ -132,7 +132,7 @@ function ModalAddActivity() {
                             mzAjaxRequest('account/salary', 'POST', data);
                         }
                         if (classFrom.getClassName() === 'MainHome') {
-                            classFrom.generateChartAll('chartHmeAll');
+                            classFrom.generateChartAll();
                         }
                         $('#modal_add_activity').modal('hide');
                     }

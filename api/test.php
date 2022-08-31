@@ -26,21 +26,7 @@ $getData = $fn_counter->get_counter_list('1', '2019-11-05');
 print_r($getData);*/
 
 Class_db::getInstance()->db_connect();
-
-$alls = Class_db::getInstance()->db_select('bal_all', array('ball_balance'=>'is NULL'), 'ball_id', '1000');
-foreach ($alls as $all) {
-    $dataPrevious = Class_db::getInstance()->db_select_single('bal_all', array('ball_id'=>'<'.$all['ball_id']), 'ball_id DESC');
-    if (!empty($dataPrevious)) {
-        $balance = (floatval($all['ball_amount'])+floatval($dataPrevious['ball_balance']));
-        Class_db::getInstance()->db_update('bal_all', array('ball_balance'=>strval($balance)), array('ball_id'=>$all['ball_id']));
-        echo 'Desc - '.$all['ball_desc'].', balance - '.$balance.'</br>';
-    } else {
-        Class_db::getInstance()->db_update('bal_all', array('ball_balance'=>$all['ball_amount']), array('ball_id'=>$all['ball_id']));
-        echo 'Desc - '.$all['ball_desc'].', balance - '.$all['ball_amount'].'</br>';
-    }
-}
-
-/*$alls = Class_db::getInstance()->db_select('bal_account');
+$alls = Class_db::getInstance()->db_select('bal_account');
 foreach ($alls as $all) {
     $dataPrevious = Class_db::getInstance()->db_select_single('bal_account', array('account_id'=>$all['account_id'], 'bacc_id'=>'<'.$all['bacc_id']), 'bacc_id DESC');
     if (!empty($dataPrevious)) {
@@ -50,5 +36,5 @@ foreach ($alls as $all) {
         Class_db::getInstance()->db_update('bal_account', array('temp'=>$all['bacc_amount']), array('bacc_id'=>$all['bacc_id']));
         echo 'Acc ID B - '.$all['account_id'].'</br>';
     }
-}*/
+}
 Class_db::getInstance()->db_close();
