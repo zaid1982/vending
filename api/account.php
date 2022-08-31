@@ -120,7 +120,7 @@ try {
             $machine = $fn_machine->get_machine();
             $param = array(
                 'ballDate' => $datetime,
-                'ballAmount' => '-'.$_POST['amount'],
+                'ballAmount' => $_POST['amount'],
                 'ballDesc' => $machine['machineName'],
                 'ballCategory' => 'Sales',
                 'ballRemark' => ''

@@ -14,7 +14,7 @@ function ModalAddCounter() {
             if ($(this).val() === '') {
                 mzOptionStopClear('optMcaMachineId', 'Select Machine');
             } else {
-                mzOptionStop('optMcaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:$(this).val()});
+                mzOptionStop('optMcaMachineId', refMachine, 'Select Machine', 'machineId', 'machineName', {siteId:parseInt($(this).val())});
             }
         });
 
@@ -69,7 +69,7 @@ function ModalAddCounter() {
                         const bslsId = mzAjaxRequest('sales', 'POST', data);
                         if (classFrom.getClassName() === 'MainSales') {
                             classFrom.genTableAsl();
-                            sectionFrom.refreshItemCards(bslsId, '2020-05-06', $('#optMcaMachineId').val(), $('#optMcaSiteId').val(), '5');
+                            sectionFrom.refreshItemCards(bslsId, '2020-05-06', $('#optMcaMachineId').val(), $('#optMcaSiteId').val(), 5);
                         }
                         $('#modal_add_counter').modal('hide');
                     }
