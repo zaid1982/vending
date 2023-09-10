@@ -95,6 +95,7 @@ class Class_brand
                 $row_result['manufacturerId'] = $dataLocal['manufacturer_id'];
                 $row_result['brandCostCarton'] = $this->fn_general->clear_null($dataLocal['brand_cost_carton']);
                 $row_result['brandCostUnit'] = $this->fn_general->clear_null($dataLocal['brand_cost_unit']);
+                $row_result['brandSellPrice'] = $this->fn_general->clear_null($dataLocal['brand_sell_price']);
                 $file = 'img/brand/brand_'.$dataLocal['brand_id'].'.jpg';
                 $row_result['imageFile'] = file_exists('../'.$file) ? $file : 'img/no-image.png';
                 $result[] = $row_result;

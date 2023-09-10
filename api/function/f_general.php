@@ -611,7 +611,7 @@ class Class_general {
             $refArray = array('');
             $arr_dataLocal = Class_db::getInstance()->db_select('vm_brand', array(), null, null, 1);
             foreach ($arr_dataLocal as $dataLocal) {
-                $refArray[intval($dataLocal['brand_id'])] = $dataLocal['brand_cost_unit'];
+                $refArray[intval($dataLocal['brand_id'])] = array($dataLocal['brand_cost_unit'], $dataLocal['brand_sell_price']);
             }
             return $refArray;
         } catch(Exception $ex) {

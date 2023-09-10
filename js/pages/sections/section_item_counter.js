@@ -14,6 +14,8 @@ function SectionItemCounter() {
     let dataCounter = [];
 
     this.init = function () {
+        console.log(refBrand);
+
         $('#sectionItcCounter').hide();
         self.generateItemCards();
 
@@ -87,11 +89,13 @@ function SectionItemCounter() {
             const fieldId = $(this).attr('id');
             const slotId = fieldId.substr(11);
             const sold = parseInt($('#txtItcTotalSold'+slotId).val());
-            const price = parseFloat($('#txtItcPrice'+slotId).val());
-            const cost = refBrand[parseInt($(this).val())]['brandCostUnit'];
+            const priceStr = refBrand[parseInt($(this).val())]['brandSellPrice'];
+            const price = priceStr === '' ? 0 : parseFloat(priceStr);
+            const cost = parseFloat(refBrand[parseInt($(this).val())]['brandCostUnit']);
             const profit = sold*(price-cost);
             $('#imgItcSlot'+slotId).attr('src', refBrand[parseInt($(this).val())]['imageFile']);
-            mzSetFieldValue('ItcCost'+slotId, cost, 'text');
+            mzSetFieldValue('ItcPrice'+slotId, price.toFixed(2), 'text');
+            mzSetFieldValue('ItcCost'+slotId, cost.toFixed(2), 'text');
             mzSetFieldValue('ItcTotalProfit'+slotId, profit.toFixed(2), 'text');
         });
 
@@ -157,7 +161,7 @@ function SectionItemCounter() {
                 '                    <!-- Title -->\n' +
                 '                    <h4 class="card-title font-weight-bold mb-2">Slot <span id="lblItcSlotNo'+i+'"></span>\n' +
                 '                        <a href="#!" class="text-black-50">\n' +
-                '                            <i class="fas fa-edit pr-2 float-right aItcEdit" id="aItcEdit'+i+'"></i>\n' +
+                '                            <i class="fas fa-check-square pr-2 float-right aItcEdit" id="aItcEdit'+i+'"></i>\n' +
                 '                        </a>\n' +
                 '                    </h4>\n' +
                 '                    <!-- Subtitle -->\n' +
@@ -187,7 +191,7 @@ function SectionItemCounter() {
                 '                            </div>\n' +
                 '                            <div class="col-6">\n' +
                 '                                <div class="md-form mt-0 mb-0">\n' +
-                '                                    <input type="number" id="txtItcPrice'+i+'" class="form-control txtItcPrice" step="0.1" disabled>\n' +
+                '                                    <input type="number" id="txtItcPrice'+i+'" class="form-control txtItcPrice" step="0.1">\n' +
                 '                                    <label for="txtItcPrice'+i+'" id="lblItcPrice'+i+'" class="active">Price (RM)</label>\n' +
                 '                                    <p class="font-small text-danger" id="txtItcPrice'+i+'Err"></p>\n' +
                 '                                </div>\n' +
@@ -272,17 +276,20 @@ function SectionItemCounter() {
                     mzSetFieldValue('ItcCurrentReading'+i, dataCounter[i]['counterBalanceFinal'], 'text');
                     mzSetFieldValue('ItcTotalSold'+i, sold, 'text');
                     mzSetFieldValue('ItcTotalProfit'+i, profit.toFixed(2), 'text');
-                    mzDisableSelect('optItcBrand'+i, true);
-                    formValidate[i].disableField('txtItcPrice'+i);
-                    $('#txtItcPrice'+i).prop('disabled', true);
                     $('#divItcSlot'+i).show();
                     if (bslsStatus === 5) {
+                        mzDisableSelect('optItcBrand'+i, false);
                         formValidate[i].enableField('txtItcCurrentReading'+i);
+                        formValidate[i].enableField('txtItcPrice'+i);
                         $('#txtItcCurrentReading'+i).prop('disabled', false);
+                        $('#txtItcPrice'+i).prop('disabled', false);
                         $('.aItcEdit').show();
                     } else {
+                        mzDisableSelect('optItcBrand'+i, true);
                         formValidate[i].disableField('txtItcCurrentReading'+i);
+                        formValidate[i].disableField('txtItcPrice'+i);
                         $('#txtItcCurrentReading'+i).prop('disabled', true);
+                        $('#txtItcPrice'+i).prop('disabled', true);
                         $('.aItcEdit').hide();
                     }
                 }

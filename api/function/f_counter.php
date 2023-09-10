@@ -113,7 +113,7 @@ class Class_counter {
             foreach ($previousCounters as $previousCounter) {
                 $brandId = $previousCounter['brand_id'];
                 Class_db::getInstance()->db_insert('vm_counter', array('counter_date'=>$sales['bsls_date'], 'site_id'=>$sales['site_id'], 'machine_id'=>$sales['machine_id'], 'counter_slot_no'=>$previousCounter['counter_slot_no'],
-                    'brand_id'=>$brandId, 'counter_cost'=>$brandCosts[intval($brandId)], 'counter_price'=>$previousCounter['counter_price'], 'counter_balance_initial'=>$previousCounter['counter_balance_final'], 'counter_balance_final'=>$previousCounter['counter_balance_final']));
+                    'brand_id'=>$brandId, 'counter_cost'=>$brandCosts[intval($brandId)][0], 'counter_price'=>(empty($brandCosts[intval($brandId)][1])?$previousCounter['counter_price']:$brandCosts[intval($brandId)][1]), 'counter_balance_initial'=>$previousCounter['counter_balance_final'], 'counter_balance_final'=>$previousCounter['counter_balance_final']));
             }
         }
         catch(Exception $ex) {
